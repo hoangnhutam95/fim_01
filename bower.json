@@ -3,10 +3,11 @@
   "description": "",
   "main": "",
   "authors": [
-    "hoanggiap <giapbka57@gmail.com>"
+    "hoangnhutam95 <hoangnhutam95@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/hoanggiap/fim_01",
+  "homepage": "https://github.com/framgia/fim_01",
+  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
