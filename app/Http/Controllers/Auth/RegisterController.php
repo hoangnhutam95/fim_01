@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
+use App\Repositories\User\UserRepositoryInterface;
 
 class RegisterController extends Controller
 {
@@ -34,24 +37,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->middleware('guest');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -60,12 +49,22 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+
+    protected function register(RegisterRequest $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        try {
+            $user = $this->userRepository->create($request->all());
+            $this->guard()->login($user);
+
+            return redirect()->route('home')->with([
+                'flash_level' => 'success',
+                'flash_message' => trans('auth.create-user-succses'),
+            ]);
+        } catch (Exception $e) {
+            return redirect()->route('login')->with([
+                'flash_level' => 'warning',
+                'flash_message' => trans('auth.create-user-fail'),
+            ]);
+        }
     }
 }
