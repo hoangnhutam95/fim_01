@@ -11,3 +11,7 @@ npm-debug.log
 .env
 /public/bower
 /public/uploads
+/public/admin
+/public/frontend
+/public/img
+/public/bower_components
