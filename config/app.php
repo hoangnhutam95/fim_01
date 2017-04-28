@@ -230,7 +230,5 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'SetFile' => App\Helpers\SetFile::class,
-
     ],
-
 ];
