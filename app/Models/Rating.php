@@ -20,11 +20,11 @@ class Rating extends Model
 
     public function song()
     {
-        return $this->belongsTo(Song::class);
+        return $this->belongsTo(Song::class, 'target_id');
     }
 
     public function album()
     {
-        return $this->belongsTo(Album::class);
+        return $this->belongsTo(Album::class, 'target_id');
     }
 }
