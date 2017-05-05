@@ -4,6 +4,8 @@
 */
 namespace App\Repositories;
 
+use Exception;
+
 abstract class BaseRepository implements BaseRepositoryInterface
 {
     protected $model;
@@ -16,6 +18,16 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function paginate($limit)
     {
         return $this->model->paginate($limit);
+    }
+
+    public function find($id)
+    {
+        $data = $this->model->find($id);
+        if (!$data) {
+            throw new Exception(trans('user.find_error'));
+        }
+
+        return $data;
     }
 
     public function create($input)

@@ -28,6 +28,9 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Models\Song::class, function (Faker\Generator $faker) {
+    static $singerIds;
+    static $categoryIds;
+
     return [
         'name' => $faker->name,
         'cover' => $faker->imageUrl(700, 200),
@@ -40,16 +43,8 @@ $factory->define(App\Models\Song::class, function (Faker\Generator $faker) {
         'rate_point' => $faker->randomFloat(2, 1, 5),
         'comment_number' => $faker->numberBetween(4, 20),
         'is_hot' => $faker->numberBetween(0, 1),
-        'created_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
-        'updated_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
-    ];
-});
-
-$factory->define(App\Models\Singer::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'avatar' => $faker->imageUrl(100, 100),
-        'role' => $faker->numberBetween(1, 2),
+        'singer_id' => $faker->randomElement($singerIds ?: $singerIds = App\Models\Singer::pluck('id')->toArray()),
+        'category_id' => $faker->randomElement($categoryIds ?: $categoryIds = App\Models\Category::pluck('id')->toArray()),
         'created_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
         'updated_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
     ];

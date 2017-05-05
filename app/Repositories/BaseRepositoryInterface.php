@@ -7,6 +7,8 @@ interface BaseRepositoryInterface
 
     public function create($input);
 
+    public function find($id);
+
     public function paginate($limit);
 
     public function update($id, $input);
