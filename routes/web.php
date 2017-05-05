@@ -20,3 +20,10 @@ Route::get('/home', [
     'as' => 'home',
     'uses' => 'HomeController@index',
 ]);
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('home', function () {
+        return view('admin.master');
+    });
+    Route::resource('user', 'Admin\UserController');
+});

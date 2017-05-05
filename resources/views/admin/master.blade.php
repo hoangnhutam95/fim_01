@@ -16,6 +16,7 @@
     {!! Html::style('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}
     {!! Html::style('bower_components/datatables-responsive/css/dataTables.responsive.css') !!}
     {!! Html::style('admin/mycss.css') !!}
+    @yield('style')
 </head>
 <body>
     <div id="wrapper">
@@ -84,7 +85,7 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">{{ trans('admin.list-user') }}</a>
+                                    <a href="{{ action('Admin\UserController@index') }}">{{ trans('admin.list-user') }}</a>
                                 </li>
                                 <li>
                                     <a href="#">{{ trans('admin.add-user') }}</a>
@@ -151,5 +152,6 @@
     {!! Html::script('bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}
     {!! Html::script('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}
     {!! Html::script('admin/js/myscript.js') !!}
+    @yield('script')
 </body>
 </Html>

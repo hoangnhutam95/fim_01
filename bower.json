@@ -7,7 +7,6 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/framgia/fim_01",
-  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
@@ -19,6 +18,11 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "metisMenu": "metismenu#^2.7.0"
+    "metisMenu": "^2.7.0",
+    "datatables-plugins": "^1.10.15",
+    "font-awesome": "^4.7.0",
+    "datatables-responsive": "^2.1.1",
+    "startbootstrap-sb-admin-2-sass": "^1.0.7",
+    "datatables": "^1.10.15"
   }
 }

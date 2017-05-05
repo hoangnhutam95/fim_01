@@ -27,4 +27,35 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return $this->model->create($input);
     }
+
+    public function update($input, $id)
+    {
+        $user = [
+            'name' => $input['name'],
+            'phone' => $input['phone'],
+            'address' => $input['address'],
+        ];
+        $name = SetFile::uploadAvatar($input);
+        $user['avatar'] = isset($name) ? $name : $input['current_img'];
+        if ($input['current_img'] != config('settings.avatar_default') && isset($name)) {
+            file::delete(config('settings.avatar_path') . $input['current_img']);
+        }
+
+        return $this->model->where('id', $id)->update($user);
+    }
+
+    public function delete($id)
+    {
+        DB::beginTransaction();
+        try {
+            $data = $this->model->destroy($id);
+            if (!$data) {
+                throw new Exception(trans('user.delete_error'));
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
 }
