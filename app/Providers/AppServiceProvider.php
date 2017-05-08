@@ -3,6 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+use App;
+use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\UserRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Schema::defaultStringLength(191);
     }
 
     /**
@@ -23,9 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'App\Repositories\User\UserRepositoryInterface',
-            'App\Repositories\User\UserRepository'
-        );
+        App::bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+        App::bind(UserRepositoryInterface::class, UserRepository::class);
     }
 }
