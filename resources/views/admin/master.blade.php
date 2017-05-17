@@ -14,7 +14,6 @@
     {!! Html::style('bower_components/startbootstrap-sb-admin-2-sass/dist/css/sb-admin-2.css') !!}
     {!! Html::style('bower_components/font-awesome/css/font-awesome.min.css') !!}
     {!! Html::style('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}
-    {!! Html::style('bower_components/datatables-responsive/css/dataTables.responsive.css') !!}
     {!! Html::style('admin/mycss.css') !!}
     @yield('style')
 </head>
@@ -57,10 +56,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">{{ trans('admin.list-category') }}</a>
+                                    <a href="{{ action('Admin\CategoryController@index') }}">{{ trans('admin.list-category') }}</a>
                                 </li>
                                 <li>
-                                    <a href="#">{{ trans('admin.add-category') }}</a>
+                                    <a href="{{ action('Admin\CategoryController@create') }}">{{ trans('admin.add-category') }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -71,7 +70,7 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">{{ trans('admin.audio') }}</a>
+                                    <a href="{{ action('Admin\AudioController@index') }}">{{ trans('admin.audio') }}</a>
                                 </li>
                                 <li>
                                     <a href="#"> {{ trans('admin.video') }}</a>
@@ -149,8 +148,6 @@
     {!! Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
     {!! Html::script('bower_components/metisMenu/dist/metisMenu.min.js') !!}
     {!! Html::script('bower_components/startbootstrap-sb-admin-2-sass/dist/js/sb-admin-2.js') !!}
-    {!! Html::script('bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}
-    {!! Html::script('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}
     {!! Html::script('admin/js/myscript.js') !!}
     @yield('script')
 </body>

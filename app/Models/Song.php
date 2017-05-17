@@ -56,4 +56,23 @@ class Song extends Model
     {
         return $this->hasMany(Rating::class);
     }
+
+    public function getAudioCoverPath()
+    {
+        return asset(config('settings.audio_cover_path') . $this->cover);
+    }
+
+    public function hasCoverAudio()
+    {
+        $filePath = config('settings.audio_cover_src') . $this->cover;
+
+        return file_exists($filePath);
+    }
+
+    public function hasFileAudio()
+    {
+        $filePath = config('settings.audio_src') . $this->link;
+
+        return file_exists($filePath);
+    }
 }

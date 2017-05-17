@@ -26,6 +26,6 @@ Route::group(['prefix' => 'admin'], function () {
         return view('admin.master');
     });
     Route::resource('user', 'Admin\UserController');
+    Route::resource('audio', 'Admin\AudioController');
+    Route::resource('category', 'Admin\CategoryController');
 });
-
-Route::resource('category', 'Admin\CategoryController');

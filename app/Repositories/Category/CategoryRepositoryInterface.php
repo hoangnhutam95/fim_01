@@ -10,4 +10,6 @@ interface CategoryRepositoryInterface
     public function delete($id);
 
     public function update($request, $id);
+
+    public function getListCategories();
 }

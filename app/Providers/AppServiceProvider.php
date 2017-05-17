@@ -9,6 +9,10 @@ use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
+use App\Repositories\Song\SongRepository;
+use App\Repositories\Song\SongRepositoryInterface;
+use App\Repositories\Singer\SingerRepository;
+use App\Repositories\Singer\SingerRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +35,7 @@ class AppServiceProvider extends ServiceProvider
     {
         App::bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         App::bind(UserRepositoryInterface::class, UserRepository::class);
+        App::bind(SongRepositoryInterface::class, SongRepository::class);
+        App::bind(SingerRepositoryInterface::class, SingerRepository::class);
     }
 }
