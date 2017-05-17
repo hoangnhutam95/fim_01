@@ -4,26 +4,23 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ trans('song.edit-audio') }}</div>
+                <div class="panel-heading">{{ trans('song.add-video') }}</div>
                 <div class="panel-body">
                     {!! Form::open([
-                        'method' => 'PATCH',
-                        'action' => ['Admin\AudioController@update', $audio['id']],
+                        'method' => 'POST',
+                        'action' => ['Admin\VideoController@store'],
                         'class' => 'form-horizontal',
                         'enctype' => 'multipart/form-data'
                     ]) !!}
-                        @if (isset($audio))
-                            {{ Form::hidden('id', $audio['id']) }}
-                        @endif
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">
                                 {{ trans('song.name') }}
                             </label>
                             <div class="col-md-7">
-                                {!! Form::text ('name', old('name',
-                                    isset($audio) ? $audio['name'] : null), [
+                                {!! Form::text ('name', old('name'), [
                                     'class' => 'form-control',
                                     'id' => 'name',
+                                    'placeholder' => trans('song.enter-name'),
                                 ]) !!}
 
                                 @if ($errors->has('name'))
@@ -38,10 +35,10 @@
                                 {{ trans('song.composed') }}
                             </label>
                             <div class="col-md-7">
-                                {!! Form::text ('author', old('author',
-                                    isset($audio) ? $audio['author'] : null), [
+                                {!! Form::text ('author', old('author'), [
                                     'class' => 'form-control',
                                     'id' => 'author',
+                                    'placeholder' => trans('song.enter-author'),
                                 ]) !!}
                             </div>
                         </div>
@@ -50,7 +47,7 @@
                                 {{ trans('song.category') }}
                             </label>
                             <div class="col-md-7">
-                                {!! Form::select('category_id', $categories, $audio['category_id'], [
+                                {!! Form::select('category_id', $categories, null, [
                                 'class' => 'form-control',
                                 ]) !!}
                             </div>
@@ -60,7 +57,7 @@
                                 {{ trans('song.singer') }}
                             </label>
                             <div class="col-md-7">
-                                {!! Form::select('singer_id', $singers, $audio['singer_id'], [
+                                {!! Form::select('singer_id', $singers, null, [
                                 'class' => 'form-control',
                                 ]) !!}
                             </div>
@@ -70,8 +67,7 @@
                             {{ trans('song.description') }}
                             </label>
                             <div class="col-md-7">
-                                {{ Form::textarea('description',
-                                    isset($audio) ? $audio['description'] : null, [
+                                {{ Form::textarea('description', null, [
                                     'class' => 'form-control',
                                     'rows' => 3,
                                     'placeholder' => trans('song.enter-description')
@@ -90,13 +86,10 @@
                                         <strong>{{ $errors->first('cover') }}</strong>
                                     </span>
                                 @endif
-                                @if (isset($audio))
-                                    {{ Form::hidden('current_img', $audio['cover']) }}
-                                @endif
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-                            <label for="link" class="col-md-4 control-label">{{ trans('song.file_audio') }}</label>
+                            <label for="link" class="col-md-4 control-label">{{ trans('song.file_video') }}</label>
                             <div class="col-md-7">
                                 {!! Form::file('link', [
                                     'class' => 'form-control',
@@ -107,20 +100,13 @@
                                         <strong>{{ $errors->first('link') }}</strong>
                                     </span>
                                 @endif
-                                @if (isset($audio))
-                                    {{ Form::hidden('current_file', $audio['link']) }}
-                                @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-7 col-md-offset-4">
-                                {!! Form::button(trans('song.update'), [
+                                {!! Form::button(trans('song.add-video'), [
                                     'class' => 'btn btn-primary',
                                     'type' => 'submit',
-                                ]) !!}
-                                {!! Form::button(trans('song.reset'), [
-                                    'class' => 'btn btn-default',
-                                    'type' => 'reset',
                                 ]) !!}
                             </div>
                         </div>
