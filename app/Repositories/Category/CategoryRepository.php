@@ -91,4 +91,9 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             return false;
         }
     }
+
+    public function getListCategories()
+    {
+        return $this->model->pluck('name', 'id');
+    }
 }

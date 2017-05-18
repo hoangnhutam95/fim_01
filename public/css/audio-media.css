@@ -1,0 +1,53 @@
+/* This is purely for the demo */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.plyr {
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.plyr--audio .plyr__controls {
+    color: #fff !important;
+    background: rgba(0, 0, 2, 0.2) none repeat scroll 0 0;
+    height: 50px;
+    align-items: end;
+    border: 0px;
+    border-radius: 0px;
+    margin-top: 95px;
+}
+
+.plyr input[type="range"] {
+    height: 33px;
+}
+
+.plyr__time {
+    font-size: 36px;
+}
+.audio-cover {
+    height: 200px;
+    background-image: url("/uploads/cover/audio_cover/default_cover.jpg");
+}
+
+.admin-audio-name {
+    text-align: center;
+    height: 50px;
+    font-size: 25px;
+    color: white;
+    margin: 0px auto;
+    padding: 10px;
+    background: rgba(0, 171, 255, 0.3) none repeat scroll 0 0;
+}
+
+#audio-name-color {
+    color: yellow;
+    font-weight: bold;
+}
+
+h4 {
+    display: inline;
+}
+
+.add-audio {
+    margin-top: 20px;
+}
