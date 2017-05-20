@@ -73,7 +73,7 @@
                                     <a href="{{ action('Admin\AudioController@index') }}">{{ trans('admin.audio') }}</a>
                                 </li>
                                 <li>
-                                    <a href="#"> {{ trans('admin.video') }}</a>
+                                    <a href="{{ action('Admin\VideoController@index') }}"> {{ trans('admin.video') }}</a>
                                 </li>
                             </ul>
                         </li>

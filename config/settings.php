@@ -21,4 +21,9 @@ return [
     'audio_src' => public_path() . '/uploads/audio/',
     'audio_cover_src' => public_path() . '/uploads/cover/audio_cover/',
     'none' => 'None',
+    'video_per_page' => 5,
+    'video_path' => '/uploads/video/',
+    'video_cover_path' => '/uploads/cover/video_cover/',
+    'video_src' => public_path() . '/uploads/video/',
+    'video_cover_src' => public_path() . '/uploads/cover/video_cover/',
 ];

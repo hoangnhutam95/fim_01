@@ -48,4 +48,25 @@ class SetFile
             return $name;
         }
     }
+
+    public static function uploadCoverVideo($request)
+    {
+        if (isset($request['cover'])) {
+            $file = Input::file('cover');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $file->move(config('settings.video_cover_src'), $name);
+            return $name;
+        }
+    }
+
+    public static function uploadVideo($request)
+    {
+        if (isset($request['link'])) {
+            $file = Input::file('link');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $file->move(config('settings.video_src'), $name);
+
+            return $name;
+        }
+    }
 }

@@ -7,14 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Song\SongRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Singer\SingerRepositoryInterface;
-use App\Http\Requests\UpdateAudioRequest;
-use App\Http\Requests\CreateAudioRequest;
+use App\Http\Requests\CreateVideoRequest;
+use App\Http\Requests\UpdateVideoRequest;
 
-class AudioController extends Controller
+class VideoController extends Controller
 {
     protected $songRepository;
     protected $categoryRepository;
-    protected $singerRepository;
 
     public function __construct(
         SongRepositoryInterface $songRepository,
@@ -32,9 +31,9 @@ class AudioController extends Controller
      */
     public function index()
     {
-        $audios = $this->songRepository->getListAudios()->paginate(config('settings.audio_per_page'));
+        $videos = $this->songRepository->getListVideos()->paginate(config('settings.video_per_page'));
 
-        return view('admin.audio.index', compact('audios'));
+        return view('admin.video.index', compact('videos'));
     }
 
     /**
@@ -49,7 +48,7 @@ class AudioController extends Controller
         $singers = $this->singerRepository->getListSingers();
         $singers->prepend(config('settings.none'));
 
-        return view('admin.audio.add', compact('categories', 'singers'));
+        return view('admin.video.add', compact('categories', 'singers'));
     }
 
     /**
@@ -58,14 +57,14 @@ class AudioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateAudioRequest $request)
+    public function store(CreateVideoRequest $request)
     {
         try {
-            $audio = $this->songRepository->createAudio($request->all());
+            $video = $this->songRepository->createVideo($request->all());
 
-            return redirect()->route('audio.index')->with('success', trans('song.audio_create_success'));
+            return redirect()->route('video.index')->with('success', trans('song.video_create_success'));
         } catch (Exception $e) {
-            return redirect()->route('audio.index')->with('errors', trans('song.audio_create_fail'));
+            return redirect()->route('video.index')->with('errors', trans('song.video_create_fail'));
         }
     }
 
@@ -88,16 +87,16 @@ class AudioController extends Controller
      */
     public function edit($id)
     {
-        $audio = $this->songRepository->find($id);
+        $video = $this->songRepository->find($id);
         $categories = $this->categoryRepository->getListCategories();
         $categories->prepend(config('settings.none'));
         $singers = $this->singerRepository->getListSingers();
         $singers->prepend(config('settings.none'));
-        if (!$audio) {
-            return redirect()->route('audio.index')->with('errors', trans('song.audio_not_found'));
+        if (!$video) {
+            return redirect()->route('video.index')->with('errors', trans('song.video_not_found'));
         }
 
-        return view('admin.audio.edit', compact('audio', 'categories', 'singers'));
+        return view('admin.video.edit', compact('video', 'categories', 'singers'));
     }
 
     /**
@@ -107,7 +106,7 @@ class AudioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAudioRequest $request, $id)
+    public function update(UpdateVideoRequest $request, $id)
     {
         $input = $request->only(
             'name',
@@ -120,12 +119,12 @@ class AudioController extends Controller
             'link',
             'current_file'
         );
-        $song = $this->songRepository->updateAudio($input, $id);
+        $song = $this->songRepository->updateVideo($input, $id);
         if (!$song) {
-            return redirect()->route('audio.index')->with('errors', trans('song.audio_update_fail'));
+            return redirect()->route('video.index')->with('errors', trans('song.video_update_fail'));
         }
 
-        return redirect()->route('audio.index')->with('success', trans('song.audio_update_success'));
+        return redirect()->route('video.index')->with('success', trans('song.video_update_success'));
     }
 
     /**
@@ -136,11 +135,11 @@ class AudioController extends Controller
      */
     public function destroy($id)
     {
-        $audio = $this->songRepository->deleteAudio($id);
-        if ($audio) {
-            return redirect()->back()->with('success', trans('song.delete_audio_successfully'));
+        $video = $this->songRepository->deleteVideo($id);
+        if (!$video) {
+            return redirect()->back()->with('errors', trans('song.delete_video_fail'));
         }
 
-        return redirect()->back()->with('errors', trans('song.delete_audio_fail'));
+        return redirect()->back()->with('success', trans('song.delete_video_successfully'));
     }
 }

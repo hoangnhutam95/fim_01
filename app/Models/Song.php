@@ -75,4 +75,18 @@ class Song extends Model
 
         return file_exists($filePath);
     }
+
+    public function hasCoverVideo()
+    {
+        $filePath = config('settings.video_cover_src') . $this->cover;
+
+        return file_exists($filePath);
+    }
+
+    public function hasFileVideo()
+    {
+        $filePath = config('settings.video_src') . $this->link;
+
+        return file_exists($filePath);
+    }
 }

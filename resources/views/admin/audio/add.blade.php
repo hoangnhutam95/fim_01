@@ -62,6 +62,18 @@
                                 ]) !!}
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="description" class="col-md-4 control-label">
+                            {{ trans('song.description') }}
+                            </label>
+                            <div class="col-md-7">
+                                {{ Form::textarea('description', null, [
+                                    'class' => 'form-control',
+                                    'rows' => 3,
+                                    'placeholder' => trans('song.enter-description')
+                                ]) }}
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('cover') ? ' has-error' : '' }}">
                             <label for="cover" class="col-md-4 control-label">{{ trans('song.cover_image') }}</label>
                             <div class="col-md-7">

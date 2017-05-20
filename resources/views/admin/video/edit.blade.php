@@ -4,16 +4,16 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ trans('song.edit-audio') }}</div>
+                <div class="panel-heading">{{ trans('song.edit-video') }}</div>
                 <div class="panel-body">
                     {!! Form::open([
                         'method' => 'PATCH',
-                        'action' => ['Admin\AudioController@update', $audio['id']],
+                        'action' => ['Admin\VideoController@update', $video['id']],
                         'class' => 'form-horizontal',
                         'enctype' => 'multipart/form-data'
                     ]) !!}
-                        @if (isset($audio))
-                            {{ Form::hidden('id', $audio['id']) }}
+                        @if (isset($video))
+                            {{ Form::hidden('id', $video['id']) }}
                         @endif
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">
@@ -21,7 +21,7 @@
                             </label>
                             <div class="col-md-7">
                                 {!! Form::text ('name', old('name',
-                                    isset($audio) ? $audio['name'] : null), [
+                                    isset($video) ? $video['name'] : null), [
                                     'class' => 'form-control',
                                     'id' => 'name',
                                 ]) !!}
@@ -39,7 +39,7 @@
                             </label>
                             <div class="col-md-7">
                                 {!! Form::text ('author', old('author',
-                                    isset($audio) ? $audio['author'] : null), [
+                                    isset($video) ? $video['author'] : null), [
                                     'class' => 'form-control',
                                     'id' => 'author',
                                 ]) !!}
@@ -50,7 +50,7 @@
                                 {{ trans('song.category') }}
                             </label>
                             <div class="col-md-7">
-                                {!! Form::select('category_id', $categories, $audio['category_id'], [
+                                {!! Form::select('category_id', $categories, $video['category_id'], [
                                 'class' => 'form-control',
                                 ]) !!}
                             </div>
@@ -60,7 +60,7 @@
                                 {{ trans('song.singer') }}
                             </label>
                             <div class="col-md-7">
-                                {!! Form::select('singer_id', $singers, $audio['singer_id'], [
+                                {!! Form::select('singer_id', $singers, $video['singer_id'], [
                                 'class' => 'form-control',
                                 ]) !!}
                             </div>
@@ -71,7 +71,7 @@
                             </label>
                             <div class="col-md-7">
                                 {{ Form::textarea('description',
-                                    isset($audio) ? $audio['description'] : null, [
+                                    isset($video) ? $video['description'] : null, [
                                     'class' => 'form-control',
                                     'rows' => 3,
                                     'placeholder' => trans('song.enter-description')
@@ -90,13 +90,13 @@
                                         <strong>{{ $errors->first('cover') }}</strong>
                                     </span>
                                 @endif
-                                @if (isset($audio))
-                                    {{ Form::hidden('current_img', $audio['cover']) }}
+                                @if (isset($video))
+                                    {{ Form::hidden('current_img', $video['cover']) }}
                                 @endif
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-                            <label for="link" class="col-md-4 control-label">{{ trans('song.file_audio') }}</label>
+                            <label for="link" class="col-md-4 control-label">{{ trans('song.file_video') }}</label>
                             <div class="col-md-7">
                                 {!! Form::file('link', [
                                     'class' => 'form-control',
@@ -107,8 +107,8 @@
                                         <strong>{{ $errors->first('link') }}</strong>
                                     </span>
                                 @endif
-                                @if (isset($audio))
-                                    {{ Form::hidden('current_file', $audio['link']) }}
+                                @if (isset($video))
+                                    {{ Form::hidden('current_file', $video['link']) }}
                                 @endif
                             </div>
                         </div>
