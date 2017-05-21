@@ -77,7 +77,12 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
+        $video = $this->songRepository->find($id);
+        if (!$video) {
+            return redirect()->route('video.index')->with('errors', trans('song.video_not_found'));
+        }
+
+        return view('admin.video.show', compact('video'));
     }
 
     /**

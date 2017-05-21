@@ -62,18 +62,14 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="fa fa-users fa-fw"></i>
+                            <a href="{{ action('Admin\UserController@index') }}"><i class="fa fa-users fa-fw"></i>
                                 {{ trans('admin.user') }}
-                                <span class="fa arrow"></span>
                             </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{ action('Admin\UserController@index') }}">{{ trans('admin.list-user') }}</a>
-                                </li>
-                                <li>
-                                    <a href="#">{{ trans('admin.add-user') }}</a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ action('Admin\SingerController@index') }}"><i class="fa fa-users fa-fw"></i>
+                                {{ trans('admin.singer') }}
+                            </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-users fa-fw"></i>

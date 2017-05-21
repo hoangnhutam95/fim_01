@@ -25,4 +25,8 @@ interface SongRepositoryInterface
     public function searchAudio($keyword);
 
     public function searchVideo($keyword);
+
+    public function getAudioOfSinger($id);
+
+    public function getVideoOfSinger($id);
 }

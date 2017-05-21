@@ -179,4 +179,14 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
     {
         return $this->searchSong($keyword)->where('type', config('settings.video'));
     }
+
+    public function getAudioOfSinger($id)
+    {
+        return $this->model->where('singer_id', $id)->where('type', config('settings.audio'));
+    }
+
+    public function getVideoOfSinger($id)
+    {
+        return $this->model->where('singer_id', $id)->where('type', config('settings.video'));
+    }
 }

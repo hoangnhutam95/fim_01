@@ -78,7 +78,12 @@ class AudioController extends Controller
      */
     public function show($id)
     {
-        //
+        $audio = $this->songRepository->find($id);
+        if (!$audio) {
+            return redirect()->route('audio.index')->with('errors', trans('song.audio_not_found'));
+        }
+
+        return view('admin.audio.show', compact('audio'));
     }
 
     /**

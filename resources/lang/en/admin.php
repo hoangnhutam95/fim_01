@@ -36,4 +36,5 @@ return [
     'list' => 'List',
     'delete' => 'Delete',
     'image' => 'Image',
+    'singer' => 'Singer',
 ];
