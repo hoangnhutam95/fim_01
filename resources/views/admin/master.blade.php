@@ -28,22 +28,6 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            {!! Form::open() !!}
-                                <div class="input-group custom-search-form">
-                                    {!! Form::text ('search', null, [
-                                        'class' => 'form-control',
-                                        'placeholder' => 'search',
-                                    ]) !!}
-                                    <span class="input-group-btn">
-                                        {!! Form::button('<i class="fa fa-search"></i>', [
-                                            'type' => 'submit',
-                                            'class' => 'btn btn-default',
-                                        ]) !!}
-                                    </span>
-                                </div>
-                            {!! Form::close() !!}
-                        </li>
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-dashboard fa-fw"></i>
                                 {{ trans('admin.dasbroad') }}
