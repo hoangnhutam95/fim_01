@@ -1,12 +1,12 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var showChar = 50;
     var ellipsestext = "...";
     var moretext = "Show more >";
     var lesstext = "Show less";
 
-    $('.more').each(function() {
+    $('.more').each(function () {
         var content = $(this).html();
-        if(content.length > showChar) {
+        if (content.length > showChar) {
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
             var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
@@ -14,8 +14,8 @@ $(document).ready(function() {
         }
     });
 
-    $(".morelink").click(function(){
-        if($(this).hasClass("less")) {
+    $('.morelink').click(function () {
+        if ($(this).hasClass("less")) {
             $(this).removeClass("less");
             $(this).html(moretext);
         } else {

@@ -16,6 +16,6 @@ class SingerRepository extends BaseRepository implements SingerRepositoryInterfa
 
     public function getListSingers()
     {
-        return $this->model->pluck('name', 'id');
+        return $this->model->orderBy('name', 'asc')->pluck('name', 'id')->toArray();
     }
 }

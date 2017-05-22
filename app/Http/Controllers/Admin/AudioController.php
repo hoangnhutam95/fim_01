@@ -44,10 +44,11 @@ class AudioController extends Controller
      */
     public function create()
     {
+        $none['0'] = config('settings.none');
         $categories = $this->categoryRepository->getListCategories();
-        $categories->prepend(config('settings.none'));
+        $categories = $none + $categories;
         $singers = $this->singerRepository->getListSingers();
-        $singers->prepend(config('settings.none'));
+        $singers = $none + $singers;
 
         return view('admin.audio.add', compact('categories', 'singers'));
     }
@@ -89,10 +90,11 @@ class AudioController extends Controller
     public function edit($id)
     {
         $audio = $this->songRepository->find($id);
+        $none['0'] = config('settings.none');
         $categories = $this->categoryRepository->getListCategories();
-        $categories->prepend(config('settings.none'));
+        $categories = $none + $categories;
         $singers = $this->singerRepository->getListSingers();
-        $singers->prepend(config('settings.none'));
+        $singers = $none + $singers;
         if (!$audio) {
             return redirect()->route('audio.index')->with('errors', trans('song.audio_not_found'));
         }
@@ -142,5 +144,22 @@ class AudioController extends Controller
         }
 
         return redirect()->back()->with('errors', trans('song.delete_audio_fail'));
+    }
+
+    public function searchAudio(Request $request)
+    {
+        $input = $request['keyword'];
+        if ($request->ajax()) {
+            $input = $request['keyword'];
+            $audios = $this->songRepository->searchAudio($input)->paginate(config('settings.audio_per_page'));
+            $htmlSearch = view('admin.audio.search', compact('audios', 'input'))->render();
+            $result = [
+                    'success' => true,
+                    'input' => $input,
+                    'search_result' => $htmlSearch,
+            ];
+
+            return response()->json($result);
+        }
     }
 }

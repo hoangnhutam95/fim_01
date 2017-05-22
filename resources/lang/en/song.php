@@ -41,4 +41,7 @@ return [
     'delete_video_fail' => 'Delete video fail',
     'description' => 'Description : ',
     'enter-description' => 'Enter Description',
+    'no_result' => 'No result',
+    'search-by' => 'Search...',
+    'edit-video' => 'Edit video',
 ];

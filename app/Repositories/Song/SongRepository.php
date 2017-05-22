@@ -8,12 +8,16 @@ use App\Repositories\BaseRepository;
 use Exception;
 use File;
 use App\Helpers\SetFile;
+use App\Models\Category;
+use App\Models\Singer;
 
 class SongRepository extends BaseRepository implements SongRepositoryInterface
 {
-    public function __construct(Song $song)
+    public function __construct(Song $song, Category $category, Singer $singer)
     {
         $this->model = $song;
+        $this->categoryModel = $category;
+        $this->singerModel = $singer;
     }
 
     public function getListAudios()
@@ -147,5 +151,32 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         $data->delete();
 
         return true;
+    }
+
+    public function searchSong($keyword)
+    {
+        $categoryIds = $this->categoryModel->where('name', 'like', "%$keyword%")->pluck('id');
+        $singerIds = $this->singerModel->where('name', 'like', "%$keyword%")->pluck('id');
+        $songs = $this->model->where(function ($query) use ($keyword, $categoryIds, $singerIds) {
+            $query->where('name', 'like', "%$keyword%")->orWhere('author', 'like', "%$keyword%");
+            foreach ($categoryIds as $categoryId) {
+                $query->orWhere('category_id', $categoryId);
+            }
+            foreach ($singerIds as $singerId) {
+                $query->orWhere('singer_id', $singerId);
+            }
+        });
+
+        return $songs;
+    }
+
+    public function searchAudio($keyword)
+    {
+        return $this->searchSong($keyword)->where('type', config('settings.audio'));
+    }
+
+    public function searchVideo($keyword)
+    {
+        return $this->searchSong($keyword)->where('type', config('settings.video'));
     }
 }

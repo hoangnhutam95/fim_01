@@ -19,4 +19,10 @@ interface SongRepositoryInterface
     public function updateVideo($input, $id);
 
     public function deleteVideo($id);
+
+    public function searchSong($keyword);
+
+    public function searchAudio($keyword);
+
+    public function searchVideo($keyword);
 }

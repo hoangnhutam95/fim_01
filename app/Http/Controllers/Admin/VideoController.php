@@ -43,10 +43,11 @@ class VideoController extends Controller
      */
     public function create()
     {
+        $none['0'] = config('settings.none');
         $categories = $this->categoryRepository->getListCategories();
-        $categories->prepend(config('settings.none'));
+        $categories = $none + $categories;
         $singers = $this->singerRepository->getListSingers();
-        $singers->prepend(config('settings.none'));
+        $singers = $none + $singers;
 
         return view('admin.video.add', compact('categories', 'singers'));
     }
@@ -88,10 +89,11 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = $this->songRepository->find($id);
+        $none['0'] = config('settings.none');
         $categories = $this->categoryRepository->getListCategories();
-        $categories->prepend(config('settings.none'));
+        $categories = $none + $categories;
         $singers = $this->singerRepository->getListSingers();
-        $singers->prepend(config('settings.none'));
+        $singers = $none + $singers;
         if (!$video) {
             return redirect()->route('video.index')->with('errors', trans('song.video_not_found'));
         }
@@ -141,5 +143,21 @@ class VideoController extends Controller
         }
 
         return redirect()->back()->with('success', trans('song.delete_video_successfully'));
+    }
+
+    public function searchVideo(Request $request)
+    {
+        if ($request->ajax()) {
+            $input = $request['keyword'];
+            $videos = $this->songRepository->searchVideo($input)->paginate(config('settings.video_per_page'));
+            $htmlSearch = view('admin.video.search', compact('videos', 'input'))->render();
+            $result = [
+                    'success' => true,
+                    'input' => $input,
+                    'search_result' => $htmlSearch,
+            ];
+
+            return response()->json($result);
+        }
     }
 }
