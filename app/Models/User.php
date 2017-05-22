@@ -62,4 +62,11 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    public function hasAvatar()
+    {
+        $filePath = config('settings.avatar_path') . $this->avatar;
+
+        return file_exists($filePath);
+    }
 }

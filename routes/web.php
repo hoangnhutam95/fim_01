@@ -30,7 +30,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('video', 'Admin\VideoController');
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('singer', 'Admin\SingerController');
+    Route::resource('lyric', 'Admin\LyricController');
     Route::get('/search-audio', 'Admin\AudioController@searchAudio');
     Route::get('/search-video', 'Admin\VideoController@searchVideo');
     Route::match(['get', 'post'], '/search-singer', 'Admin\SingerController@searchSinger');
+    Route::match(['get', 'post'], '/search-lyric', 'Admin\LyricController@searchLyric');
+    Route::get('update-lyric/{songId}', 'Admin\LyricController@showListLyric');
 });

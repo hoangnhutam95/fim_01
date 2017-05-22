@@ -9,21 +9,25 @@ use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Singer\SingerRepositoryInterface;
 use App\Http\Requests\UpdateAudioRequest;
 use App\Http\Requests\CreateAudioRequest;
+use App\Repositories\Lyric\LyricRepositoryInterface;
 
 class AudioController extends Controller
 {
     protected $songRepository;
     protected $categoryRepository;
     protected $singerRepository;
+    protected $lyricRepository;
 
     public function __construct(
         SongRepositoryInterface $songRepository,
         CategoryRepositoryInterface $categoryRepository,
-        SingerRepositoryInterface $singerRepository
+        SingerRepositoryInterface $singerRepository,
+        LyricRepositoryInterface $lyricRepository
     ) {
         $this->songRepository = $songRepository;
         $this->categoryRepository = $categoryRepository;
         $this->singerRepository = $singerRepository;
+        $this->lyricRepository = $lyricRepository;
     }
     /**
      * Display a listing of the resource.
@@ -78,12 +82,13 @@ class AudioController extends Controller
      */
     public function show($id)
     {
+        $currentLyric = $this->lyricRepository->getSongLyric($id);
         $audio = $this->songRepository->find($id);
         if (!$audio) {
             return redirect()->route('audio.index')->with('errors', trans('song.audio_not_found'));
         }
 
-        return view('admin.audio.show', compact('audio'));
+        return view('admin.audio.show', compact('audio', 'currentLyric'));
     }
 
     /**
@@ -129,10 +134,10 @@ class AudioController extends Controller
         );
         $song = $this->songRepository->updateAudio($input, $id);
         if (!$song) {
-            return redirect()->route('audio.index')->with('errors', trans('song.audio_update_fail'));
+            return redirect()->route('audio.show', $id)->with('errors', trans('song.audio_update_fail'));
         }
 
-        return redirect()->route('audio.index')->with('success', trans('song.audio_update_success'));
+        return redirect()->route('audio.show', $id)->with('success', trans('song.audio_update_success'));
     }
 
     /**
@@ -145,7 +150,7 @@ class AudioController extends Controller
     {
         $audio = $this->songRepository->deleteAudio($id);
         if ($audio) {
-            return redirect()->back()->with('success', trans('song.delete_audio_successfully'));
+            return redirect()->route('audio.index')->with('success', trans('song.delete_audio_successfully'));
         }
 
         return redirect()->back()->with('errors', trans('song.delete_audio_fail'));

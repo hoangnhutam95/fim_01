@@ -12,6 +12,8 @@ use DB;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
+    protected $songModel;
+
     public function __construct(
         Category $category,
         Song $song
@@ -49,17 +51,17 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function delete($id)
     {
-        $category = $this->model->find($id);
-        if (!$category) {
-            return false;
-        }
-
+        DB::beginTransaction();
         try {
-            $category->delete();
+            $this->songModel->where('category_id', $id)->update(['category_id' => null]);
+            $category = $this->model->destroy($id);
             File::delete(config('settings.cover_category') . $category['cover']);
+            DB::commit();
 
             return true;
         } catch (Exception $e) {
+            DB:: rollback();
+
             return false;
         }
     }

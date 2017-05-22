@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'lyric_create_success' => 'Lyric Create Success',
+    'lyric_create_fail' => 'Lyric Create Fail',
+    'lyric_update_fail' => 'Lyric Update Fail',
+    'lyric_update_success' => 'Lyric Update Success',
+    'lyric_not_found' => 'Lyric not found',
+    'lyric_singer_successfully' => 'Delete lyric successfully',
+    'lyric_singer_fail' => 'Delete lyric fail',
+    'list-lyric' => 'List User Suggest Lyric',
+    'no-result' => 'No Result',
+    'delete' => 'Delete',
+    'show' => 'Show',
+    'song-name' => 'Song name : ',
+    'type-song' => 'Type music : ',
+    'created-at' => 'Created at : ',
+    'update-lyric' => 'Update Lyric',
+    'enter-content' => 'Enter lyric',
+    'add-lyric' => 'Add Lyric',
+    'accept' => 'Accept',
+    'user-lyric' => 'User suggest lyric',
+    'current-lyric' => 'Current Lyric',
+    'no-lyric' => 'No Lyric',
+    'search-song-name' => 'Search Song Name ...',
+    'user-suggest-lyric' => 'User suggest lyric',
+];

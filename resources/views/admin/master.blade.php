@@ -86,7 +86,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="fa fa-users fa-fw"></i>
+                            <a href="{{ action('Admin\LyricController@index') }}"><i class="fa fa-users fa-fw"></i>
                                 {{ trans('admin.lyrics') }}
                             </a>
                         </li>
