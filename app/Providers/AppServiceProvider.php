@@ -13,6 +13,8 @@ use App\Repositories\Song\SongRepository;
 use App\Repositories\Song\SongRepositoryInterface;
 use App\Repositories\Singer\SingerRepository;
 use App\Repositories\Singer\SingerRepositoryInterface;
+use App\Repositories\Lyric\LyricRepository;
+use App\Repositories\Lyric\LyricRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
         App::bind(UserRepositoryInterface::class, UserRepository::class);
         App::bind(SongRepositoryInterface::class, SongRepository::class);
         App::bind(SingerRepositoryInterface::class, SingerRepository::class);
+        App::bind(LyricRepositoryInterface::class, LyricRepository::class);
     }
 }

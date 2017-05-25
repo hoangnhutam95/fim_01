@@ -13,6 +13,9 @@ use App\Models\Singer;
 
 class SongRepository extends BaseRepository implements SongRepositoryInterface
 {
+    protected $categoryModel;
+    protected $singerModel;
+
     public function __construct(Song $song, Category $category, Singer $singer)
     {
         $this->model = $song;

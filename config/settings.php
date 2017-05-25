@@ -16,6 +16,8 @@ return [
     'audio' => 'audio',
     'video' => 'video',
     'audio_per_page' => 5,
+    'lyric_per_page' => 5,
+    'search_lyric_per_page' => 10,
     'audio_path' => '/uploads/audio/',
     'audio_cover_path' => '/uploads/cover/audio_cover/',
     'audio_src' => public_path() . '/uploads/audio/',
@@ -33,4 +35,8 @@ return [
         'group' => 'Group',
         'other' => 'Other',
     ],
+    'current-lyric' => 1,
+    'not-accept-lyric' => 0,
+    'admin' => 'Admin',
+    'user' => 'User',
 ];

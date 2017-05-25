@@ -9,6 +9,7 @@ use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Singer\SingerRepositoryInterface;
 use App\Http\Requests\CreateVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
+use App\Repositories\Lyric\LyricRepositoryInterface;
 
 class VideoController extends Controller
 {
@@ -18,11 +19,13 @@ class VideoController extends Controller
     public function __construct(
         SongRepositoryInterface $songRepository,
         CategoryRepositoryInterface $categoryRepository,
-        SingerRepositoryInterface $singerRepository
+        SingerRepositoryInterface $singerRepository,
+        LyricRepositoryInterface $lyricRepository
     ) {
         $this->songRepository = $songRepository;
         $this->categoryRepository = $categoryRepository;
         $this->singerRepository = $singerRepository;
+        $this->lyricRepository = $lyricRepository;
     }
     /**
      * Display a listing of the resource.
@@ -77,12 +80,13 @@ class VideoController extends Controller
      */
     public function show($id)
     {
+        $currentLyric = $this->lyricRepository->getSongLyric($id);
         $video = $this->songRepository->find($id);
         if (!$video) {
             return redirect()->route('video.index')->with('errors', trans('song.video_not_found'));
         }
 
-        return view('admin.video.show', compact('video'));
+        return view('admin.video.show', compact('video', 'currentLyric'));
     }
 
     /**
@@ -144,7 +148,7 @@ class VideoController extends Controller
     {
         $video = $this->songRepository->deleteVideo($id);
         if (!$video) {
-            return redirect()->back()->with('errors', trans('song.delete_video_fail'));
+            return redirect()->route('video.index')->with('errors', trans('song.delete_video_fail'));
         }
 
         return redirect()->back()->with('success', trans('song.delete_video_successfully'));

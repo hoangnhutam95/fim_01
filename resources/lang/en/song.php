@@ -44,4 +44,9 @@ return [
     'no_result' => 'No result',
     'search-by' => 'Search...',
     'edit-video' => 'Edit video',
+    'lyric' => 'Lyric : ',
+    'show' => 'Show',
+    'update-lyric' => 'Lyric',
+    'type-song' => 'Type music: ',
+    'user-suggest' => 'User suggest : ',
 ];

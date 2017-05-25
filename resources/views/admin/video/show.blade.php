@@ -7,10 +7,20 @@
 @endsection
 @section('script')
     {!! Html::script('bower_components/plyr/dist/plyr.js') !!}
-    {!! Html::script('js/video-media.js') !!}
+    {!! Html::script('js/media.js') !!}
     {!! Html::script('js/show-more.js') !!}
 @endsection
 @section('content')
+    @if (Session::has('errors'))
+        <div class="alert alert-danger">
+            {{ Session::get('errors') }}
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    @endif
     <div class="video-cover">
         <div class="admin-video-name">
             {{ trans('song.song') }}
@@ -25,6 +35,28 @@
         <div class="member-details">
             <div class="col-lg-10">
                 <h4><div class="text-primary">{{ $video->name }}</div></h4>
+            </div>
+            <div class="pull-right">
+                {!! Form::open([
+                    'action' => ['Admin\VideoController@destroy', $video['id']],
+                    'method' => 'delete',
+                    'class' => 'fixform',
+                ]) !!}
+                {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [
+                    'class' => 'btn btn-block btn-danger btn-xs delete-button',
+                    'type' => 'submit',
+                ]) !!}
+                {{ Form::close() }}
+            </div>
+            <div class="pull-right">
+                <a href="{{ action('Admin\VideoController@edit', $video->id) }}" class="btn btn-block btn-primary btn-xs">
+                    <i class="glyphicon glyphicon-edit">{{ trans('song.edit') }}</i>
+                </a>
+            </div>
+            <div class="pull-right">
+                <a href="{{ action('Admin\VideoController@show', $video->id) }}" class="btn btn-block btn-success btn-xs">
+                    <i class="glyphicon glyphicon-edit">{{ trans('song.update-lyric') }}</i>
+                </a>
             </div>
             <div class="row info-list">
                 <div class="col-lg-4">
@@ -54,6 +86,10 @@
                 <div class="col-lg-12">
                     <span>{{ trans('song.description') }}</span>
                     <span class="more">{{ ($video->description) ?: config('settings.null') }}</span>
+                </div>
+                <div class="col-lg-12">
+                    <span>{{ trans('song.lyric') }}</span>
+                    <span class="more">{{ ($currentLyric) ? $currentLyric->content : config('settings.null') }}</span>
                 </div>
             </div>
         </div>

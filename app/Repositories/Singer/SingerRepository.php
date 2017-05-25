@@ -13,6 +13,8 @@ use DB;
 
 class SingerRepository extends BaseRepository implements SingerRepositoryInterface
 {
+    protected $songModel;
+
     public function __construct(Singer $singer, Song $song)
     {
         $this->model = $singer;
