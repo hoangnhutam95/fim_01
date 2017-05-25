@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('audio', 'Admin\AudioController');
     Route::resource('video', 'Admin\VideoController');
     Route::resource('category', 'Admin\CategoryController');
+    Route::resource('singer', 'Admin\SingerController');
     Route::get('/search-audio', 'Admin\AudioController@searchAudio');
     Route::get('/search-video', 'Admin\VideoController@searchVideo');
+    Route::match(['get', 'post'], '/search-singer', 'Admin\SingerController@searchSinger');
 });
