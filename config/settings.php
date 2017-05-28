@@ -18,6 +18,8 @@ return [
     'audio_per_page' => 5,
     'lyric_per_page' => 5,
     'search_lyric_per_page' => 10,
+    'album_per_page' => 10,
+    'search_per_page' => 10,
     'audio_path' => '/uploads/audio/',
     'audio_cover_path' => '/uploads/cover/audio_cover/',
     'audio_src' => public_path() . '/uploads/audio/',
@@ -29,6 +31,8 @@ return [
     'video_cover_path' => '/uploads/cover/video_cover/',
     'video_src' => public_path() . '/uploads/video/',
     'video_cover_src' => public_path() . '/uploads/cover/video_cover/',
+    'album_cover_src' => public_path() . '/uploads/cover/album_cover/',
+    'album_cover_path' => '/uploads/cover/album_cover/',
     'singer' => [
         'solo' => 'Solo',
         'duet' => 'Duet',
@@ -39,4 +43,8 @@ return [
     'not-accept-lyric' => 0,
     'admin' => 'Admin',
     'user' => 'User',
+    'rate' => [
+        'song' => 1,
+        'album' => 2,
+    ],
 ];

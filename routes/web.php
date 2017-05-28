@@ -31,9 +31,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('singer', 'Admin\SingerController');
     Route::resource('lyric', 'Admin\LyricController');
+    Route::resource('album', 'Admin\AlbumController');
     Route::get('/search-audio', 'Admin\AudioController@searchAudio');
     Route::get('/search-video', 'Admin\VideoController@searchVideo');
     Route::match(['get', 'post'], '/search-singer', 'Admin\SingerController@searchSinger');
     Route::match(['get', 'post'], '/search-lyric', 'Admin\LyricController@searchLyric');
+    Route::match(['get', 'post'], '/search-album', 'Admin\AlbumController@searchAlbum');
     Route::get('update-lyric/{songId}', 'Admin\LyricController@showListLyric');
+    Route::delete('remote-song-in-album/{albumDetailId}', 'Admin\AlbumController@removeSong');
+    Route::match(['get', 'post'], 'album/{albumId}/search-song-import', 'Admin\AlbumController@searchSong');
+    Route::put('album/{albumId}/import-song-to-album', 'Admin\AlbumController@createAlbumDetail');
 });

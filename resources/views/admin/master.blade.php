@@ -15,6 +15,7 @@
     {!! Html::style('bower_components/font-awesome/css/font-awesome.min.css') !!}
     {!! Html::style('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}
     {!! Html::style('admin/mycss.css') !!}
+    {!! Html::style('css/admin.css') !!}
     @yield('style')
 </head>
 <body>
@@ -78,10 +79,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">{{ trans('admin.list-album') }}</a>
+                                    <a href="{{ action('Admin\AlbumController@index') }}">{{ trans('admin.list-album') }}</a>
                                 </li>
                                 <li>
-                                    <a href="#">{{ trans('admin.add-album') }}</a>
+                                    <a href="{{ action('Admin\AlbumController@create') }}">{{ trans('admin.add-album') }}</a>
                                 </li>
                             </ul>
                         </li>
