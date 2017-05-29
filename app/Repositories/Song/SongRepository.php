@@ -219,4 +219,11 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
             ->orderBy('rate_point')
             ->paginate(config('settings.list_per_page'));
     }
+
+    public function getListAudioOfAlbum($albumId)
+    {
+        return $this->model->whereIn('id', function ($query) use ($albumId) {
+                $query->select('song_id')->from('album_details')->where('album_id', $albumId)->get();
+        })->get();
+    }
 }

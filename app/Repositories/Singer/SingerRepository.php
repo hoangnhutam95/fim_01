@@ -44,7 +44,7 @@ class SingerRepository extends BaseRepository implements SingerRepositoryInterfa
             'name' => $input['name'],
             'role' => $input['role'],
         ];
-        $nameAvatarImage = SetFile::uploadCoverAudio($input);
+        $nameAvatarImage = SetFile::uploadAvatar($input);
         $singer['avatar'] = isset($nameAvatarImage) ? $nameAvatarImage : $input['current_img'];
         if ($input['current_img'] != config('settings.avatar_default') && isset($name)) {
             file::delete(config('settings.avatar_path') . $input['current_img']);

@@ -16,6 +16,12 @@ Route::get('/welcome', function () {
 
 Route::resource('/', 'User\HomeController');
 
+Route::get('audio/{audioId}', 'User\MusicController@showAudio');
+
+Route::get('video/{videoId}', 'User\MusicController@showVideo');
+
+Route::get('album/{albumId}', 'User\MusicController@showAlbum');
+
 Auth::routes();
 
 Route::get('/home', [

@@ -19,4 +19,13 @@ return [
     'on-facebook' => 'On facebook',
     'phone' => 'Phone',
     'email' => 'Email',
+    'musician' => 'Musician : ',
+    'rate-point' => 'Rate point :',
+    'lyric' => 'Lyrics: ',
+    'rate-it' => 'Please! Rate it:',
+    'music' => 'Music ',
+    'video' => 'Video ',
+    'album-1' => 'Album ',
+    'singer-name' => 'Singer',
+    'same-topic-album' => 'Album ',
 ];

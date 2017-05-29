@@ -4,5 +4,12 @@
     var instances = plyr.setup({
       // Output to console
         debug: true,
+        autoplay: true,
     });
 })();
+
+$(document).ready(function () {
+    var firstCover = $('.audio-cover').attr('backgr');
+    $('.audio-cover').css({'background-image': 'url("' + firstCover + '")',
+    });
+});

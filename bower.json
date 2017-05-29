@@ -24,6 +24,7 @@
     "datatables-responsive": "^2.1.1",
     "startbootstrap-sb-admin-2-sass": "^1.0.7",
     "datatables": "^1.10.15",
-    "plyr": "^2.0.13"
+    "plyr": "^2.0.13",
+    "bootstrap-star-rating": "^4.0.1"
   }
 }

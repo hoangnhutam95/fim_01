@@ -117,4 +117,9 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
             ->orderBy('rate_point')
             ->paginate(config('settings.list_per_page'));
     }
+
+    public function getCategoryOfAlbum($categoryId)
+    {
+        return $this->model->where('category_id', $categoryId)->orderBy('rate_point');
+    }
 }

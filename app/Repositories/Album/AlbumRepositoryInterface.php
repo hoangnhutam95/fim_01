@@ -16,4 +16,6 @@ interface AlbumRepositoryInterface
     public function searchAudioImportToAlbum($keyword, $id);
 
     public function getHotAlbum();
+
+    public function getCategoryOfAlbum($categoryId);
 }

@@ -1,0 +1,16 @@
+.rating-chooser {
+    margin-bottom: 30px;
+}
+.rating-chooser p {
+    font-weight: 700;
+}
+.rating-wrap-post {
+    font-size: 20px;
+}
+.product-wid-rating {
+    color: #ffc808;
+    margin-bottom: 10px;
+}
+
+#hearts { color: #ee8b2d;}
+#hearts-existing { color: #ee8b2d;}

@@ -22,7 +22,7 @@
             {{ Session::get('success') }}
         </div>
     @endif
-    <div class="audio-cover" backgr={{ ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : $audio->cover }}>
+    <div class="audio-cover" backgr={{ ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : $audios->cover }}>
         <div class="admin-audio-name">
             {{ trans('song.song') }}
             <span id="audio-name-color">{{ $audio->name }}</span>

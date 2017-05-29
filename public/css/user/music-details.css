@@ -1,0 +1,43 @@
+.info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.name {
+    color: green !important;
+}
+
+.rate-point {
+    font-size: 20px;
+    color: red;
+}
+
+.name-lyric {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.lyric {
+    background-color: #eee;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.play-audio {
+    color: #000;
+    font-size: 20px;
+}
+
+.play-audio:hover {
+    color: orange;
+}
+
+.album-active {
+    color: orange;
+}
+
+.play-audio:focus {
+    color: orange;
+}
