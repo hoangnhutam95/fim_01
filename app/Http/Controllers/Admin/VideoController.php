@@ -47,7 +47,7 @@ class VideoController extends Controller
     public function create()
     {
         $none['0'] = config('settings.none');
-        $categories = $this->categoryRepository->getListCategories();
+        $categories = $this->categoryRepository->getListSongCategories();
         $categories = $none + $categories;
         $singers = $this->singerRepository->getListSingers();
         $singers = $none + $singers;
@@ -99,7 +99,7 @@ class VideoController extends Controller
     {
         $video = $this->songRepository->find($id);
         $none['0'] = config('settings.none');
-        $categories = $this->categoryRepository->getListCategories();
+        $categories = $this->categoryRepository->getListSongCategories();
         $categories = $none + $categories;
         $singers = $this->singerRepository->getListSingers();
         $singers = $none + $singers;

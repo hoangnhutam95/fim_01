@@ -9,6 +9,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'cover',
+        'type',
     ];
 
     public function songs()
@@ -19,5 +20,12 @@ class Category extends Model
     public function albums()
     {
         return $this->hasMany(Album::class);
+    }
+
+    public function hasCoverCategory()
+    {
+        $filePath = config('settings.cover_category_src') . $this->cover;
+
+        return file_exists($filePath);
     }
 }

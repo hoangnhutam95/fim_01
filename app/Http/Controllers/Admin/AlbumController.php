@@ -44,7 +44,7 @@ class AlbumController extends Controller
     public function create()
     {
         $none['0'] = config('settings.none');
-        $categories = $this->categoryRepository->getListCategories();
+        $categories = $this->categoryRepository->getListAlbumCategories();
         $categories = $none + $categories;
 
         return view('admin.album.add', compact('categories'));
@@ -93,7 +93,7 @@ class AlbumController extends Controller
     {
         $album = $this->albumRepository->find($id);
         $none['0'] = config('settings.none');
-        $categories = $this->categoryRepository->getListCategories();
+        $categories = $this->categoryRepository->getListAlbumCategories();
         $categories = $none + $categories;
         if (!$album) {
             return redirect()->route('audio.index')->with('errors', trans('song.audio_not_found'));

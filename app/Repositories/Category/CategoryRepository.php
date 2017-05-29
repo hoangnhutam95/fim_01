@@ -28,9 +28,10 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         try {
             $input = [
                 'name' => $request['name'],
+                'type' => $request['type'],
             ];
             $name = SetFile::uploadCover($request);
-            $input['cover'] = isset($name) ? $name : config('settings.cover_category_defaut');
+            $input['cover'] = isset($name) ? $name : config('settings.cover_default');
             $category = $this->model->create($input);
             DB::commit();
 
@@ -55,7 +56,9 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         try {
             $this->songModel->where('category_id', $id)->update(['category_id' => null]);
             $category = $this->model->destroy($id);
-            File::delete(config('settings.cover_category') . $category['cover']);
+            if ($category['cover'] != config('settings.cover_default')) {
+                File::delete(config('settings.cover_category_src') . $category['cover']);
+            }
             DB::commit();
 
             return true;
@@ -76,10 +79,13 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         DB::beginTransaction();
         try {
             $category['name'] = $request['name'];
+            $category['type'] = $request['type'];
             $name = SetFile::uploadCover($request);
             if ($name) {
                 $category['cover'] = $name;
-                File::delete(config('settings.cover_category') . $request['current_img']);
+                if ($request['current_img'] != config('settings.cover_default')) {
+                    File::delete(config('settings.cover_category_path') . $request['current_img']);
+                }
             } else {
                 $category['cover'] = $request['current_img'];
             }
@@ -94,8 +100,21 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         }
     }
 
-    public function getListCategories()
+    public function getListSongCategories()
     {
-        return $this->model->orderBy('name', 'asc')->pluck('name', 'id')->toArray();
+        return $this->model
+            ->where('type', config('settings.category.song'))
+            ->orderBy('name', 'asc')
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    public function getListAlbumCategories()
+    {
+        return $this->model
+            ->where('type', config('settings.category.album'))
+            ->orderBy('name', 'asc')
+            ->pluck('name', 'id')
+            ->toArray();
     }
 }
