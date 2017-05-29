@@ -19,6 +19,7 @@
                                         <th>{{ trans('admin.stt') }}</th>
                                         <th>{{ trans('admin.name') }}</th>
                                         <th>{{ trans('admin.image') }}</th>
+                                        <th>{{ trans('admin.type') }}</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($categories as $category)
@@ -26,12 +27,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $category['name'] }}</td>
                                             <td>
-                                                {{ Html::image(config('settings.cover_category') . $category['cover'],
+                                                {{ Html::image(($category->hasCoverCategory()) ? config('settings.cover_category_path') . $category->cover : config('settings.cover_category_path') . config('settings.cover_default'),
                                                     null,
                                                     [
                                                         'class' => 'img_item',
                                                 ]) }}
                                             </td>
+                                            <td>{{ $category->type }}</td>
                                             <td><a href="{{ action('Admin\CategoryController@edit', $category['id']) }}"
                                             class="btn btn-block btn-primary btn-xs">{{ trans('admin.edit') }}</a>
                                             </td>

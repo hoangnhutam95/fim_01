@@ -68,7 +68,7 @@ $factory->define(App\Models\Lyric::class, function (Faker\Generator $faker) {
         'user_id' => $faker->randomElement($userIds ?: $userIds = App\Models\User::pluck('id')->toArray()),
         'song_id' => $faker->randomElement($songIds ?: $songIds = App\Models\Song::pluck('id')->toArray()),
         'content' => $faker->paragraph,
-        'status' => $faker->numberBetween(0, 1),
+        'status' => $faker->'0',
         'created_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
         'updated_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
     ];
@@ -78,6 +78,7 @@ $factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'cover' => $faker->imageUrl(700, 200),
+        'type' => 'song',
         'created_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
         'updated_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
     ];
@@ -90,7 +91,6 @@ $factory->define(App\Models\Album::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'cover' => $faker->imageUrl(700, 200),
         'publish_date' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
-        'category_id' => $faker->randomElement($categoryIds ?: $categoryIds = App\Models\Song::pluck('id')->toArray()),
         'rate_number' => $faker->numberBetween(4, 20),
         'rate_point' => $faker->randomFloat(2, 1, 5),
         'comment_number' => $faker->numberBetween(4, 20),

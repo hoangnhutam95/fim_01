@@ -11,5 +11,7 @@ interface CategoryRepositoryInterface
 
     public function update($request, $id);
 
-    public function getListCategories();
+    public function getListSongCategories();
+
+    public function getListAlbumCategories();
 }

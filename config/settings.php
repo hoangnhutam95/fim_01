@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'cover_category' => 'uploads/cover_category/',
-    'admin_category' => 4,
-    'cover_category_path' => public_path() . '/uploads/cover_category/',
+    'cover_category_path' => 'uploads/cover/category_cover/',
+    'admin_category' => 10,
+    'cover_category_src' => public_path() . '/uploads/cover/category_cover/',
     'avatar_path' => public_path() . '/uploads/avatar/',
     'avatar_default' => 'default-avatar.png',
     'source_music' => 'public/uploads/music',
@@ -46,5 +46,9 @@ return [
     'rate' => [
         'song' => 1,
         'album' => 2,
+    ],
+    'category' => [
+        'song' => 'song',
+        'album' => 'album',
     ],
 ];

@@ -24,6 +24,14 @@
                 </span>
             @endif
         </div>
+        <div class="form-group">
+            <label for="type" class="col-md-4 control-label">
+                {{ trans('admin.type') }}
+            </label>
+            {!! Form::select('type', config('settings.category'), null, [
+            'class' => 'form-control',
+            ]) !!}
+        </div>
         <div class="col-md-6">
             {!! Form::file('cover', [
                 'class' => 'form-control',
