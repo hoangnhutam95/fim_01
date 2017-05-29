@@ -34,6 +34,7 @@ class SetFile
             $file = Input::file('cover');
             $name = time() . '_' . $file->getClientOriginalName();
             $file->move(config('settings.audio_cover_src'), $name);
+
             return $name;
         }
     }
@@ -55,6 +56,7 @@ class SetFile
             $file = Input::file('cover');
             $name = time() . '_' . $file->getClientOriginalName();
             $file->move(config('settings.video_cover_src'), $name);
+
             return $name;
         }
     }
@@ -65,6 +67,17 @@ class SetFile
             $file = Input::file('link');
             $name = time() . '_' . $file->getClientOriginalName();
             $file->move(config('settings.video_src'), $name);
+
+            return $name;
+        }
+    }
+
+    public static function uploadCoverAlbum($request)
+    {
+        if (isset($request['cover'])) {
+            $file = Input::file('cover');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $file->move(config('settings.album_cover_src'), $name);
 
             return $name;
         }

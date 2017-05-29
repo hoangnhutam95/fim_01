@@ -128,14 +128,6 @@
                             <span>{{ trans('song.description') }}</span>
                             <span class="more">{{ ($audio->description) ?: config('settings.null') }}</span>
                         </div>
-                        {{-- <div class="col-lg-12">
-                            <span>{{ trans('song.lyric') }}</span>
-                            @foreach ($audio->lyrics as $lyric)
-                            @if ($lyric->status == config('settings.current-lyric'))
-                            <span class="more">{{ $lyric->content }}</span>
-                            @endif
-                            @endforeach
-                        </div> --}}
                     </div>
                 </div>
             </div>
