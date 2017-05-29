@@ -14,4 +14,8 @@ interface CategoryRepositoryInterface
     public function getListSongCategories();
 
     public function getListAlbumCategories();
+
+    public function getSongCategories();
+
+    public function getAlbumCategories();
 }

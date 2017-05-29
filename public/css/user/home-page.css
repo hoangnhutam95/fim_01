@@ -1,0 +1,182 @@
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.row.content {height: 450px}
+
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+.logo img {
+    max-width: 100%;
+    position: relative;
+    height: 50px;
+    margin-left: 50px;
+}
+
+header {
+    position: relative;
+    background: #1c1c1c;
+    width: 100%;
+}
+
+.form-main-search {
+    width: 500px;
+}
+
+.navbar-toggle {
+    background-color: #d9534f;
+}
+
+.icon-bar{
+    background-color: #000;
+}
+
+.main-search {
+    width: 70% !important;
+}
+
+.nav-custom-1 {
+    background-color: #e4e4e4;
+}
+
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.list-inline {
+    margin: 0px 10px;
+}
+
+.list-inline > li {
+    width: 150px;
+}
+
+.topic {
+    width: 500px;
+}
+
+.dropdown-menu>ul>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.dropdown-menu ul li a:hover {
+    text-decoration: none;
+    color: red;
+}
+
+#myNavbar {
+    margin-left: 180px;
+}
+
+#myNavbar>ul>li>a {
+    color: #000;
+    font-weight: bold;
+}
+
+#myNavbar>ul>li>a:hover {
+    color: #0ba14b !important;
+    background-color: #fff;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover
+{
+    background-color: #fff;
+    color: #0ba14b !important;
+}
+
+.carousel-inner img {
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);
+    width: 100%;
+    margin: auto;
+}
+.carousel-caption h3 {
+    color: yellow !important;
+    background: rgba(0, 0, 0, 0.25) none repeat scroll 0 0;
+}
+
+#myCarousel {
+    margin: 15px 15px;
+}
+
+.back-name {
+    color: yellow;
+}
+
+.music-cover {
+    height: 100px;
+    width :100%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+}
+
+.music-cover:hover {
+    opacity: 0.6;
+}
+
+.music-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000 !important;
+}
+
+.music-name:hover {
+    color: red !important;
+}
+
+.singer-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .row.content {height:auto;}
+
+    .form-main-search {
+        width: 100%;
+        display: -webkit-box;
+    }
+
+    #myNavbar {
+        margin-left: 15px;
+    }
+
+    .logo {
+        margin-left: auto;
+    }
+}

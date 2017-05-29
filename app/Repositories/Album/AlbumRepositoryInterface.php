@@ -14,4 +14,6 @@ interface AlbumRepositoryInterface
     public function removeSongFromAlbum($albumDetailId);
 
     public function searchAudioImportToAlbum($keyword, $id);
+
+    public function getHotAlbum();
 }

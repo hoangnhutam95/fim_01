@@ -192,4 +192,31 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
     {
         return $this->model->where('singer_id', $id)->where('type', config('settings.video'));
     }
+
+    public function getNewAudio()
+    {
+        return $this->model
+            ->where('type', config('settings.audio'))
+            ->orderBy('created_at')
+            ->take(config('settings.new'))
+            ->get();
+    }
+
+    public function getHotAudio()
+    {
+        return $this->model
+            ->where('type', config('settings.audio'))
+            ->where('is_hot', config('settings.hot'))
+            ->orderBy('rate_point')
+            ->paginate(config('settings.list_per_page'));
+    }
+
+    public function getHotVideo()
+    {
+        return $this->model
+            ->where('type', config('settings.video'))
+            ->where('is_hot', config('settings.hot'))
+            ->orderBy('rate_point')
+            ->paginate(config('settings.list_per_page'));
+    }
 }

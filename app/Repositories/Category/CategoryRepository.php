@@ -117,4 +117,14 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
             ->pluck('name', 'id')
             ->toArray();
     }
+
+    public function getSongCategories()
+    {
+        return $this->model->where('type', config('settings.category.song'))->get();
+    }
+
+    public function getAlbumCategories()
+    {
+        return $this->model->where('type', config('settings.category.song'))->get();
+    }
 }

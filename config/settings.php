@@ -51,4 +51,11 @@ return [
         'song' => 'song',
         'album' => 'album',
     ],
+    'logo' => '/uploads/logo/logo-default.png',
+    'new' => 5,
+    'list_per_page' => 12,
+    'hot' => 1,
+    'title' => [
+        'home' => 'I-Music',
+    ],
 ];

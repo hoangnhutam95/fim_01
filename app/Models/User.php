@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    const IS_ADMIN = 1;
     protected $fillable = [
         'name',
         'email',
@@ -68,5 +69,10 @@ class User extends Authenticatable
         $filePath = config('settings.avatar_path') . $this->avatar;
 
         return file_exists($filePath);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role == User::IS_ADMIN;
     }
 }

@@ -29,4 +29,10 @@ interface SongRepositoryInterface
     public function getAudioOfSinger($id);
 
     public function getVideoOfSinger($id);
+
+    public function getNewAudio();
+
+    public function getHotAudio();
+
+    public function getHotVideo();
 }

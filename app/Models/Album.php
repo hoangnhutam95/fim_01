@@ -37,4 +37,11 @@ class Album extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function hasCoverAlbum()
+    {
+        $filePath = config('settings.album_cover_src') . $this->cover;
+
+        return file_exists($filePath);
+    }
 }

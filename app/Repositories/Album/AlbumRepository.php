@@ -109,4 +109,12 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
 
         return $this->albumDetailModel->create($input);
     }
+
+    public function getHotAlbum()
+    {
+        return $this->model
+            ->where('is_hot', config('settings.hot'))
+            ->orderBy('rate_point')
+            ->paginate(config('settings.list_per_page'));
+    }
 }
