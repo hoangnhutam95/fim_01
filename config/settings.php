@@ -58,4 +58,8 @@ return [
     'title' => [
         'home' => 'I-Music',
     ],
+    'comment' => [
+        'song' => 1,
+        'album' => 2,
+    ],
 ];

@@ -81,4 +81,7 @@
     @include('user.music_detail.lyric')
 
     @include('user.music_detail.suggest_music')
+
+    @include('user.music_detail.comment')
+
 @endsection

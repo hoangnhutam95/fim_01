@@ -29,4 +29,7 @@ return [
     'singer-name' => 'Singer',
     'same-topic-album' => 'Album ',
     'voted' => 'voted',
+    'type-comment' => 'Insert comment...',
+    'comment' => 'Comment',
+    'login-to-comment' => 'Login to comment',
 ];

@@ -7,6 +7,7 @@ use App\Models\Album;
 use App\Models\Rating;
 use App\Models\AlbumDetail;
 use App\Models\Song;
+use App\Models\Comment;
 use App\Repositories\BaseRepository;
 use Exception;
 use File;
@@ -18,13 +19,15 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
     protected $songModel;
     protected $ratingModel;
     protected $albumDetailModel;
+    protected $commentModel;
 
-    public function __construct(Album $album, Rating $rating, AlbumDetail $albumDetail, Song $song)
+    public function __construct(Album $album, Rating $rating, AlbumDetail $albumDetail, Song $song, Comment $comment)
     {
         $this->model = $album;
         $this->ratingModel = $rating;
         $this->albumDetailModel = $albumDetail;
         $this->songModel = $song;
+        $this->commentgModel = $comment;
     }
 
     public function searchAlbum($keyword)
@@ -67,6 +70,10 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
         try {
             $this->ratingModel
                 ->where('type', config('settings.rate.album'))
+                ->where('target_id', $id)
+                ->delete();
+            $this->commentModel
+                ->where('type', config('settings.comment.album'))
                 ->where('target_id', $id)
                 ->delete();
             if ($album['cover'] != config('settings.cover_default')) {

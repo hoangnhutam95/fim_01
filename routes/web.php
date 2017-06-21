@@ -25,6 +25,9 @@ Route::get('album/{albumId}', 'User\MusicController@showAlbum');
 Route::group(['middleware' => 'auth'], function () {
     Route::post('rate-song', 'User\RateController@storeRateSong');
     Route::post('rate-album', 'User\RateController@storeRateAlbum');
+    Route::resource('comment', 'User\CommentController');
+    Route::post ('/editComment', 'User\CommentController@updateComment' );
+    Route::post ('/deleteComment', 'User\CommentController@deleteComment' );
 });
 
 Auth::routes();

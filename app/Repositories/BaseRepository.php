@@ -32,7 +32,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
     public function create($input)
     {
-        return $this->model->create($inputs);
+        return $this->model->create($input);
     }
 
     public function update($input, $id)

@@ -116,4 +116,6 @@
 
     @include('user.music_detail.suggest_music')
 
+    @include('user.music_detail.comment')
+
 @endsection

@@ -14,6 +14,7 @@
     {!! Html::style('bower_components/bootstrap-star-rating/css/theme-krajee-fa.min.css')!!}
     {!! Html::style('css/user/home-page.css') !!}
     {!! Html::style('css/user/rate.css') !!}
+    {!! Html::style('css/user/comment.css') !!}
     @yield('item')
 </head>
 <body>
@@ -41,6 +42,7 @@
     {!! Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
     {!! Html::script('bower_components/bootstrap-star-rating/js/star-rating.min.js') !!}
     {!! Html::script('js/rate.js') !!}
+    {!! Html::script('js/user/comment.js') !!}
     {!! Html::script('js/user/home-page.js') !!}
     @yield('script')
 </body>

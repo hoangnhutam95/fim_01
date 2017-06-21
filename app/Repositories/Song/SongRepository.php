@@ -11,6 +11,7 @@ use App\Helpers\SetFile;
 use App\Models\Category;
 use App\Models\Singer;
 use App\Models\Rating;
+use App\Models\Comment;
 use DB;
 
 class SongRepository extends BaseRepository implements SongRepositoryInterface
@@ -18,13 +19,15 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
     protected $categoryModel;
     protected $singerModel;
     protected $ratingModel;
+    protected $commentModel;
 
-    public function __construct(Song $song, Category $category, Singer $singer, Rating $rating)
+    public function __construct(Song $song, Category $category, Singer $singer, Rating $rating, Comment $comment)
     {
         $this->model = $song;
         $this->categoryModel = $category;
         $this->singerModel = $singer;
         $this->ratingModel = $rating;
+        $this->commentgModel = $comment;
     }
 
     public function getListAudios()
@@ -98,6 +101,10 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         try {
             $this->ratingModel
                 ->where('type', config('settings.rate.song'))
+                ->where('target_id', $id)
+                ->delete();
+            $this->commentModel
+                ->where('type', config('settings.comment.song'))
                 ->where('target_id', $id)
                 ->delete();
             if ($data['cover'] != config('settings.cover_default')) {
