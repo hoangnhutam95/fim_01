@@ -10,17 +10,21 @@ use File;
 use App\Helpers\SetFile;
 use App\Models\Category;
 use App\Models\Singer;
+use App\Models\Rating;
+use DB;
 
 class SongRepository extends BaseRepository implements SongRepositoryInterface
 {
     protected $categoryModel;
     protected $singerModel;
+    protected $ratingModel;
 
-    public function __construct(Song $song, Category $category, Singer $singer)
+    public function __construct(Song $song, Category $category, Singer $singer, Rating $rating)
     {
         $this->model = $song;
         $this->categoryModel = $category;
         $this->singerModel = $singer;
+        $this->ratingModel = $rating;
     }
 
     public function getListAudios()
@@ -90,14 +94,25 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         if (!$data) {
             return false;
         }
+        DB::beginTransaction();
+        try {
+            $this->ratingModel
+                ->where('type', config('settings.rate.song'))
+                ->where('target_id', $id)
+                ->delete();
+            if ($data['cover'] != config('settings.cover_default')) {
+                file::delete(config('settings.audio_cover_src') . $data['cover']);
+            }
+            file::delete(config('settings.audio_src') . $data['link']);
+            $data->delete();
+            DB::commit();
 
-        if ($data['cover'] != config('settings.cover_default')) {
-            file::delete(config('settings.audio_cover_src') . $data['cover']);
+            return true;
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return false;
         }
-        file::delete(config('settings.audio_src') . $data['link']);
-        $data->delete();
-
-        return true;
     }
 
     public function createVideo($request)
@@ -147,13 +162,25 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         if (!$data) {
             return false;
         }
-        if ($data['cover'] != config('settings.cover_default')) {
-            file::delete(config('settings.video_cover_src') . $data['cover']);
-        }
-        file::delete(config('settings.video_src') . $data['link']);
-        $data->delete();
+        DB::beginTransaction();
+        try {
+            $this->ratingModel
+                ->where('type', config('settings.rate.song'))
+                ->where('target_id', $id)
+                ->delete();
+            if ($data['cover'] != config('settings.cover_default')) {
+                file::delete(config('settings.video_cover_src') . $data['cover']);
+            }
+            file::delete(config('settings.video_src') . $data['link']);
+            $data->delete();
+            DB::commit();
 
-        return true;
+            return true;
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return false;
+        }
     }
 
     public function searchSong($keyword)

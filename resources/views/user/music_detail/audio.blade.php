@@ -40,27 +40,39 @@
                     <span>{{ trans('home.topic') }}</span>
                     <span class="text-primary">{{ ($audio->category) ? $audio->category->name : config('settings.null') }}</span>
                 </h5></div>
-                <div class="col-lg-4"><h5>
+                <div class="col-lg-4" id="rate-point"><h5>
                     <span>{{ trans('home.rate-point') }}</span>
                     <span class="text-primary rate-point">{{ $audio->rate_point }}</span>
+                    <span class="text-primary">({{ $audio->rate_number }} {{ trans('home.voted') }})</span>
                 </h5></div>
                 <div class="col-lg-12">
                     <h5><span>{{ trans('song.description') }}</span>
                     <span class="text-success more">{{ ($audio->description) ?: config('settings.null') }}</span></h5>
                 </div>
                 @if (auth()->check())
-                <div class="col-lg-12">
-                    <h4 class="text-primary">{{ trans('home.rate-it') }}</h4>
-                    {!! Form::open() !!}
-                        {!! Form::text('rate', null, [
-                            'id' => "input-2",
-                            'class' => 'rating rating-loading',
-                            'data-size' => "xs",
-                            'data-step' => "1",
-                        ]) !!}
-                    {!! Form::close() !!}
-               </div>
-        @endif
+                    <div class="col-lg-12">
+                        <h4 class="text-primary">{{ trans('home.rate-it') }}</h4>
+                        {!! Form::open() !!}
+                            <div class="hide-rate" data-route="{{ url('rate-song') }}"></div>
+                            {!! Form::text('rate', $ratePoint, [
+                                'id' => "input-2",
+                                'class' => 'rating rating-loading',
+                                'data-size' => "xs",
+                                'data-step' => "1",
+                            ]) !!}
+                            {!! Form::hidden('target_id', $audio->id, [
+                                'id' => 'target_id',
+                            ]) !!}
+                            {!! Form::hidden('user_id', Auth::user()->id, [
+                                'id' => 'user_id',
+                            ]) !!}
+                        {!! Form::close() !!}
+                    </div>
+                @else
+                    <div class="col-lg-12">
+                        <
+                    </div>
+                @endif
             </div>
         </div>
     </div>

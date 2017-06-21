@@ -40,8 +40,7 @@
     {!! Html::script('bower_components/jquery/dist/jquery.min.js') !!}
     {!! Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
     {!! Html::script('bower_components/bootstrap-star-rating/js/star-rating.min.js') !!}
-    {!! Html::script('bower_components/bootstrap-star-rating/js/star-rating_locale_Lang.js') !!}
-    {!! Html::script('js/user/rate.js') !!}
+    {!! Html::script('js/rate.js') !!}
     {!! Html::script('js/user/home-page.js') !!}
     @yield('script')
 </body>

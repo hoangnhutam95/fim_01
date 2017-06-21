@@ -9,6 +9,7 @@ use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Singer\SingerRepositoryInterface;
 use App\Repositories\Lyric\LyricRepositoryInterface;
 use App\Repositories\Album\AlbumRepositoryInterface;
+use App\Repositories\Rate\RateRepositoryInterface;
 
 class MusicController extends Controller
 {
@@ -17,19 +18,22 @@ class MusicController extends Controller
     protected $singerRepository;
     protected $lyricRepository;
     protected $albumRepository;
+    protected $rateRepository;
 
     public function __construct(
         SongRepositoryInterface $songRepository,
         CategoryRepositoryInterface $categoryRepository,
         SingerRepositoryInterface $singerRepository,
         LyricRepositoryInterface $lyricRepository,
-        AlbumRepositoryInterface $albumRepository
+        AlbumRepositoryInterface $albumRepository,
+        RateRepositoryInterface $rateRepository
     ) {
         $this->songRepository = $songRepository;
         $this->categoryRepository = $categoryRepository;
         $this->singerRepository = $singerRepository;
         $this->lyricRepository = $lyricRepository;
         $this->albumRepository = $albumRepository;
+        $this->rateRepository = $rateRepository;
     }
 
     public function showAudio($id)
@@ -44,8 +48,16 @@ class MusicController extends Controller
                 ->getVideoOfSinger($audio->singer_id)
                 ->paginate(config('settings.list_per_page'));
         }
+        $rateType = config('settings.rate.song');
+        $ratePoint = $this->rateRepository->getRatePointOfUser($id, $rateType);
 
-        return view('user.music_detail.audio', compact('audio', 'currentLyric', 'audiosOfSinger', 'videosOfSinger'));
+        return view('user.music_detail.audio', compact(
+            'audio',
+            'currentLyric',
+            'audiosOfSinger',
+            'videosOfSinger',
+            'ratePoint'
+        ));
     }
 
     public function showVideo($id)
@@ -60,8 +72,16 @@ class MusicController extends Controller
                 ->getAudioOfSinger($video->singer_id)
                 ->paginate(config('settings.list_per_page'));
         }
+        $rateType = config('settings.rate.song');
+        $ratePoint = $this->rateRepository->getRatePointOfUser($id, $rateType);
 
-        return view('user.music_detail.video', compact('video', 'currentLyric', 'videosOfSinger', 'videosOfSinger'));
+        return view('user.music_detail.video', compact(
+            'video',
+            'currentLyric',
+            'videosOfSinger',
+            'videosOfSinger',
+            'ratePoint'
+        ));
     }
 
     public function showAlbum($id)
@@ -73,10 +93,9 @@ class MusicController extends Controller
                 ->getCategoryOfAlbum($album->category_id)
                 ->paginate(config('settings.list_per_page'));
         }
-        if (!$album && !$audios) {
-            return redirect()->back()->with('errors', trans('album.album_not_found'));
-        }
+        $rateType = config('settings.rate.album');
+        $ratePoint = $this->rateRepository->getRatePointOfUser($id, $rateType);
 
-        return view('user.music_detail.album', compact('album', 'audios', 'albumOfTopics'));
+        return view('user.music_detail.album', compact('album', 'audios', 'albumOfTopics', 'ratePoint'));
     }
 }

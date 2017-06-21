@@ -22,6 +22,11 @@ Route::get('video/{videoId}', 'User\MusicController@showVideo');
 
 Route::get('album/{albumId}', 'User\MusicController@showAlbum');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('rate-song', 'User\RateController@storeRateSong');
+    Route::post('rate-album', 'User\RateController@storeRateAlbum');
+});
+
 Auth::routes();
 
 Route::get('/home', [

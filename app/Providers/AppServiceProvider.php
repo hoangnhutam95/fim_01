@@ -17,6 +17,8 @@ use App\Repositories\Lyric\LyricRepository;
 use App\Repositories\Lyric\LyricRepositoryInterface;
 use App\Repositories\Album\AlbumRepository;
 use App\Repositories\Album\AlbumRepositoryInterface;
+use App\Repositories\Rate\RateRepository;
+use App\Repositories\Rate\RateRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,5 +45,6 @@ class AppServiceProvider extends ServiceProvider
         App::bind(SingerRepositoryInterface::class, SingerRepository::class);
         App::bind(LyricRepositoryInterface::class, LyricRepository::class);
         App::bind(AlbumRepositoryInterface::class, AlbumRepository::class);
+        App::bind(RateRepositoryInterface::class, RateRepository::class);
     }
 }

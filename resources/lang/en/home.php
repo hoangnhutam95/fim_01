@@ -28,4 +28,5 @@ return [
     'album-1' => 'Album ',
     'singer-name' => 'Singer',
     'same-topic-album' => 'Album ',
+    'voted' => 'voted',
 ];
