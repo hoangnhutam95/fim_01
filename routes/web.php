@@ -28,11 +28,19 @@ Route::get('list-video/{categoryId}', 'User\HomeController@showVideoOfTopic');
 
 Route::get('list-album/{categoryId}', 'User\HomeController@showAlbumOfTopic');
 
-Route::get('hot-audio}', 'User\HomeController@showHotAudio');
+Route::get('hot-audio', 'User\HomeController@showHotAudio');
 
 Route::get('hot-video', 'User\HomeController@showHotVideo');
 
 Route::get('hot-album', 'User\HomeController@showHotAlbum');
+
+Route::get('singer', 'User\SingerController@index');
+
+Route::get('singer/{singerId}', 'User\SingerController@show');
+
+Route::get('singer-audio/{singerId}', 'User\SingerController@showAudio');
+
+Route::get('singer-video/{singerId}', 'User\SingerController@showVideo');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('rate-song', 'User\RateController@storeRateSong');

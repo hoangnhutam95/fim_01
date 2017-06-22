@@ -34,6 +34,10 @@ return [
     'login-to-comment' => 'Login to comment',
     'topic2' => 'Topic ',
     'album2' => 'Album ',
-    'video' => 'Video ',
+    'video2' => 'Video ',
+    'audio2' => 'Audio ',
     'has-not-music' => 'has not music',
+    'role' => 'Role :',
+    'list-singer' => 'List singer',
+    'singer' => 'Singer',
 ];

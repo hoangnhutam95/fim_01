@@ -1,8 +1,8 @@
-@extends('user.master')
+@extends('user.singer.singer')
 
-@section('content')
+@section('audio-singer')
     <div class="col-lg-12">
-        <h3 class="page-header">{{ trans('home.topic2') }}{{ ($audios->count()) ? $audios[0]->category->name : trans('home.has-not-music') }}</h3>
+        <h3 class="page-header">{{ trans('home.audio2') }}<span class="text-success">{{ ($audios->count()) ? $audios[0]->singer->name : trans('home.has-not-music') }}</h3>
     </div>
     @foreach ($audios as $audio)
     <div class="col-sm-3 list">

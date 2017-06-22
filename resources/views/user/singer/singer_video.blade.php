@@ -1,8 +1,8 @@
-@extends('user.master')
+@extends('user.singer.singer')
 
-@section('content')
+@section('video-singer')
     <div class="col-lg-12">
-        <h3 class="page-header">{{ trans('home.hot-video') }}</h3>
+        <h3 class="page-header">{{ trans('home.video2') }}{{ ($videos->count()) ? $videos[0]->singer->name : trans('home.has-not-music') }}</h3>
     </div>
     @foreach ($videos as $video)
     <div class="col-sm-3 list">

@@ -93,6 +93,7 @@
                             </ul>
                         </ul>
                     </li>
+                    <li><a href="{{ action('User\SingerController@index') }}">{{ trans('home.singer') }}</a></li>
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ trans('home.ranking') }}<span class="caret"></span>

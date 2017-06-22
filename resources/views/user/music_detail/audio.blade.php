@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="member-entry info">
-        <a href="" class="member-img">
+        <a href="{{ $audio->singer_id ? action('User\SingerController@show', $audio->singer_id) : null }}" class="member-img">
             @if (isset($audio->singer_id))
             {{ Html::image(($audio->singer->hasAvatar()) ? config('settings.avatar') . $audio->singer->avatar : config('settings.avatar') . config('settings.avatar_default'), trans('singer.this-is-avatar'), [
                     'class' => 'img-rounded',
@@ -29,7 +29,7 @@
             <h4>
                 <a href="" class="name">{{ $audio->name }}</a>
                 <span> - </span>
-                <a href="">{{ $audio->singer_id ? $audio->singer->name : config('settings.null') }}</a>
+                <a href="{{ $audio->singer_id ? action('User\SingerController@show', $audio->singer_id) : null }}">{{ $audio->singer_id ? $audio->singer->name : config('settings.null') }}</a>
             </h4>
             <div class="row info-list">
                 <div class="col-lg-4"><h5>
@@ -38,7 +38,11 @@
                 </h5></div>
                 <div class="col-lg-4"><h5>
                     <span>{{ trans('home.topic') }}</span>
-                    <span class="text-primary">{{ ($audio->category) ? $audio->category->name : config('settings.null') }}</span>
+                    <span class="text-primary">
+                        <a href="{{ $audio->category_id ? action('User\HomeController@showSongOfTopic', $audio->category_id) : null }}">
+                            {{ ($audio->category) ? $audio->category->name : config('settings.null') }}
+                        </a>
+                    </span>
                 </h5></div>
                 <div class="col-lg-4" id="rate-point"><h5>
                     <span>{{ trans('home.rate-point') }}</span>

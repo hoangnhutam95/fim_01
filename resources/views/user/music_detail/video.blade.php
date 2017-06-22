@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="member-entry info">
-        <a href="" class="member-img">
+        <a href="{{ $video->singer_id ? action('User\SingerController@show', $video->singer_id) : null }}" class="member-img">
             @if (isset($video->singer))
             {{ Html::image(($video->singer->hasAvatar()) ? config('settings.avatar') . $video->singer->avatar : config('settings.avatar') . config('settings.avatar_default'), trans('singer.this-is-avatar'), [
                     'class' => 'img-rounded',
@@ -29,7 +29,7 @@
             <h4>
                 <a href="" class="name">{{ $video->name }}</a>
                 <span> - </span>
-                <a href="">{{ $video->singer_id ? $video->singer->name : config('settings.null') }}</a>
+                <a href="{{ $video->singer_id ? action('User\SingerController@show', $video->singer_id) : null }}">{{ $video->singer_id ? $video->singer->name : config('settings.null') }}</a>
             </h4>
             <div class="row info-list">
                 <div class="col-lg-4"><h5>
@@ -38,7 +38,11 @@
                 </h5></div>
                 <div class="col-lg-4"><h5>
                     <span>{{ trans('home.topic') }}</span>
-                    <span class="text-primary">{{ ($video->category) ? $video->category->name : config('settings.null') }}</span>
+                    <span class="text-primary">
+                        <a href="{{ $video->category_id ? action('User\HomeController@showVideoOfTopic', $video->category_id) : null }}">
+                            {{ ($video->category) ? $video->category->name : config('settings.null') }}
+                        </a>
+                    </span>
                 </h5></div>
                 <div class="col-lg-4" id="rate-point"><h5>
                     <span>{{ trans('home.rate-point') }}</span>

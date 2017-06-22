@@ -18,7 +18,7 @@
                 @else
                 <div class="item">
                 @endif
-                    <img src="{{ ($newAudio->hasCoverAudio()) ? config('settings.audio_cover_path') . $newAudio->cover : $newAudio->cover }}" width="1200" height="700">
+                    <img src="{{ ($newAudio->hasCoverAudio()) ? config('settings.audio_cover_path') . $newAudio->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}" width="1200" height="700">
                     <div class="carousel-caption">
                         <a href="{{ action('User\MusicController@showAudio', $newAudio['id']) }}">
                             <h3 class="back-name">{{ $newAudio->name }}</h3>
@@ -43,12 +43,12 @@
     @foreach ($hotAudios as $hotAudio)
     <div class="col-sm-3 list">
         <a href="{{ action('User\MusicController@showAudio', $hotAudio['id']) }}" class="" title="{{ $hotAudio->name }}">
-            <img src="{{ ($hotAudio->hasCoverAudio()) ? config('settings.audio_cover_path') . $hotAudio->cover : $hotAudio->cover }}" class="img-responsive music-cover">
+            <img src="{{ ($hotAudio->hasCoverAudio()) ? config('settings.audio_cover_path') . $hotAudio->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
         </a>
         <a href="{{ action('User\MusicController@showAudio', $hotAudio['id']) }}" class="" title="{{ $hotAudio->name }}">
             <div class="music-name">{{ $hotAudio->name }}</div>
         </a>
-        <a href="" class="">
+        <a href="{{ $hotAudio->singer_id ? action('User\SingerController@show', $hotAudio->singer_id) : null }}" class="">
             <div class="singer-name">{{ ($hotAudio->singer_id) ? $hotAudio->singer->name : config('settings.null') }}</div>
         </a>
     </div>
@@ -59,12 +59,12 @@
     @foreach ($hotVideos as $hotVideo)
     <div class="col-sm-3 list">
         <a href="{{ action('User\MusicController@showVideo', $hotVideo['id']) }}" class="" title="{{ $hotVideo->name }}">
-            <img src="{{ ($hotVideo->hasCoverVideo()) ? config('settings.video_cover_path') . $hotVideo->cover : $hotVideo->cover }}" class="img-responsive music-cover">
+            <img src="{{ ($hotVideo->hasCoverVideo()) ? config('settings.video_cover_path') . $hotVideo->cover : config('settings.video_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
         </a>
         <a href="{{ action('User\MusicController@showVideo', $hotVideo['id']) }}" class="" title="{{ $hotVideo->name }}">
             <div class="music-name">{{ $hotVideo->name }}</div>
         </a>
-        <a href="" class="">
+        <a href="{{ $hotVideo->singer_id ? action('User\SingerController@show', $hotVideo->singer_id) : null }}" class="">
             <div class="singer-name">{{ ($hotVideo->singer_id) ? $hotVideo->singer->name : config('settings.null') }}</div>
         </a>
     </div>
@@ -75,7 +75,7 @@
     @foreach ($hotAlbums as $hotAlbum)
     <div class="col-sm-3 list">
         <a href="{{ action('User\MusicController@showAlbum', $hotAlbum['id']) }}" class="" title="{{ $hotAlbum->name }}">
-            <img src="{{ ($hotAlbum->hasCoverAlbum()) ? config('settings.album_cover_path') . $hotAlbum->cover : $hotAlbum->cover }}" class="img-responsive music-cover">
+            <img src="{{ ($hotAlbum->hasCoverAlbum()) ? config('settings.album_cover_path') . $hotAlbum->cover : config('settings.album_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
         </a>
         <a href="{{ action('User\MusicController@showAlbum', $hotAlbum['id']) }}" class="" title="{{ $hotAlbum->name }}">
             <div class="music-name">{{ $hotAlbum->name }}</div>

@@ -10,4 +10,6 @@ interface SingerRepositoryInterface
     public function updateSinger($input, $id);
 
     public function deleteSinger($id);
+
+    public function getSinger();
 }

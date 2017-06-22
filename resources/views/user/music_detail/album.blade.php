@@ -27,7 +27,9 @@
             <div class="row info-list">
                 <div class="col-lg-4"><h5>
                     <span>{{ trans('home.topic') }}</span>
-                    <span class="text-primary">{{ ($album->category) ? $album->category->name : config('settings.null') }}</span>
+                    <a href="{{ $album->category_id ? action('User\HomeController@showAlbumOfTopic', $album->category_id) : null }}">
+                            {{ ($album->category) ? $album->category->name : config('settings.null') }}
+                        </a>
                 </h5></div>
                 <div class="col-lg-4" id="rate-point"><h5>
                     <span>{{ trans('home.rate-point') }}</span>
@@ -105,7 +107,7 @@
                         @else
                         <td><a href="{{ action('User\MusicController@showAudio', $audio['id']) }}" class="play-audio" key="{{ $key }}" id="album-detail{{ $key }}">{{ $audio->name }}</a></td>
                         @endif
-                        <td><a href="">
+                        <td><a href="{{ $audio->singer_id ? action('User\SingerController@show', $audio->singer_id) : null }}">
                             {{ $audio->singer_id ? $audio->singer->name : config('settings.null') }}
                         </div></td>
                     </tr>

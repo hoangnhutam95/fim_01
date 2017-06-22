@@ -12,7 +12,7 @@
         <a href="{{ action('User\MusicController@showAudio', $audio['id']) }}" title="{{ $audio->name }}">
             <div class="music-name">{{ $audio->name }}</div>
         </a>
-        <a href="" class="">
+        <a href="{{ $audio->singer_id ? action('User\SingerController@show', $audio->singer_id) : null }}" class="">
             <div class="singer-name">{{ ($audio->singer_id) ? $audio->singer->name : config('settings.null') }}</div>
         </a>
     </div>

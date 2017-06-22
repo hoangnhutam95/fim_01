@@ -12,7 +12,7 @@
         <a href="{{ action('User\MusicController@showVideo', $video['id']) }}" title="{{ $video->name }}">
             <div class="music-name">{{ $video->name }}</div>
         </a>
-        <a href="" class="">
+        <a href="{{ $video->singer_id ? action('User\SingerController@show', $video->singer_id) : null }}" class="">
             <div class="singer-name">{{ ($video->singer_id) ? $video->singer->name : config('settings.null') }}</div>
         </a>
     </div>
