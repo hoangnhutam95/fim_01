@@ -40,4 +40,10 @@ return [
     'role' => 'Role :',
     'list-singer' => 'List singer',
     'singer' => 'Singer',
+    'no_result' => 'No result',
+    'audio' => 'Audio',
+    'search-keyword' => 'Search keyword : ',
+    'top-rate-audio' => 'Top Rate Audio',
+    'top-rate-video' => 'Top Rate Video',
+    'top-rate-album' => 'Top Rate Album',
 ];

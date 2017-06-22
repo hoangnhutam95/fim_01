@@ -25,13 +25,8 @@
             <div class="col-sm-9 text-left">
                 @yield('content')
             </div>
-            <div class="col-sm-3 sidenav">
-                <div class="well">
-                    <p>{{ trans('home.rate') }}</p>
-                </div>
-                <div class="well">
-                    <p>{{ trans('home.rate') }}</p>
-                </div>
+            <div class="col-sm-3">
+                @include('user.rating')
             </div>
         </div>
     </div>

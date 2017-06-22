@@ -121,7 +121,7 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
     {
         return $this->model
             ->where('is_hot', config('settings.hot'))
-            ->orderBy('rate_point');
+            ->orderBy('rate_point', 'desc');
     }
 
     public function getCategoryOfAlbum($categoryId)
@@ -132,5 +132,17 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
     public function getListAlbumOfCategory($categoryId)
     {
         return $this->model->where('category_id', $categoryId)->orderBy('name')->paginate(config('settings.list_item'));
+    }
+
+    public function searchAlbumHome($keyword)
+    {
+        return $this->model
+            ->where('name', 'like', "%$keyword%")
+            ->orderBy('rate_point', 'desc');
+    }
+
+    public function getTopRateAlbum()
+    {
+        return $this->model->orderBy('rate_point', 'desc')->take(config('settings.top_count'));
     }
 }

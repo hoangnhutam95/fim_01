@@ -20,4 +20,8 @@ interface AlbumRepositoryInterface
     public function getCategoryOfAlbum($categoryId);
 
     public function getListAlbumOfCategory($categoryId);
+
+    public function searchAlbumHome($keyword);
+
+    public function getTopRateAlbum();
 }

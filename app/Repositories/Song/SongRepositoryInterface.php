@@ -41,4 +41,12 @@ interface SongRepositoryInterface
     public function getAudioOfTopic($categoryId);
 
     public function getVideoOfTopic($categoryId);
+
+    public function searchAudioHome($keyword);
+
+    public function searchVideoHome($keyword);
+
+    public function getTopRateAudio();
+
+    public function getTopRateVideo();
 }

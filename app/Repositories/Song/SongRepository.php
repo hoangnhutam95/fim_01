@@ -241,7 +241,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         return $this->model
             ->where('type', config('settings.audio'))
             ->where('is_hot', config('settings.hot'))
-            ->orderBy('rate_point');
+            ->orderBy('rate_point', 'desc');
     }
 
     public function getHotVideo()
@@ -249,7 +249,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         return $this->model
             ->where('type', config('settings.video'))
             ->where('is_hot', config('settings.hot'))
-            ->orderBy('rate_point');
+            ->orderBy('rate_point', 'desc');
     }
 
     public function getListAudioOfAlbum($albumId)
@@ -275,5 +275,37 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
             ->where('category_id', $categoryId)
             ->orderBy('name')
             ->paginate(config('settings.list_item'));
+    }
+
+    public function searchAudioHome($keyword)
+    {
+        return $this->model
+            ->where('name', 'like', "%$keyword%")
+            ->where('type', config('settings.audio'))
+            ->orderBy('rate_point', 'desc');
+    }
+
+    public function searchVideoHome($keyword)
+    {
+        return $this->model
+            ->where('name', 'like', "%$keyword%")
+            ->where('type', config('settings.video'))
+            ->orderBy('rate_point', 'desc');
+    }
+
+    public function getTopRateAudio()
+    {
+        return $this->model
+            ->where('type', config('settings.audio'))
+            ->orderBy('rate_point', 'desc')
+            ->take(config('settings.top_count'));
+    }
+
+    public function getTopRateVideo()
+    {
+        return $this->model
+            ->where('type', config('settings.video'))
+            ->orderBy('rate_point', 'desc')
+            ->take(config('settings.top_count'));
     }
 }

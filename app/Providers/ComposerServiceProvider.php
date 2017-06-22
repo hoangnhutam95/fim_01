@@ -15,6 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', 'App\Http\ViewComposers\CategoryComposer');
+        View::composer('*', 'App\Http\ViewComposers\RateComposer');
     }
 
     /**

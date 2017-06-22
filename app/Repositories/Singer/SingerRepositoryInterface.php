@@ -12,4 +12,6 @@ interface SingerRepositoryInterface
     public function deleteSinger($id);
 
     public function getSinger();
+
+    public function searchSingerHome($keyword);
 }

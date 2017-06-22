@@ -1,5 +1,5 @@
 @if (isset($audiosOfSinger) && $audiosOfSinger->count())
-    <div class="col-lg-12">
+    <div class="col-sm-12">
         <a href="{{ action('User\SingerController@showAudio', $audiosOfSinger[0]->singer_id) }}">
             <h3 class="page-header">{{ trans('home.audio2') }}<span class="text-success">{{ $audiosOfSinger[0]->singer->name }}</span></h3>
         </a>
@@ -20,7 +20,7 @@
 @endif
 
 @if (isset($videosOfSinger) && $videosOfSinger->count())
-    <div class="col-lg-12">
+    <div class="col-sm-12">
         <a href="{{ action('User\SingerController@showVideo', $videosOfSinger[0]->singer_id) }}">
             <h3 class="page-header">{{ trans('home.video') }}<span class="text-success">{{ $videosOfSinger[0]->singer->name }}</span></h3>
         </a>
@@ -41,7 +41,7 @@
 @endif
 
 @if (isset($albumOfTopics) && $albumOfTopics->count())
-    <div class="col-lg-12">
+    <div class="col-sm-12">
         <a href="{{ action('User\HomeController@showAlbumOfTopic', $albumOfTopics[0]->category_id) }}">
             <h3 class="page-header">{{ trans('home.same-topic-album') }}<span class="text-success">{{ ($albumOfTopics[0]->category) ? $albumOfTopics[0]->category->name : config('settings.null') }}</span></h3>
         </a>

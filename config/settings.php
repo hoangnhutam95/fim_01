@@ -63,4 +63,7 @@ return [
         'album' => 2,
     ],
     'list_item' => 40,
+    'search-view' => 8,
+    'top_count' => 20,
+    'rate_count' => 10,
 ];

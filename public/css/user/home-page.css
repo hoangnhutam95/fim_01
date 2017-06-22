@@ -19,6 +19,7 @@ footer {
     background-color: #555;
     color: white;
     padding: 15px;
+    margin-bottom: 0;
 }
 
 .logo img {
@@ -162,6 +163,33 @@ li.dropdown:hover > .dropdown-menu {
 
 .list {
     margin-bottom: 20px;
+}
+
+.rate-point {
+    font-size: 20px;
+    color: red;
+}
+
+.rate-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+}
+
+.rate-name:hover {
+    color: red !important;
+}
+
+.c-info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title {
+    font-size: 20px;
+    color: yellow;
 }
 
 @media screen and (max-width: 767px) {

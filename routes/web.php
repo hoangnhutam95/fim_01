@@ -42,6 +42,8 @@ Route::get('singer-audio/{singerId}', 'User\SingerController@showAudio');
 
 Route::get('singer-video/{singerId}', 'User\SingerController@showVideo');
 
+Route::match(['get', 'post'], '/search', 'User\HomeController@search');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::post('rate-song', 'User\RateController@storeRateSong');
     Route::post('rate-album', 'User\RateController@storeRateAlbum');
