@@ -62,7 +62,7 @@
         </button>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="#">{{ trans('home.my-music') }}</a></li>
+                <li><a href="{{ action('User\UserController@myMusic') }}">{{ trans('home.my-music') }}</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('home.topic') }}<b class="caret"></b></a>
                     <ul class="dropdown-menu topic">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Song\SongRepositoryInterface;
 use App\Repositories\Album\AlbumRepositoryInterface;
 use App\Repositories\Singer\SingerRepositoryInterface;
+use App\Repositories\Lyric\LyricRepositoryInterface;
 
 class HomeController extends Controller
 {
@@ -14,15 +15,18 @@ class HomeController extends Controller
     protected $songRepository;
     protected $albumRepository;
     protected $singerRepository;
+    protected $lyricRepository;
 
     public function __construct(
         SongRepositoryInterface $songRepository,
         AlbumRepositoryInterface $albumRepository,
-        SingerRepositoryInterface $singerRepository
+        SingerRepositoryInterface $singerRepository,
+        LyricRepositoryInterface $lyricRepository
     ) {
         $this->songRepository = $songRepository;
         $this->albumRepository = $albumRepository;
         $this->singerRepository = $singerRepository;
+        $this->lyricRepository = $lyricRepository;
     }
 
     public function index()
@@ -85,5 +89,26 @@ class HomeController extends Controller
         $singers = $this->singerRepository->searchSingerHome($input)->paginate(config('settings.search-view'));
 
         return view('user.search.search_home', compact('input', 'audios', 'videos', 'albums', 'singers'));
+    }
+
+    public function suggestLyric(Request $request)
+    {
+        if ($request->ajax()) {
+            $input = $request->only('user_id', 'song_id', 'content');
+            try {
+                $lyric = $this->lyricRepository->create($input);
+                $result = [
+                    'success' => true,
+                ];
+            } catch (Exception $e) {
+                $result = [
+                    'success' => false,
+                    'message' => trans('home.comment_fail'),
+                ];
+                return response()->json($result);
+            }
+            return response()->json($result);
+        }
+        return redirect()->back();
     }
 }

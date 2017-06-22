@@ -23,6 +23,16 @@
     <div class="container-fluid text-center">
         <div class="row content">
             <div class="col-sm-9 text-left">
+                @if (Session::has('errors'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('errors') }}
+                    </div>
+                @endif
+                @if (Session::has('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
                 @yield('content')
             </div>
             <div class="col-sm-3">
@@ -39,6 +49,7 @@
     {!! Html::script('js/rate.js') !!}
     {!! Html::script('js/user/comment.js') !!}
     {!! Html::script('js/user/home-page.js') !!}
+    {!! Html::script('js/user/suggest-lyrics.js') !!}
     @yield('script')
 </body>
 </html>

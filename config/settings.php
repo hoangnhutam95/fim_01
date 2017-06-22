@@ -33,6 +33,8 @@ return [
     'video_cover_src' => public_path() . '/uploads/cover/video_cover/',
     'album_cover_src' => public_path() . '/uploads/cover/album_cover/',
     'album_cover_path' => '/uploads/cover/album_cover/',
+    'favorite_cover_src' => public_path() . '/uploads/cover/favorite_cover/',
+    'favorite_cover_path' => '/uploads/cover/favorite_cover/',
     'singer' => [
         'solo' => 'Solo',
         'duet' => 'Duet',

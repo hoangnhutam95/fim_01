@@ -50,6 +50,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('comment', 'User\CommentController');
     Route::post('/editComment', 'User\CommentController@updateComment' );
     Route::post('/deleteComment', 'User\CommentController@deleteComment' );
+    Route::post('suggest-lyric', 'User\HomeController@suggestLyric');
+    Route::get('my-music', 'User\UserController@myMusic');
+    Route::get('my-music/edit-profile', 'User\UserController@edit');
+    Route::patch('my-music/update-profile', 'User\UserController@update');
 });
 
 Auth::routes();

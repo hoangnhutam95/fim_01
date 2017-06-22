@@ -21,4 +21,11 @@ class Favorite extends Model
     {
         return $this->hasMany(FavoriteDetail::class);
     }
+
+    public function hasCoverFavorite()
+    {
+        $filePath = config('settings.favorite_cover_src') . $this->cover;
+
+        return file_exists($filePath);
+    }
 }

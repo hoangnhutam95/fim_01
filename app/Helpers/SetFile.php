@@ -82,4 +82,15 @@ class SetFile
             return $name;
         }
     }
+
+    public static function uploadCoverFavorite($request)
+    {
+        if (isset($request['cover'])) {
+            $file = Input::file('cover');
+            $name = time() . '_' . $file->getClientOriginalName();
+            $file->move(config('settings.favorite_cover_src'), $name);
+
+            return $name;
+        }
+    }
 }

@@ -46,4 +46,9 @@ return [
     'top-rate-audio' => 'Top Rate Audio',
     'top-rate-video' => 'Top Rate Video',
     'top-rate-album' => 'Top Rate Album',
+    'input-lyric' => 'Input lyric...',
+    'suggest-lyric' => 'Suggest Lyric',
+    'suggest' => 'Suggest',
+    'no-playlist' => 'No Playlist',
+    'my-playlist' => 'My Playlist',
 ];
