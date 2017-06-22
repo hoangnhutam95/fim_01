@@ -32,4 +32,8 @@ return [
     'type-comment' => 'Insert comment...',
     'comment' => 'Comment',
     'login-to-comment' => 'Login to comment',
+    'topic2' => 'Topic ',
+    'album2' => 'Album ',
+    'video' => 'Video ',
+    'has-not-music' => 'has not music',
 ];

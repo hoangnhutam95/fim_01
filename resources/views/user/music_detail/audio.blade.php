@@ -70,7 +70,6 @@
                     </div>
                 @else
                     <div class="col-lg-12">
-                        <
                     </div>
                 @endif
             </div>

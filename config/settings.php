@@ -62,4 +62,5 @@ return [
         'song' => 1,
         'album' => 2,
     ],
+    'list_item' => 40,
 ];

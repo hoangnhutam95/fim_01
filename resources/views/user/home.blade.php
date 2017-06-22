@@ -38,7 +38,7 @@
         </a>
     </div>
     <div class="col-lg-12">
-        <h3 class="page-header">{{ trans('home.hot-music') }}</h3>
+        <a href="{{ action('User\HomeController@showHotAudio') }}"><h3 class="page-header">{{ trans('home.hot-music') }}</h3></a>
     </div>
     @foreach ($hotAudios as $hotAudio)
     <div class="col-sm-3 list">
@@ -54,7 +54,7 @@
     </div>
     @endforeach
     <div class="col-lg-12">
-        <h3 class="page-header">{{ trans('home.hot-video') }}</h3>
+        <a href="{{ action('User\HomeController@showHotVideo') }}"><h3 class="page-header">{{ trans('home.hot-video') }}</h3></a>
     </div>
     @foreach ($hotVideos as $hotVideo)
     <div class="col-sm-3 list">
@@ -70,7 +70,7 @@
     </div>
     @endforeach
     <div class="col-lg-12">
-        <h3 class="page-header">{{ trans('home.hot-album') }}</h3>
+        <a href="{{ action('User\HomeController@showHotAlbum') }}"><h3 class="page-header">{{ trans('home.hot-album') }}</h3></a>
     </div>
     @foreach ($hotAlbums as $hotAlbum)
     <div class="col-sm-3 list">
@@ -79,9 +79,6 @@
         </a>
         <a href="{{ action('User\MusicController@showAlbum', $hotAlbum['id']) }}" class="" title="{{ $hotAlbum->name }}">
             <div class="music-name">{{ $hotAlbum->name }}</div>
-        </a>
-        <a href="" class="">
-            <div class="singer-name">{{ ($hotAlbum->singer_id) ? $hotAlbum->singer->name : config('settings.null') }}</div>
         </a>
     </div>
     @endforeach

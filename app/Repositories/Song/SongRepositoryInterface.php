@@ -37,4 +37,8 @@ interface SongRepositoryInterface
     public function getHotVideo();
 
     public function getListAudioOfAlbum($albumId);
+
+    public function getAudioOfTopic($categoryId);
+
+    public function getVideoOfTopic($categoryId);
 }

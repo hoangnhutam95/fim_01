@@ -18,4 +18,6 @@ interface AlbumRepositoryInterface
     public function getHotAlbum();
 
     public function getCategoryOfAlbum($categoryId);
+
+    public function getListAlbumOfCategory($categoryId);
 }

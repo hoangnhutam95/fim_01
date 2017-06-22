@@ -68,7 +68,7 @@
                         <ul class="dropdown-menu topic">
                             <ul class="list-inline">
                                 @foreach ($songCategories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
+                                <li><a href="{{ action('User\HomeController@showSongOfTopic', $category['id']) }}">{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </ul>
@@ -78,7 +78,7 @@
                         <ul class="dropdown-menu topic">
                             <ul class="list-inline">
                                 @foreach ($albumCategories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
+                                <li><a href="{{ action('User\HomeController@showAlbumOfTopic', $category['id']) }}">{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </ul>
@@ -88,7 +88,7 @@
                         <ul class="dropdown-menu topic">
                             <ul class="list-inline">
                                 @foreach ($songCategories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
+                                <li><a href="{{ action('User\HomeController@showVideoOfTopic', $category['id']) }}">{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </ul>

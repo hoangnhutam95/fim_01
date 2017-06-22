@@ -121,12 +121,16 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
     {
         return $this->model
             ->where('is_hot', config('settings.hot'))
-            ->orderBy('rate_point')
-            ->paginate(config('settings.list_per_page'));
+            ->orderBy('rate_point');
     }
 
     public function getCategoryOfAlbum($categoryId)
     {
         return $this->model->where('category_id', $categoryId)->orderBy('rate_point');
+    }
+
+    public function getListAlbumOfCategory($categoryId)
+    {
+        return $this->model->where('category_id', $categoryId)->orderBy('name')->paginate(config('settings.list_item'));
     }
 }

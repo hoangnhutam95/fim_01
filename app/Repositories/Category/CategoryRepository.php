@@ -125,6 +125,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function getAlbumCategories()
     {
-        return $this->model->where('type', config('settings.category.song'))->get();
+        return $this->model->where('type', config('settings.category.album'))->get();
     }
 }

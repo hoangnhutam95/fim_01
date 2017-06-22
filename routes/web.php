@@ -22,12 +22,24 @@ Route::get('video/{videoId}', 'User\MusicController@showVideo');
 
 Route::get('album/{albumId}', 'User\MusicController@showAlbum');
 
+Route::get('list-audio/{categoryId}', 'User\HomeController@showSongOfTopic');
+
+Route::get('list-video/{categoryId}', 'User\HomeController@showVideoOfTopic');
+
+Route::get('list-album/{categoryId}', 'User\HomeController@showAlbumOfTopic');
+
+Route::get('hot-audio}', 'User\HomeController@showHotAudio');
+
+Route::get('hot-video', 'User\HomeController@showHotVideo');
+
+Route::get('hot-album', 'User\HomeController@showHotAlbum');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::post('rate-song', 'User\RateController@storeRateSong');
     Route::post('rate-album', 'User\RateController@storeRateAlbum');
     Route::resource('comment', 'User\CommentController');
-    Route::post ('/editComment', 'User\CommentController@updateComment' );
-    Route::post ('/deleteComment', 'User\CommentController@deleteComment' );
+    Route::post('/editComment', 'User\CommentController@updateComment' );
+    Route::post('/deleteComment', 'User\CommentController@deleteComment' );
 });
 
 Auth::routes();

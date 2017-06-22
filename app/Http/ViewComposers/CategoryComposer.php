@@ -26,7 +26,7 @@ class CategoryComposer
     {
         $this->categoryRepository = $categoryRepository;
         $this->songCategories = $this->categoryRepository->getSongCategories();
-        $this->albumCategories = $this->categoryRepository->getalbumCategories();
+        $this->albumCategories = $this->categoryRepository->getAlbumCategories();
     }
 
     /**
