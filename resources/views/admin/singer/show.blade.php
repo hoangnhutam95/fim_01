@@ -22,7 +22,7 @@
     </div>
     <div class="member-entry">
         <a href="{{ action('Admin\SingerController@edit', $singer->id) }}" class="member-img">
-            {{ Html::image(($singer->hasAvatar()) ? config('settings.avatar') . $singer->avatar : $singer->avatar, trans('singer.this-is-avatar'), [
+            {{ Html::image(($singer->hasAvatar()) ? config('settings.avatar') . $singer->avatar : config('settings.avatar') . config('settings.avatar_default'), trans('singer.this-is-avatar'), [
                     'class' => 'img-rounded',
             ]) }}
         </a>

@@ -315,4 +315,32 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
                 $query->select('song_id')->from('favorite_details')->where('favorite_id', $favoriteId)->get();
         })->get();
     }
+
+    public function searchNotHotAudio($keyword)
+    {
+        return $this->model
+            ->where('type', config('settings.audio'))
+            ->where('is_hot', config('settings.not_hot'))
+            ->where('name', 'like', "%$keyword%")
+            ->orderBy('rate_point', 'desc');
+    }
+
+    public function searchNotHotVideo($keyword)
+    {
+        return $this->model
+            ->where('type', config('settings.video'))
+            ->where('is_hot', config('settings.not_hot'))
+            ->where('name', 'like', "%$keyword%")
+            ->orderBy('rate_point', 'desc');
+    }
+
+    public function setNotHot($id)
+    {
+        return $this->model->find($id)->update(['is_hot' => config('settings.not_hot')]);
+    }
+
+    public function setHot($id)
+    {
+        return $this->model->find($id)->update(['is_hot' => config('settings.hot')]);
+    }
 }

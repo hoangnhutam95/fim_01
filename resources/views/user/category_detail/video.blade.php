@@ -7,7 +7,7 @@
     @foreach ($videos as $video)
     <div class="col-sm-3 list">
         <a href="{{ action('User\MusicController@showVideo', $video['id']) }}" title="{{ $video->name }}">
-            <img src="{{ ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : $video->cover }}" class="img-responsive music-cover">
+            <img src="{{ ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : config('settings.video_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
         </a>
         <a href="{{ action('User\MusicController@showVideo', $video['id']) }}" title="{{ $video->name }}">
             <div class="music-name">{{ $video->name }}</div>

@@ -27,7 +27,7 @@
             <span id="video-name-color">{{ $video->name }}</span>
             <span> - {{ ($video->singer_id) ? $video->singer->name : config('settings.null') }}</span>
         </div>
-        <video poster="{{ ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : $video->cover }}" controls preload loop>
+        <video poster="{{ ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : config('settings.video_cover_path') . config('settings.video_default') }}" controls preload loop>
         <source src="{{ config('settings.video_path') . $video->link }}" type="video/mp4">
         </video>
     </div>

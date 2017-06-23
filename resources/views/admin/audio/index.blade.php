@@ -22,7 +22,7 @@
             {{ Session::get('success') }}
         </div>
     @endif
-    <div class="audio-cover" backgr={{ ($audios[0]->hasCoverAudio()) ? config('settings.audio_cover_path') . $audios[0]->cover : $audios[0]->cover }}>
+    <div class="audio-cover" backgr={{ ($audios[0]->hasCoverAudio()) ? config('settings.audio_cover_path') . $audios[0]->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}>
         <div class="admin-audio-name">
             {{ trans('song.song') }}
             <span id="audio-name-color">{{ $audios[0]->name }}</span>
@@ -65,7 +65,7 @@
                 {!! Form::hidden('src', ($audio->hasFileAudio()) ? config('settings.audio_path') . $audio->link : $audio->link, [
                     'id' => 'link-audio' . $audio->id,
                 ]) !!}
-                {!! Form::hidden('cover-audio', ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : $audio->cover , [
+                {!! Form::hidden('cover-audio', ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : config('settings.audio_cover_path') . config('settings.cover_default'), [
                     'id' => 'cover-audio' . $audio->id,
                 ]) !!}
                 {!! Form::hidden('audio-name', $audio->name, [

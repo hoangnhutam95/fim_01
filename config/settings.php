@@ -57,6 +57,7 @@ return [
     'new' => 5,
     'list_per_page' => 12,
     'hot' => 1,
+    'not_hot' => 0,
     'title' => [
         'home' => 'I-Music',
     ],

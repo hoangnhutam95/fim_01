@@ -24,4 +24,8 @@ interface AlbumRepositoryInterface
     public function searchAlbumHome($keyword);
 
     public function getTopRateAlbum();
+
+    public function setNotHotAlbum($id);
+
+    public function setHotAlbum($id);
 }

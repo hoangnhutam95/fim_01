@@ -86,4 +86,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::delete('remote-song-in-album/{albumDetailId}', 'Admin\AlbumController@removeSong');
     Route::match(['get', 'post'], 'album/{albumId}/search-song-import', 'Admin\AlbumController@searchSong');
     Route::put('album/{albumId}/import-song-to-album', 'Admin\AlbumController@createAlbumDetail');
+    Route::get('hot-audio', 'Admin\HotController@hotAudio');
+    Route::get('hot-video', 'Admin\HotController@hotVideo');
+    Route::get('hot-album', 'Admin\HotController@hotAlbum');
+    Route::match(['get', 'post'], 'hot/search-audio', 'Admin\HotController@searchNotHotAudio');
+    Route::match(['get', 'post'], 'hot/search-video', 'Admin\HotController@searchNotHotVideo');
+    Route::match(['get', 'post'], 'hot/search-album-not-hot', 'Admin\HotController@searchNotHotAlbum');
+    Route::delete('hot/set-not-hot-song/{songId}', 'Admin\HotController@setNotHot');
+    Route::delete('hot/set-not-hot-album/{albumId}', 'Admin\HotController@setNotHotAlbum');
+    Route::post('hot/set-hot-song/{songId}', 'Admin\HotController@setHot');
+    Route::post('hot/set-hot-album/{albumId}', 'Admin\HotController@setHotAlbum');
 });

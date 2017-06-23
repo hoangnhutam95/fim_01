@@ -22,7 +22,7 @@
     @foreach($users as $user)
         <div class="member-entry">
             <a href="{{ action('Admin\UserController@edit', $user->id) }}" class="member-img">
-                {{ Html::image(config('settings.avatar') . $user->avatar,
+                {{ Html::image(($user->hasAvatar()) ? config('settings.avatar') . $user->avatar : config('settings.avatar') . config('settings.avatar_default'),
                     trans('user.this-is-avatar'), [
                         'class' => 'img-rounded',
                 ]) }}

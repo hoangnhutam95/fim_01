@@ -145,4 +145,22 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
     {
         return $this->model->orderBy('rate_point', 'desc')->take(config('settings.top_count'));
     }
+
+    public function setNotHotAlbum($id)
+    {
+        return $this->model->find($id)->update(['is_hot' => config('settings.not_hot')]);
+    }
+
+    public function setHotAlbum($id)
+    {
+        return $this->model->find($id)->update(['is_hot' => config('settings.hot')]);
+    }
+
+    public function searchNotHotAlbum($keyword)
+    {
+        return $this->model
+            ->where('is_hot', config('settings.not_hot'))
+            ->where('name', 'like', "%$keyword%")
+            ->orderBy('rate_point', 'desc');
+    }
 }

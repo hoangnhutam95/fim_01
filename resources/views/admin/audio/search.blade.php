@@ -7,7 +7,7 @@
             {!! Form::hidden('src', ($audio->hasFileAudio()) ? config('settings.audio_path') . $audio->link : $audio->link, [
                 'id' => 'link-audio' . $audio->id,
             ]) !!}
-            {!! Form::hidden('cover-audio', ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : $audio->cover , [
+            {!! Form::hidden('cover-audio', ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : config('settings.audio_cover_path') . config('settings.cover_default') , [
                 'id' => 'cover-audio' . $audio->id,
             ]) !!}
             {!! Form::hidden('audio-name', $audio->name, [

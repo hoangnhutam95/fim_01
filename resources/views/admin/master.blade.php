@@ -98,10 +98,13 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">{{ trans('admin.audio') }}</a>
+                                    <a href="{{ action('Admin\HotController@hotAudio') }}">{{ trans('admin.audio') }}</a>
                                 </li>
                                 <li>
-                                    <a href="#">{{ trans('admin.video') }}</a>
+                                    <a href="{{ action('Admin\HotController@hotVideo') }}">{{ trans('admin.video') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ action('Admin\HotController@hotAlbum') }}">{{ trans('admin.album') }}</a>
                                 </li>
                             </ul>
                         </li>

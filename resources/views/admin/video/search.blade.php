@@ -7,7 +7,7 @@
             {!! Form::hidden('src', ($video->hasFileVideo()) ? config('settings.video_path') . $video->link : $video->link, [
                 'id' => 'link-video' . $video->id,
             ]) !!}
-            {!! Form::hidden('cover-video', ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : $video->cover , [
+            {!! Form::hidden('cover-video', ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : config('settings.video_cover_path') . config('settings.cover_default'), [
                 'id' => 'cover-video' . $video->id,
             ]) !!}
             {!! Form::hidden('video-name', $video->name, [

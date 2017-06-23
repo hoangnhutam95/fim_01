@@ -28,7 +28,7 @@
             <span id="video-name-color">{{ $videos[0]->name }}</span>
             <span> - {{ ($videos[0]->singer_id) ? $videos[0]->singer->name : config('settings.null') }}</span>
         </div>
-        <video poster="{{ ($videos[0]->hasCoverVideo()) ? config('settings.video_cover_path') . $videos[0]->cover : $videos[0]->cover }}" controls preload loop id='video-view'>
+        <video poster="{{ ($videos[0]->hasCoverVideo()) ? config('settings.video_cover_path') . $videos[0]->cover : config('settings.video_cover_path') . config('settings.cover_default') }}" controls preload loop id='video-view'>
         <source src="{{ config('settings.video_path') . $videos[0]->link }}" type="video/mp4">
         </video>
     </div>
@@ -66,7 +66,7 @@
                 {!! Form::hidden('src', ($video->hasFileVideo()) ? config('settings.video_path') . $video->link : $video->link, [
                     'id' => 'link-video' . $video->id,
                 ]) !!}
-                {!! Form::hidden('cover-video', ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : $video->cover , [
+                {!! Form::hidden('cover-video', ($video->hasCoverVideo()) ? config('settings.video_cover_path') . $video->cover : config('settings.video_cover_path') . config('settings.cover_default') , [
                     'id' => 'cover-video' . $video->id,
                 ]) !!}
                 {!! Form::hidden('video-name', $video->name, [

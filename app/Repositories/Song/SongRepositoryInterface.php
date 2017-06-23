@@ -51,4 +51,12 @@ interface SongRepositoryInterface
     public function getTopRateVideo();
 
     public function getListAudioOfFavorite($favoriteId);
+
+    public function searchNotHotAudio($keyword);
+
+    public function searchNotHotVideo($keyword);
+
+    public function setNotHot($id);
+
+    public function setHot($id);
 }
