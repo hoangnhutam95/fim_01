@@ -57,3 +57,24 @@
     </div>
     @endforeach
 @endif
+
+@if (isset($favoriteOfUsers) && $favoriteOfUsers->count())
+    <div class="col-sm-12">
+        <a href="{{ action('User\UserController@myMusic') }}">
+            <h3 class="page-header">{{ trans('home.my-playlist') }}</h3>
+        </a>
+    </div>
+    @foreach ($favoriteOfUsers as $favoriteOfUser)
+    <div class="col-sm-3 list">
+        <a href="{{ action('User\FavoriteController@show', $favoriteOfUser['id']) }}" title="{{ $favoriteOfUser->name }}">
+            <img src="{{ ($favoriteOfUser->hasCoverFavorite()) ? config('settings.favorite_cover_path') . $favoriteOfUser->cover : config('settings.favorite_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
+        </a>
+        <a href="{{ action('User\FavoriteController@show', $favoriteOfUser['id']) }}" title="{{ $favoriteOfUser->name }}">
+            <div class="music-name">{{ $favoriteOfUser->name }}</div>
+        </a>
+        <div class="">
+            <div class="singer-name text-muted">{{ $favoriteOfUser->favoriteDetails->count() }}{{ trans('home.song') }}</div>
+        </div>
+    </div>
+    @endforeach
+@endif

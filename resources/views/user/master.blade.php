@@ -23,14 +23,9 @@
     <div class="container-fluid text-center">
         <div class="row content">
             <div class="col-sm-9 text-left">
-                @if (Session::has('errors'))
-                    <div class="alert alert-danger">
-                        {{ Session::get('errors') }}
-                    </div>
-                @endif
-                @if (Session::has('success'))
-                    <div class="alert alert-success">
-                        {{ Session::get('success') }}
+                @if (Session::has('flash_message'))
+                    <div class="alert alert-{!! Session::get('flash_level') !!}">
+                        {!! Session::get('flash_message') !!}
                     </div>
                 @endif
                 @yield('content')

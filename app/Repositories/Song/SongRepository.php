@@ -308,4 +308,11 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
             ->orderBy('rate_point', 'desc')
             ->take(config('settings.top_count'));
     }
+
+    public function getListAudioOfFavorite($favoriteId)
+    {
+        return $this->model->whereIn('id', function ($query) use ($favoriteId) {
+                $query->select('song_id')->from('favorite_details')->where('favorite_id', $favoriteId)->get();
+        })->get();
+    }
 }

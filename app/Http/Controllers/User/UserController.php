@@ -30,9 +30,15 @@ class UserController extends Controller
         $input = $request->only('name', 'address', 'phone', 'avatar', 'current_img');
         $user = $this->userRepository->update($input, auth()->user()->id);
         if (!$user) {
-            return redirect()->action('User\UserController@myMusic')->with('errors', trans('user.user_update_fail'));
+            return redirect()->action('User\UserController@myMusic')->with([
+                'flash_level' => 'warning',
+                'flash_message' => trans('user.user_update_fail'),
+            ]);
         }
 
-        return redirect()->action('User\UserController@myMusic')->with('success', trans('user.user_update_success'));
+        return redirect()->action('User\UserController@myMusic')->with([
+                'flash_level' => 'success',
+                'flash_message' => trans('user.user_update_success'),
+            ]);
     }
 }

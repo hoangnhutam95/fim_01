@@ -1,13 +1,12 @@
 @extends('user.master')
-
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ trans('user.edit-user') }}</div>
+                <div class="panel-heading">{{ trans('home.edit-profile') }}</div>
                 <div class="panel-body">
                     {!! Form::open([
-                        'method' => 'PATCH',
+                        'method' => 'POST',
                         'action' => ['User\UserController@update'],
                         'class' => 'form-horizontal',
                         'enctype' => 'multipart/form-data'

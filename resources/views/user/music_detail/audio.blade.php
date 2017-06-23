@@ -29,14 +29,16 @@
             <h4>
                 <a href="" class="name">{{ $audio->name }}</a>
                 <span> - </span>
-                <a href="{{ $audio->singer_id ? action('User\SingerController@show', $audio->singer_id) : null }}">{{ $audio->singer_id ? $audio->singer->name : config('settings.null') }}</a>
+                <a href="{{ $audio->singer_id ? action('User\SingerController@show', $audio->singer_id) : null }}">
+                    {{ $audio->singer_id ? $audio->singer->name : config('settings.null') }}
+                </a>
             </h4>
             <div class="row info-list">
-                <div class="col-lg-4"><h5>
+                <div class="col-sm-4"><h5>
                     <span>{{ trans('home.musician') }}</span>
                     <span class="text-primary">{{ ($audio->author) ? $audio->author : config('settings.null') }}</span>
                 </h5></div>
-                <div class="col-lg-4"><h5>
+                <div class="col-sm-4"><h5>
                     <span>{{ trans('home.topic') }}</span>
                     <span class="text-primary">
                         <a href="{{ $audio->category_id ? action('User\HomeController@showSongOfTopic', $audio->category_id) : null }}">
@@ -44,17 +46,17 @@
                         </a>
                     </span>
                 </h5></div>
-                <div class="col-lg-4" id="rate-point"><h5>
+                <div class="col-sm-4" id="rate-point"><h5>
                     <span>{{ trans('home.rate-point') }}</span>
                     <span class="text-primary rate-point">{{ $audio->rate_point }}</span>
                     <span class="text-primary">({{ $audio->rate_number }} {{ trans('home.voted') }})</span>
                 </h5></div>
-                <div class="col-lg-12">
+                <div class="col-sm-12">
                     <h5><span>{{ trans('song.description') }}</span>
                     <span class="text-success more">{{ ($audio->description) ?: config('settings.null') }}</span></h5>
                 </div>
                 @if (auth()->check())
-                    <div class="col-lg-12">
+                    <div class="col-sm-8">
                         <h4 class="text-primary">{{ trans('home.rate-it') }}</h4>
                         {!! Form::open() !!}
                             <div class="hide-rate" data-route="{{ url('rate-song') }}"></div>
@@ -72,8 +74,30 @@
                             ]) !!}
                         {!! Form::close() !!}
                     </div>
+                    <div class="col-sm-4">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ trans('home.insert-my-playlist') }}
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                @foreach (Auth::user()->favorites as $favorite)
+                                <li>
+                                    {!! Form::open([
+                                        'action' => ['User\FavoriteController@createFavoriteDetail', $favorite->id],
+                                        'method' => 'POST',
+                                    ]) !!}
+                                    {!! Form::hidden('song_id', $audio['id']) !!}
+                                    {!! Form::button($favorite->name, [
+                                        'class' => 'btn btn-block btn-xs btn-white',
+                                        'type' => 'submit',
+                                    ]) !!}
+                                    {{ Form::close() }}
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 @else
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                     </div>
                 @endif
             </div>

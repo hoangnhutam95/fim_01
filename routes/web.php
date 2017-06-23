@@ -53,7 +53,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('suggest-lyric', 'User\HomeController@suggestLyric');
     Route::get('my-music', 'User\UserController@myMusic');
     Route::get('my-music/edit-profile', 'User\UserController@edit');
-    Route::patch('my-music/update-profile', 'User\UserController@update');
+    Route::post('my-music/update-profile', 'User\UserController@update');
+    Route::resource('my-music/playlist', 'User\FavoriteController');
+    Route::post('favorite/{favoriteId}', 'User\FavoriteController@createFavoriteDetail');
+    Route::post('favorite/remove-song/{favoriteId}', 'User\FavoriteController@removeSong');
 });
 
 Auth::routes();

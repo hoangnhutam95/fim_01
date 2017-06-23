@@ -49,4 +49,6 @@ interface SongRepositoryInterface
     public function getTopRateAudio();
 
     public function getTopRateVideo();
+
+    public function getListAudioOfFavorite($favoriteId);
 }

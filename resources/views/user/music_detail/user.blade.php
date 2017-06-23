@@ -33,23 +33,28 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-12">
-        <h3 class="page-header">{{ trans('home.my-playlist') }}</h3>
+    <div class="col-sm-12">
+        <h3 class="page-header">
+            {{ trans('home.my-playlist') }}
+            <a class="btn btn-primary pull-right" href="{{ action('User\FavoriteController@create') }}">
+                <i class="fa fa-plus"></i>{{ trans('home.create-playlist') }}
+            </a>
+        </h3>
     </div>
     @if (!Auth::user()->favorites->count())
         <h2>{{ trans('home.no-playlist')}}</h2>
     @endif
     @foreach (Auth::user()->favorites as $favorite)
     <div class="col-sm-3 list">
-        <a href="" title="{{ $favorite->name }}">
-            <img src="{{ ($favorite->hasCoverFavorite()) ? config('settings.favorite_cover_path') . $album->cover : config('settings.favorite_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
+        <a href="{{ action('User\FavoriteController@show', $favorite['id']) }}" title="{{ $favorite->name }}">
+            <img src="{{ ($favorite->hasCoverFavorite()) ? config('settings.favorite_cover_path') . $favorite->cover : config('settings.favorite_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
         </a>
-        <a href="" title="{{ $favorite->name }}">
+        <a href="{{ action('User\FavoriteController@show', $favorite['id']) }}" title="{{ $favorite->name }}">
             <div class="music-name">{{ $favorite->name }}</div>
         </a>
         <div class="">
-            <div class="singer-name text-muted">{{ $favorite->favoriteDetails->count() }}</div>
-        </a>
+            <div class="singer-name text-muted">{{ $favorite->favoriteDetails->count() }}{{ trans('home.song') }}</div>
+        </div>
     </div>
     @endforeach
 @endsection
