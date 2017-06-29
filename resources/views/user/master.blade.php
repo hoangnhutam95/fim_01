@@ -45,6 +45,7 @@
     {!! Html::script('js/user/comment.js') !!}
     {!! Html::script('js/user/home-page.js') !!}
     {!! Html::script('js/user/suggest-lyrics.js') !!}
+    {!! Html::script('js/user/search.js') !!}
     @yield('script')
 </body>
 </html>

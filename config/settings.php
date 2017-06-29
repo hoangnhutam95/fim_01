@@ -69,4 +69,5 @@ return [
     'search-view' => 8,
     'top_count' => 20,
     'rate_count' => 10,
+    'search-2' => 2,
 ];

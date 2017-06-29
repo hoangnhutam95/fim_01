@@ -1,30 +1,35 @@
 <header>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <div class="logo">
-                <a href="{{ action('User\HomeController@index') }}">
-                    {{ HTML::image(config('settings.logo')) }}
-                </a>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="logo">
+                    <a href="{{ action('User\HomeController@index') }}">
+                        {{ HTML::image(config('settings.logo')) }}
+                    </a>
+                </div>
             </div>
-        </div>
-        {!! Form::open([
-            'method' => 'POST',
-            'action' => ['User\HomeController@search'],
-            'class' => 'navbar-form navbar-left',
-        ]) !!}
-            <div class="form-group form-main-search">
-                {!! Form::text ('search', isset($input) ? $input : null, [
-                    'class' => 'form-control main-search',
-                    'placeholder' => 'search ',
-                    'id' => 'home-search-form'
-                ]) !!}
-                {!! Form::button('<i class="fa fa-search"></i>', [
-                    'type' => 'submit',
-                    'class' => 'btn btn-default',
-                ]) !!}
-            </div>
-        {!! Form::close() !!}
+            {!! Form::open([
+                'method' => 'POST',
+                'action' => ['User\HomeController@search'],
+                'class' => 'navbar-form navbar-left',
+                'id' => 'home-search-form'
+            ]) !!}
+                <div class="route-search-home" data-route={{ url('search-home') }}></div>
+                <div class="form-group form-main-search">
+                    {!! Form::text ('search', isset($input) ? $input : null, [
+                        'class' => 'form-control main-search',
+                        'placeholder' => 'Search ',
+                        'id' => 'home-search-aria'
+                    ]) !!}
+                    {!! Form::button('<i class="fa fa-search"></i>', [
+                        'type' => 'submit',
+                        'class' => 'btn btn-default',
+                    ]) !!}
+                </div>
+                <div class="dropdown" id="suggest-search-aria">
+
+                </div>
+            {!! Form::close() !!}
             <ul class="nav navbar-nav navbar-right login">
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">{{ trans('auth.login') }}</a></li>

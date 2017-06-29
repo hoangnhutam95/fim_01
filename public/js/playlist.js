@@ -19,7 +19,7 @@ $(document).ready(function () {
         var preId = $('#current-audio').data('key');
         var maxKey = $('#current-audio').data('max-key');
         var id = ++preId;
-        if (id > maxKey) {
+        if (id > maxKey -1) {
             id = 0;
         }
         var coverUrl = $('#cover-audio' + id).val();

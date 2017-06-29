@@ -68,4 +68,13 @@
     @if (!$audios->count() && !$videos->count() && !$albums->count() && !$singers->count())
         <h2>{{ trans('home.no_result') }}</h2>
     @endif
+    @if ($audios->count() >= $videos->count() && $audios->count() >= $albums->count() && $audios->count() >= $singers->count())
+        <div class="col-md-12">{{ $audios->links() }}</div>
+    @elseif ($videos->count() >= $audios->count() && $videos->count() >= $albums->count() && $videos->count() >= $singers->count())
+        <div class="col-md-12">{{ $albums->links() }}</div>
+    @elseif ($albums->count() >= $videos->count() && $albums->count() >= $audios->count() && $albums->count() >= $singers->count())
+        <div class="col-md-12">{{ $videos->links() }}</div>
+    @elseif ($singers->count() >= $videos->count() && $singers->count() >= $albums->count() && $singers->count() >= $audios->count())
+        <div class="col-md-12">{{ $singers->links() }}</div>
+    @endif
 @endsection

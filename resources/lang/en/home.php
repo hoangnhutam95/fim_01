@@ -62,4 +62,7 @@ return [
     'playlist-1' => 'Playlist ',
     'remove-success' => 'Remove succsess',
     'remove-fail' => 'Remove fail',
+    'top-rate' => 'Top Ratting',
+    'play' => 'Play',
+    'top-rate-list' => 'Top rate list',
 ];

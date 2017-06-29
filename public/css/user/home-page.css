@@ -27,6 +27,7 @@ footer {
     position: relative;
     height: 50px;
     margin-left: 50px;
+    /*margin-bottom: 0px;*/
 }
 
 header {
@@ -36,7 +37,7 @@ header {
 }
 
 .form-main-search {
-    width: 500px;
+    width: 455px;
 }
 
 .navbar-toggle {
@@ -48,7 +49,7 @@ header {
 }
 
 .main-search {
-    width: 70% !important;
+    width: 80% !important;
 }
 
 .nav-custom-1 {
@@ -227,6 +228,14 @@ li.dropdown:hover > .dropdown-menu {
 
 .btn-white:hover {
     background-color: yellow;
+}
+
+.suggest-search-aria {
+    width: 364px;
+}
+
+.login {
+    margin-top: 0px;
 }
 
 @media screen and (max-width: 767px) {

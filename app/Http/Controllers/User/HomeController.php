@@ -87,7 +87,10 @@ class HomeController extends Controller
         $videos = $this->songRepository->searchVideoHome($input)->paginate(config('settings.search-view'));
         $albums = $this->albumRepository->searchAlbumHome($input)->paginate(config('settings.search-view'));
         $singers = $this->singerRepository->searchSingerHome($input)->paginate(config('settings.search-view'));
-
+        $audios->appends(['search' => $input]);
+        $videos->appends(['search' => $input]);
+        $albums->appends(['search' => $input]);
+        $singers->appends(['search' => $input]);
         return view('user.search.search_home', compact('input', 'audios', 'videos', 'albums', 'singers'));
     }
 
@@ -110,5 +113,32 @@ class HomeController extends Controller
             return response()->json($result);
         }
         return redirect()->back();
+    }
+
+    public function searchAjax(Request $request)
+    {
+        $input = $request['keyword'];
+        if ($request->ajax()) {
+            $input = $request['keyword'];
+            $searchAudios = $this->songRepository->searchAudioHome($input)->paginate(config('settings.search-2'));
+            $searchVideos = $this->songRepository->searchVideoHome($input)->paginate(config('settings.search-2'));
+            $searchAlbums = $this->albumRepository->searchAlbumHome($input)->paginate(config('settings.search-2'));
+            $searchSingers = $this->singerRepository->searchSingerHome($input)->paginate(config('settings.search-2'));
+            $htmlSearch = view('user.search.ajax', compact('input', 'searchAudios', 'searchVideos', 'searchAlbums', 'searchSingers'))->render();
+            $result = [
+                    'success' => true,
+                    'input' => $input,
+                    'search_result' => $htmlSearch,
+            ];
+
+            return response()->json($result);
+        }
+    }
+
+    public function playRateTop()
+    {
+        $audios = $this->songRepository->getTopRateAudio()->paginate(config('settings.top_count'));
+
+        return view('user.music_detail.top', compact('audios'));
     }
 }
