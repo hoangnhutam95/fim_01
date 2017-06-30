@@ -46,6 +46,8 @@ Route::match(['get', 'post'], '/search', 'User\HomeController@search');
 
 Route::get('/search-home', 'User\HomeController@searchAjax');
 
+Route::post('/view-count', 'User\HomeController@updateViewCount');
+
 Route::get('/rate-top-list', 'User\HomeController@playRateTop');
 
 Route::group(['middleware' => 'auth'], function () {

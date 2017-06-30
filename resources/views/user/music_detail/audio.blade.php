@@ -105,10 +105,12 @@
     </div>
     <div class="audio-cover" backgr={{ ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}>
         <div class="admin-audio-name"></div>
-        <audio controls preload loop>
-            <source src="{{ config('settings.audio_path') . $audio->link }}" type="audio/mpeg">
-            {{ trans('song.brower_not_support') }}
-        </audio>
+        <div class="plyr-1" song-id="{{ $audio->id }}">
+            <audio controls id='song-view'>
+                <source src="{{ config('settings.audio_path') . $audio->link }}" type="audio/mpeg">
+                {{ trans('song.brower_not_support') }}
+            </audio>
+        </div>
     </div>
 
     @include('user.music_detail.lyric')

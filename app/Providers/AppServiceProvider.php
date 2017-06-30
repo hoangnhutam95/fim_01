@@ -23,6 +23,8 @@ use App\Repositories\Comment\CommentRepository;
 use App\Repositories\Comment\CommentRepositoryInterface;
 use App\Repositories\Favorite\FavoriteRepository;
 use App\Repositories\Favorite\FavoriteRepositoryInterface;
+use App\Repositories\View\ViewRepository;
+use App\Repositories\View\ViewRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,5 +54,6 @@ class AppServiceProvider extends ServiceProvider
         App::bind(RateRepositoryInterface::class, RateRepository::class);
         App::bind(CommentRepositoryInterface::class, CommentRepository::class);
         App::bind(FavoriteRepositoryInterface::class, FavoriteRepository::class);
+        App::bind(ViewRepositoryInterface::class, ViewRepository::class);
     }
 }

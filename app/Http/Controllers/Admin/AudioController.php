@@ -65,13 +65,12 @@ class AudioController extends Controller
      */
     public function store(CreateAudioRequest $request)
     {
-        try {
-            $audio = $this->songRepository->createAudio($request->all());
-
+        $audio = $this->songRepository->createAudio($request->all());
+        if ($audio) {
             return redirect()->route('audio.index')->with('success', trans('song.audio_create_success'));
-        } catch (Exception $e) {
-            return redirect()->route('audio.index')->with('errors', trans('song.audio_create_fail'));
         }
+
+        return redirect()->route('audio.index')->with('errors', trans('song.audio_create_fail'));
     }
 
     /**

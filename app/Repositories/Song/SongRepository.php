@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Singer;
 use App\Models\Rating;
 use App\Models\Comment;
+use App\Models\View;
 use DB;
 
 class SongRepository extends BaseRepository implements SongRepositoryInterface
@@ -20,14 +21,23 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
     protected $singerModel;
     protected $ratingModel;
     protected $commentModel;
+    protected $viewModel;
 
-    public function __construct(Song $song, Category $category, Singer $singer, Rating $rating, Comment $comment)
-    {
+
+    public function __construct(
+        Song $song,
+        Category $category,
+        Singer $singer,
+        Rating $rating,
+        Comment $comment,
+        View $view
+    ) {
         $this->model = $song;
         $this->categoryModel = $category;
         $this->singerModel = $singer;
         $this->ratingModel = $rating;
         $this->commentgModel = $comment;
+        $this->viewModel = $view;
     }
 
     public function getListAudios()
@@ -52,20 +62,28 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
 
     public function createAudio($request)
     {
-        $input = [
-            'name' => $request['name'],
-            'author' => $request['author'],
-            'description' => $request['description'],
-            'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
-            'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
-            'type' => config('settings.audio'),
-        ];
-        $nameCoverImage = SetFile::uploadCoverAudio($request);
-        $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
-        $nameAudioFile = SetFile::uploadAudio($request);
-        $input['link'] = $nameAudioFile;
+        DB::beginTransaction();
+        try {
+            $input = [
+                'name' => $request['name'],
+                'author' => $request['author'],
+                'description' => $request['description'],
+                'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
+                'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
+                'type' => config('settings.audio'),
+            ];
+            $nameCoverImage = SetFile::uploadCoverAudio($request);
+            $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
+            $nameAudioFile = SetFile::uploadAudio($request);
+            $input['link'] = $nameAudioFile;
+            $audio = $this->model->create($input);
 
-        return $this->model->create($input);
+            return true;
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return false;
+        }
     }
 
     public function updateAudio($input, $id)
@@ -124,20 +142,28 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
 
     public function createVideo($request)
     {
-        $input = [
-            'name' => $request['name'],
-            'author' => $request['author'],
-            'description' => $request['description'],
-            'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
-            'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
-            'type' => config('settings.video'),
-        ];
-        $nameCoverImage = SetFile::uploadCoverVideo($request);
-        $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
-        $nameVideoFile = SetFile::uploadVideo($request);
-        $input['link'] = $nameVideoFile;
+        DB::beginTransaction();
+        try {
+            $input = [
+                'name' => $request['name'],
+                'author' => $request['author'],
+                'description' => $request['description'],
+                'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
+                'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
+                'type' => config('settings.video'),
+            ];
+            $nameCoverImage = SetFile::uploadCoverVideo($request);
+            $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
+            $nameVideoFile = SetFile::uploadVideo($request);
+            $input['link'] = $nameVideoFile;
+            $video = $this->model->create($input);
 
-        return $this->model->create($input);
+            return true;
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return false;
+        }
     }
 
     public function updateVideo($input, $id)

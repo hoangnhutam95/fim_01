@@ -27,6 +27,7 @@
 .audio-cover {
     height: 200px;
     background-image: url("/uploads/cover/audio_cover/default_cover.jpg");
+    margin: 0px 50px;
 }
 
 .admin-audio-name {

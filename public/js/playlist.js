@@ -4,7 +4,8 @@
     var instances = plyr.setup({
       // Output to console
         debug: true,
-        autoplay: true
+        autoplay: true,
+        displayDuration: true,
     });
 })();
 

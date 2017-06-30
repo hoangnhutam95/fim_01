@@ -57,6 +57,11 @@ class Song extends Model
         return $this->hasMany(Rating::class);
     }
 
+    public function view()
+    {
+        return $this->belongsTo(View::class);
+    }
+
     public function getAudioCoverPath()
     {
         return asset(config('settings.audio_cover_path') . $this->cover);

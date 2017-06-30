@@ -8,6 +8,7 @@ use App\Repositories\Song\SongRepositoryInterface;
 use App\Repositories\Album\AlbumRepositoryInterface;
 use App\Repositories\Singer\SingerRepositoryInterface;
 use App\Repositories\Lyric\LyricRepositoryInterface;
+use App\Repositories\View\ViewRepositoryInterface;
 
 class HomeController extends Controller
 {
@@ -16,17 +17,20 @@ class HomeController extends Controller
     protected $albumRepository;
     protected $singerRepository;
     protected $lyricRepository;
+    protected $viewRepository;
 
     public function __construct(
         SongRepositoryInterface $songRepository,
         AlbumRepositoryInterface $albumRepository,
         SingerRepositoryInterface $singerRepository,
-        LyricRepositoryInterface $lyricRepository
+        LyricRepositoryInterface $lyricRepository,
+        ViewRepositoryInterface $viewRepository
     ) {
         $this->songRepository = $songRepository;
         $this->albumRepository = $albumRepository;
         $this->singerRepository = $singerRepository;
         $this->lyricRepository = $lyricRepository;
+        $this->viewRepository = $viewRepository;
     }
 
     public function index()
@@ -124,7 +128,13 @@ class HomeController extends Controller
             $searchVideos = $this->songRepository->searchVideoHome($input)->paginate(config('settings.search-2'));
             $searchAlbums = $this->albumRepository->searchAlbumHome($input)->paginate(config('settings.search-2'));
             $searchSingers = $this->singerRepository->searchSingerHome($input)->paginate(config('settings.search-2'));
-            $htmlSearch = view('user.search.ajax', compact('input', 'searchAudios', 'searchVideos', 'searchAlbums', 'searchSingers'))->render();
+            $htmlSearch = view('user.search.ajax', compact(
+                'input',
+                'searchAudios',
+                'searchVideos',
+                'searchAlbums',
+                'searchSingers'
+            ))->render();
             $result = [
                     'success' => true,
                     'input' => $input,
@@ -140,5 +150,18 @@ class HomeController extends Controller
         $audios = $this->songRepository->getTopRateAudio()->paginate(config('settings.top_count'));
 
         return view('user.music_detail.top', compact('audios'));
+    }
+
+    public function updateViewCount(Request $request)
+    {
+        if ($request->ajax()) {
+            $songId = $request['song_id'];
+            $this->viewRepository->updateViewCount($songId);
+            $result = [
+                    'success' => true,
+            ];
+
+            return response()->json($result);
+        }
     }
 }

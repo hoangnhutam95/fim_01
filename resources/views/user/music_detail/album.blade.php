@@ -10,7 +10,7 @@
     {!! Html::script('bower_components/plyr/dist/plyr.js') !!}
     {!! Html::script('js/playlist.js') !!}
     {!! Html::script('js/show-more.js') !!}
-
+    {!! Html::script('js/view-count.js') !!}
 @endsection
 
 @section('content')
@@ -66,7 +66,7 @@
             {{ trans('song.song') }}
             <span id="audio-name-color">{{ $audios[0]->name }}</span>
         </div>
-        <div class="plyr">
+        <div class="plyr-1">
             <audio controls class="test-p" id='audio-view'>
                 <source src="{{ config('settings.audio_path') . $audios[0]->link }}" type="audio/mpeg">
                 {{ trans('song.brower_not_support') }}
@@ -77,7 +77,7 @@
         @php ($k++)
         {!! Form::open() !!}
             {!! Form::hidden('audio_id', $audio->id, [
-                'id' => 'audio-id',
+                'id' => 'audio-id' . $key,
             ]) !!}
             {!! Form::hidden('src', ($audio->hasFileAudio()) ? config('settings.audio_path') . $audio->link : $audio->link, [
                 'id' => 'link-audio' . $key,

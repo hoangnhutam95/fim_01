@@ -65,4 +65,12 @@ return [
     'top-rate' => 'Top Ratting',
     'play' => 'Play',
     'top-rate-list' => 'Top rate list',
+    'top-view-audio' => 'Top view audio',
+    'top-view-video' => 'Top view video',
+    'week' => 'Week',
+    'month' => 'Month',
+    'all' => 'All',
+    'top-view-week' => 'Top view week',
+    'top-view-month' => 'Top view month',
+    'top-view-all' => 'Top view all',
 ];

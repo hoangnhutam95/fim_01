@@ -11,7 +11,7 @@ $(document).ready(function () {
                 event.preventDefault();
             }
         });
-        $( this ).attr( 'autocomplete', 'off' );
+        $(this).attr('autocomplete', 'off');
         $(document).on('keyup', '#home-search-aria', function (e) {
             e.preventDefault();
             $('#suggest-search-aria').addClass('open');
@@ -19,10 +19,9 @@ $(document).ready(function () {
             if (key == '') {
                 $('#suggest-search-aria').removeClass('open');
             }
-            var route = $('.route-search-home').data('route');
             $.ajax({
                 dataType: "json",
-                url: route,
+                url: "/search-home",
                 type : "GET",
                 data: {keyword : key},
                 success: function (result) {
@@ -33,9 +32,5 @@ $(document).ready(function () {
                 },
             });
         });
-    });
-
-    $(document).on('focusout', '#home-search-aria', function () {
-        // $('#suggest-search-aria').removeClass('open');
     });
 });
