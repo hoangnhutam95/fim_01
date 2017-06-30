@@ -59,7 +59,7 @@ class Song extends Model
 
     public function view()
     {
-        return $this->belongsTo(View::class);
+        return $this->belongsTo(View::class, 'id', 'song_id');
     }
 
     public function getAudioCoverPath()

@@ -90,4 +90,9 @@ class ViewRepository extends BaseRepository implements ViewRepositoryInterface
                     ->from('songs')->where('type', config('settings.video'))->get();
         })->orderBy('view_count_month', 'desc')->take(config('settings.top_count'));
     }
+
+    public function getViewOfSong($songId)
+    {
+        return $this->model->where('song_id', $songId)->first();
+    }
 }

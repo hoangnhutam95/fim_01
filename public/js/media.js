@@ -21,7 +21,7 @@ $(document).ready(function () {
         song.play();
         var timeSong = song.seekable.end(0);
         var timePlayed = song.played.end(0);
-        if ((timeSong - timePlayed) > 250) {
+        if ((timeSong - timePlayed) < 30) {
             $.ajax({
                 dataType: "json",
                 url: "/view-count",

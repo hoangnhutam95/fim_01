@@ -59,4 +59,8 @@ interface SongRepositoryInterface
     public function setNotHot($id);
 
     public function setHot($id);
+
+    public function searchNotHotAudioOrderByView($keyword);
+
+    public function searchNotHotVideoOrderByView($keyword);
 }

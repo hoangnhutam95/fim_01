@@ -62,28 +62,20 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
 
     public function createAudio($request)
     {
-        DB::beginTransaction();
-        try {
-            $input = [
-                'name' => $request['name'],
-                'author' => $request['author'],
-                'description' => $request['description'],
-                'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
-                'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
-                'type' => config('settings.audio'),
-            ];
-            $nameCoverImage = SetFile::uploadCoverAudio($request);
-            $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
-            $nameAudioFile = SetFile::uploadAudio($request);
-            $input['link'] = $nameAudioFile;
-            $audio = $this->model->create($input);
+        $input = [
+            'name' => $request['name'],
+            'author' => $request['author'],
+            'description' => $request['description'],
+            'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
+            'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
+            'type' => config('settings.audio'),
+        ];
+        $nameCoverImage = SetFile::uploadCoverAudio($request);
+        $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
+        $nameAudioFile = SetFile::uploadAudio($request);
+        $input['link'] = $nameAudioFile;
 
-            return true;
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            return false;
-        }
+        return $this->model->create($input);;
     }
 
     public function updateAudio($input, $id)
@@ -142,28 +134,20 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
 
     public function createVideo($request)
     {
-        DB::beginTransaction();
-        try {
-            $input = [
-                'name' => $request['name'],
-                'author' => $request['author'],
-                'description' => $request['description'],
-                'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
-                'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
-                'type' => config('settings.video'),
-            ];
-            $nameCoverImage = SetFile::uploadCoverVideo($request);
-            $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
-            $nameVideoFile = SetFile::uploadVideo($request);
-            $input['link'] = $nameVideoFile;
-            $video = $this->model->create($input);
+        $input = [
+            'name' => $request['name'],
+            'author' => $request['author'],
+            'description' => $request['description'],
+            'category_id' => ($request['category_id'] == 0) ? null : $request['category_id'],
+            'singer_id' => ($request['singer_id'] == 0) ? null : $request['singer_id'],
+            'type' => config('settings.video'),
+        ];
+        $nameCoverImage = SetFile::uploadCoverVideo($request);
+        $input['cover'] = isset($nameCoverImage) ? $nameCoverImage : config('settings.cover_default');
+        $nameVideoFile = SetFile::uploadVideo($request);
+        $input['link'] = $nameVideoFile;
 
-            return true;
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            return false;
-        }
+        return $this->model->create($input);
     }
 
     public function updateVideo($input, $id)
@@ -368,5 +352,27 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
     public function setHot($id)
     {
         return $this->model->find($id)->update(['is_hot' => config('settings.hot')]);
+    }
+
+    public function searchNotHotAudioOrderByView($keyword)
+    {
+        return $this->viewModel->whereIn('song_id', function ($query) use ($keyword) {
+            $query->select('id')
+                ->from('songs')
+                ->where('type', config('settings.audio'))
+                ->where('name', 'like', "%$keyword%")
+                ->get();
+        })->orderBy('view_count_week', 'desc');
+    }
+
+    public function searchNotHotVideoOrderByView($keyword)
+    {
+        return $this->viewModel->whereIn('song_id', function ($query) use ($keyword) {
+            $query->select('id')
+                ->from('songs')
+                ->where('type', config('settings.video'))
+                ->where('name', 'like', "%$keyword%")
+                ->get();
+        })->orderBy('view_count_week', 'desc');
     }
 }

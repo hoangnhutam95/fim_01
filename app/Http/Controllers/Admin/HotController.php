@@ -51,10 +51,12 @@ class HotController extends Controller
     {
         $input = $request['search'];
         $songs = $this->songRepository->searchNotHotAudio($input)->paginate(config('settings.search-view'));
+        $views = $this->songRepository->searchNotHotAudioOrderByView($input)->paginate(config('settings.search-view'));
         $audios = $this->songRepository->getHotAudio()->get();
         $songs->appends(['search' => $input]);
+        $views->appends(['search' => $input]);
 
-        return view('admin.hot.audio', compact('audios', 'songs', 'input'));
+        return view('admin.hot.audio', compact('audios', 'songs', 'input', 'views'));
     }
 
     public function hotVideo()
@@ -68,10 +70,12 @@ class HotController extends Controller
     {
         $input = $request['search'];
         $songs = $this->songRepository->searchNotHotVideo($input)->paginate(config('settings.search-view'));
+        $views = $this->songRepository->searchNotHotVideoOrderByView($input)->paginate(config('settings.search-view'));
         $videos = $this->songRepository->getHotVideo()->get();
         $songs->appends(['search' => $input]);
+        $views->appends(['search' => $input]);
 
-        return view('admin.hot.video', compact('videos', 'songs', 'input'));
+        return view('admin.hot.video', compact('videos', 'songs', 'input', 'views'));
     }
 
     public function hotAlbum()

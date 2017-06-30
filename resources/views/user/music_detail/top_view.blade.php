@@ -16,31 +16,31 @@
     <h2 class="text-primary">{{ trans('home.top-rate-list') }}</h2>
     @php ($i = 0)
     @php ($k = 0)
-    <div class="audio-cover" backgr={{ ($audios[0]->hasCoverAudio()) ? config('settings.audio_cover_path') . $audios[0]->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}>
+    <div class="audio-cover" backgr={{ ($views[0]->song->hasCoverAudio()) ? config('settings.audio_cover_path') . $views[0]->song->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}>
         <div class="admin-audio-name">
             {{ trans('song.song') }}
-            <span id="audio-name-color">{{ $audios[0]->name }}</span>
+            <span id="audio-name-color">{{ $views[0]->song->name }}</span>
         </div>
         <div class="plyr-1">
             <audio controls class="test-p" id='audio-view'>
-                <source src="{{ config('settings.audio_path') . $audios[0]->link }}" type="audio/mpeg">
+                <source src="{{ config('settings.audio_path') . $views[0]->song->link }}" type="audio/mpeg">
                 {{ trans('song.brower_not_support') }}
             </audio>
         </div>
     </div>
-    @foreach ($audios as $key => $audio )
+    @foreach ($views as $key => $view )
         @php ($k++)
         {!! Form::open() !!}
-            {!! Form::hidden('audio_id', $audio->id, [
+            {!! Form::hidden('audio_id', $view->song->id, [
                 'id' => 'audio-id' . $key,
             ]) !!}
-            {!! Form::hidden('src', ($audio->hasFileAudio()) ? config('settings.audio_path') . $audio->link : $audio->link, [
+            {!! Form::hidden('src', ($view->song->hasFileAudio()) ? config('settings.audio_path') . $view->song->link : $view->song->link, [
                 'id' => 'link-audio' . $key,
             ]) !!}
-            {!! Form::hidden('cover-audio', ($audio->hasCoverAudio()) ? config('settings.audio_cover_path') . $audio->cover : config('settings.audio_cover_path') . config('settings.cover_default'), [
+            {!! Form::hidden('cover-audio', ($view->song->hasCoverAudio()) ? config('settings.audio_cover_path') . $view->song->cover : config('settings.audio_cover_path') . config('settings.cover_default'), [
                 'id' => 'cover-audio' . $key,
             ]) !!}
-            {!! Form::hidden('audio-name', $audio->name, [
+            {!! Form::hidden('audio-name', $view->song->name, [
                 'id' => 'audio-name' . $key,
             ]) !!}
         {!! Form::close() !!}
@@ -55,15 +55,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($audios as $key => $audio )
+                @foreach ($views as $key => $view )
                     <tr>
-                        @if ($audio == $audios[0])
-                        <td><a href="{{ action('User\MusicController@showAudio', $audio['id']) }}" class="play-audio album-active" key="{{ $key }}" id="album-detail{{ $key }}">{{ $audio->name }}</a></td>
+                        @if ($view == $views[0])
+                        <td><a href="{{ action('User\MusicController@showAudio', $view->song->id) }}" class="play-audio album-active" key="{{ $key }}" id="album-detail{{ $key }}">{{ $view->song->name }}</a></td>
                         @else
-                        <td><a href="{{ action('User\MusicController@showAudio', $audio['id']) }}" class="play-audio" key="{{ $key }}" id="album-detail{{ $key }}">{{ $audio->name }}</a></td>
+                        <td><a href="{{ action('User\MusicController@showAudio', $view->song['id']) }}" class="play-audio" key="{{ $key }}" id="album-detail{{ $key }}">{{ $view->song->name }}</a></td>
                         @endif
-                        <td><a href="{{ $audio->singer_id ? action('User\SingerController@show', $audio->singer_id) : null }}">
-                            {{ $audio->singer_id ? $audio->singer->name : config('settings.null') }}
+                        <td><a href="{{ $view->song->singer_id ? action('User\SingerController@show', $view->song->singer_id) : null }}">
+                            {{ $view->song->singer_id ? $view->song->singer->name : config('settings.null') }}
                         </div></td>
                     </tr>
                 @endforeach

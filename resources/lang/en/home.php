@@ -73,4 +73,5 @@ return [
     'top-view-week' => 'Top view week',
     'top-view-month' => 'Top view month',
     'top-view-all' => 'Top view all',
+    'view' => ' view',
 ];

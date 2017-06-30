@@ -27,7 +27,7 @@
                         <td><a href="{{ action('Admin\VideoController@show', $video['id']) }}">{{ $video->name }}</a><br>
                             <span class="text-muted small">{{ $video->singer_id ? $video->singer->name : config('settings.null')}}</span>
                         </td>
-                        <td><span class="rate-pont">{{ $video->rate_point }}</span><span>( {{ $video->rate_number }}{{ trans('hot.voted') }} )</span></td>
+                        <td><span class="rate-point">{{ $video->rate_point }}</span><span>( {{ $video->rate_number }}{{ trans('hot.voted') }} )</span></td>
                         <td><div class="pull-right">
                             {!! Form::open([
                                 'action' => ['Admin\HotController@setNotHot', $video['id']],
@@ -78,7 +78,7 @@
                     @foreach ($songs as $song )
                     <tr>
                         <td><a href="{{ action('Admin\VideoController@show', $song['id']) }}">{{ $song->name }}</a></td>
-                        <td><span class="rate-pont text-center">{{ $song->rate_point }}</span><span>({{ $song->rate_number }})</span></td>
+                        <td><span class="rate-point text-center">{{ $song->rate_point }}</span><span>({{ $song->rate_number }})</span></td>
                         <td><div class="pull-right">
                             {!! Form::open([
                                 'action' => ['Admin\HotController@setHot', $song['id']],
@@ -92,8 +92,44 @@
                         </div></td>
                     </tr>
                     @endforeach
+                </tbody>
+            </table>
+            @endif
+            @if (isset($views))
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td>{{ $songs->links() }}</td>
+                        <th>{{ trans('album.song-name') }}</th>
+                        <th>{{ trans('hot.view-count-week') }}</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($views as $view )
+                    <tr>
+                        <td><a href="{{ action('Admin\VideoController@show', $view->song->id) }}">{{ $view->song->name }}</a></td>
+                        <td><span class="rate-pont text-center">{{ $view->view_count_week }}</span></td>
+                        <td><div class="pull-right">
+                            {!! Form::open([
+                                'action' => ['Admin\HotController@setHot', $view->song->id],
+                                'method' => 'POST',
+                            ]) !!}
+                            {!! Form::button(trans('hot.pin-hot'), [
+                                'class' => 'btn btn-block btn-success btn-xs',
+                                'type' => 'submit',
+                            ]) !!}
+                            {{ Form::close() }}
+                        </div></td>
+                    </tr>
+                    @endforeach
+                    <tr>
+                        <td>
+                            @if ($views->count() <= $songs->count())
+                                {{ $songs->links() }}
+                            @else
+                                {{ $views->links() }}
+                            @endif
+                        </td>
                     </tr>
                 </tbody>
             </table>

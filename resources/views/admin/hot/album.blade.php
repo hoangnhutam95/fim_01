@@ -26,7 +26,7 @@
                     <tr>
                         <td><a href="{{ action('Admin\AlbumController@show', $album['id']) }}">{{ $album->name }}</a>
                         </td>
-                        <td><span class="rate-pont">{{ $album->rate_point }}</span><span>( {{ $album->rate_number }}{{ trans('hot.voted') }} )</span></td>
+                        <td><span class="rate-point">{{ $album->rate_point }}</span><span>( {{ $album->rate_number }}{{ trans('hot.voted') }} )</span></td>
                         <td><div class="pull-right">
                             {!! Form::open([
                                 'action' => ['Admin\HotController@setNotHotAlbum', $album['id']],
@@ -77,7 +77,7 @@
                     @foreach ($albumNotHots as $albumNotHot )
                     <tr>
                         <td><a href="{{ action('Admin\AlbumController@show', $albumNotHot['id']) }}">{{ $albumNotHot->name }}</a></td>
-                        <td><span class="rate-pont text-center">{{ $albumNotHot->rate_point }}</span><span>({{ $albumNotHot->rate_number }})</span></td>
+                        <td><span class="rate-ponit text-center">{{ $albumNotHot->rate_point }}</span><span>({{ $albumNotHot->rate_number }})</span></td>
                         <td><div class="pull-right">
                             {!! Form::open([
                                 'action' => ['Admin\HotController@setHotAlbum', $albumNotHot['id']],

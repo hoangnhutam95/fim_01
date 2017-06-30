@@ -34,11 +34,11 @@
                 </a>
             </h4>
             <div class="row info-list">
-                <div class="col-sm-4"><h5>
+                <div class="col-sm-3"><h5>
                     <span>{{ trans('home.musician') }}</span>
                     <span class="text-primary">{{ ($audio->author) ? $audio->author : config('settings.null') }}</span>
                 </h5></div>
-                <div class="col-sm-4"><h5>
+                <div class="col-sm-3"><h5>
                     <span>{{ trans('home.topic') }}</span>
                     <span class="text-primary">
                         <a href="{{ $audio->category_id ? action('User\HomeController@showSongOfTopic', $audio->category_id) : null }}">
@@ -46,10 +46,14 @@
                         </a>
                     </span>
                 </h5></div>
-                <div class="col-sm-4" id="rate-point"><h5>
+                <div class="col-sm-3" id="rate-point"><h5>
                     <span>{{ trans('home.rate-point') }}</span>
                     <span class="text-primary rate-point">{{ $audio->rate_point }}</span>
                     <span class="text-primary">({{ $audio->rate_number }} {{ trans('home.voted') }})</span>
+                </h5></div>
+                <div class="col-sm-3"><h5>
+                    <span class="text-primary rate-point">{{ ($view) ? $view->view_count_all : config('settings.zero') }}</span>
+                    <span class="text-primary"> {{ trans('home.view') }}</span>
                 </h5></div>
                 <div class="col-sm-12">
                     <h5><span>{{ trans('song.description') }}</span>

@@ -132,7 +132,7 @@
     {!! Html::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
     {!! Html::script('bower_components/metisMenu/dist/metisMenu.min.js') !!}
     {!! Html::script('bower_components/startbootstrap-sb-admin-2-sass/dist/js/sb-admin-2.js') !!}
-    {!! Html::script('admin/js/myscript.js') !!}
+    {!! Html::script('js/admin.js') !!}
     @yield('script')
 </body>
 </Html>

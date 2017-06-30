@@ -32,11 +32,11 @@
                 <a href="{{ $video->singer_id ? action('User\SingerController@show', $video->singer_id) : null }}">{{ $video->singer_id ? $video->singer->name : config('settings.null') }}</a>
             </h4>
             <div class="row info-list">
-                <div class="col-lg-4"><h5>
+                <div class="col-sm-3"><h5>
                     <span>{{ trans('home.musician') }}</span>
                     <span class="text-primary">{{ ($video->author) ? $video->author : config('settings.null') }}</span>
                 </h5></div>
-                <div class="col-lg-4"><h5>
+                <div class="col-sm-3"><h5>
                     <span>{{ trans('home.topic') }}</span>
                     <span class="text-primary">
                         <a href="{{ $video->category_id ? action('User\HomeController@showVideoOfTopic', $video->category_id) : null }}">
@@ -44,10 +44,14 @@
                         </a>
                     </span>
                 </h5></div>
-                <div class="col-lg-4" id="rate-point"><h5>
+                <div class="col-sm-3" id="rate-point"><h5>
                     <span>{{ trans('home.rate-point') }}</span>
                     <span class="text-primary rate-point">{{ $video->rate_point }}</span>
                     <span class="text-primary">({{ $video->rate_number }} {{ trans('home.voted') }})</span>
+                </h5></div>
+                <div class="col-sm-3"><h5>
+                    <span class="text-primary rate-point">{{ ($view) ? $view->view_count_all : config('settings.zero') }}</span>
+                    <span class="text-primary"> {{ trans('home.view') }}</span>
                 </h5></div>
                 <div class="col-lg-12">
                     <h5><span>{{ trans('song.description') }}</span>

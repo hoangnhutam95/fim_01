@@ -164,4 +164,25 @@ class HomeController extends Controller
             return response()->json($result);
         }
     }
+
+    public function playViewTopWeek()
+    {
+        $views = $this->viewRepository->getTopViewWeekAudio()->paginate(config('settings.top_count'));
+
+        return view('user.music_detail.top_view', compact('views'));
+    }
+
+    public function playViewTopMonth()
+    {
+        $views = $this->viewRepository->getTopViewMonthAudio()->paginate(config('settings.top_count'));
+
+        return view('user.music_detail.top_view', compact('views'));
+    }
+
+    public function playViewTopAll()
+    {
+        $views = $this->viewRepository->getTopViewAllAudio()->paginate(config('settings.top_count'));
+
+        return view('user.music_detail.top_view', compact('views'));
+    }
 }

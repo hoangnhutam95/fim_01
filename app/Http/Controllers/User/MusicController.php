@@ -11,6 +11,7 @@ use App\Repositories\Lyric\LyricRepositoryInterface;
 use App\Repositories\Album\AlbumRepositoryInterface;
 use App\Repositories\Rate\RateRepositoryInterface;
 use App\Repositories\Comment\CommentRepositoryInterface;
+use App\Repositories\View\ViewRepositoryInterface;
 
 class MusicController extends Controller
 {
@@ -21,6 +22,7 @@ class MusicController extends Controller
     protected $albumRepository;
     protected $rateRepository;
     protected $commentRepository;
+    protected $viewRepository;
 
     public function __construct(
         SongRepositoryInterface $songRepository,
@@ -29,7 +31,8 @@ class MusicController extends Controller
         LyricRepositoryInterface $lyricRepository,
         AlbumRepositoryInterface $albumRepository,
         RateRepositoryInterface $rateRepository,
-        CommentRepositoryInterface $commentRepository
+        CommentRepositoryInterface $commentRepository,
+        ViewRepositoryInterface $viewRepository
     ) {
         $this->songRepository = $songRepository;
         $this->categoryRepository = $categoryRepository;
@@ -38,6 +41,7 @@ class MusicController extends Controller
         $this->albumRepository = $albumRepository;
         $this->rateRepository = $rateRepository;
         $this->commentRepository = $commentRepository;
+        $this->viewRepository = $viewRepository;
     }
 
     public function showAudio($id)
@@ -56,13 +60,16 @@ class MusicController extends Controller
         $ratePoint = $this->rateRepository->getRatePointOfUser($id, $rateType);
         $commentType = config('settings.comment.song');
         $comments = $this->commentRepository->getListComment($id, $commentType);
+        $view = $this->viewRepository->getViewOfSong($id);
+
         return view('user.music_detail.audio', compact(
             'audio',
             'currentLyric',
             'audiosOfSinger',
             'videosOfSinger',
             'ratePoint',
-            'comments'
+            'comments',
+            'view'
         ));
     }
 
@@ -82,6 +89,7 @@ class MusicController extends Controller
         $ratePoint = $this->rateRepository->getRatePointOfUser($id, $rateType);
         $commentType = config('settings.comment.song');
         $comments = $this->commentRepository->getListComment($id, $commentType);
+        $view = $this->viewRepository->getViewOfSong($id);
 
         return view('user.music_detail.video', compact(
             'video',
@@ -89,7 +97,8 @@ class MusicController extends Controller
             'videosOfSinger',
             'videosOfSinger',
             'ratePoint',
-            'comments'
+            'comments',
+            'view'
         ));
     }
 

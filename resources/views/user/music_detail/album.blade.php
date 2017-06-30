@@ -10,7 +10,6 @@
     {!! Html::script('bower_components/plyr/dist/plyr.js') !!}
     {!! Html::script('js/playlist.js') !!}
     {!! Html::script('js/show-more.js') !!}
-    {!! Html::script('js/view-count.js') !!}
 @endsection
 
 @section('content')

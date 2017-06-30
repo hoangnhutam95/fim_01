@@ -50,6 +50,12 @@ Route::post('/view-count', 'User\HomeController@updateViewCount');
 
 Route::get('/rate-top-list', 'User\HomeController@playRateTop');
 
+Route::get('/view-top-week-list', 'User\HomeController@playViewTopWeek');
+
+Route::get('/view-top-month-list', 'User\HomeController@playViewTopMonth');
+
+Route::get('/rate-top-all-list', 'User\HomeController@playViewTopAll');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::post('rate-song', 'User\RateController@storeRateSong');
     Route::post('rate-album', 'User\RateController@storeRateAlbum');

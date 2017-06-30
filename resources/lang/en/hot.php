@@ -11,4 +11,5 @@ return [
     'set-success' => 'Set success',
     'list-video-hot' => 'List Video Hot',
     'list-album-hot' => 'List Album Hot',
+    'view-count-week' => 'View week',
 ];

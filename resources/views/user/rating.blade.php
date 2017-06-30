@@ -114,7 +114,7 @@
                     <div class="panel-heading c-list">
                         <span class="title">{{ trans('home.top-view-week') }}</span>
                         <ul class="pull-right c-controls">
-                            <a href="{{ action('User\HomeController@playRateTop') }}" class="play-rate-list">
+                            <a href="{{ action('User\HomeController@playViewTopWeek') }}" class="play-rate-list">
                                 <i class="glyphicon glyphicon-play"></i>{{  trans('home.play') }}
                             </a>
                         </ul>
@@ -148,6 +148,11 @@
                 <div class="panel panel-primary text-left">
                     <div class="panel-heading c-list">
                         <span class="title">{{ trans('home.top-view-month') }}</span>
+                        <ul class="pull-right c-controls">
+                            <a href="{{ action('User\HomeController@playViewTopMonth') }}" class="play-rate-list">
+                                <i class="glyphicon glyphicon-play"></i>{{  trans('home.play') }}
+                            </a>
+                        </ul>
                     </div>
                     <ul class="list-group contact-list-rate" id="contact-list">
                         @php ($i = 0)
@@ -178,6 +183,11 @@
                 <div class="panel panel-primary text-left">
                     <div class="panel-heading c-list">
                         <span class="title">{{ trans('home.top-view-all') }}</span>
+                        <ul class="pull-right c-controls">
+                            <a href="{{ action('User\HomeController@playViewTopAll') }}" class="play-rate-list">
+                                <i class="glyphicon glyphicon-play"></i>{{  trans('home.play') }}
+                            </a>
+                        </ul>
                     </div>
                     <ul class="list-group contact-list-rate" id="contact-list">
                         @php ($i = 0)
@@ -220,11 +230,6 @@
                 <div class="panel panel-primary text-left">
                     <div class="panel-heading c-list">
                         <span class="title">{{ trans('home.top-view-week') }}</span>
-                        <ul class="pull-right c-controls">
-                            <a href="{{ action('User\HomeController@playRateTop') }}" class="play-rate-list">
-                                <i class="glyphicon glyphicon-play"></i>{{  trans('home.play') }}
-                            </a>
-                        </ul>
                     </div>
                     <ul class="list-group contact-list-rate" id="contact-list">
                         @php ($i = 0)

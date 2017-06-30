@@ -70,4 +70,5 @@ return [
     'top_count' => 20,
     'rate_count' => 10,
     'search-2' => 2,
+    'zero' => 0,
 ];
