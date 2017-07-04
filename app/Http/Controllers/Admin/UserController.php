@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->userRepository->paginate(config('settings.user_per_page'));
+        $users = $this->userRepository->getUser()->paginate(config('settings.user_per_page'));
 
         return view('admin.user.index', compact('users'));
     }
@@ -106,11 +106,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = $this->userRepository->find($id);
-        if (!$user) {
-            return redirect()->route('user.index')->with('errors', trans('user.user_not_found'));
-        }
-        if ($user->delete()) {
+        $user = $this->userRepository->delete($id);
+
+        if ($user) {
             return redirect()->back()->with('success', trans('user.delete_user_successfully'));
         }
 

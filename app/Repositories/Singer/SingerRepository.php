@@ -71,7 +71,7 @@ class SingerRepository extends BaseRepository implements SingerRepositoryInterfa
 
     public function searchSinger($keyword)
     {
-        return $this->model->where('name', 'like', "%$keyword%");
+        return $this->model->where('name', 'like', "%$keyword%")->orderBy('name');
     }
 
     public function getSinger()

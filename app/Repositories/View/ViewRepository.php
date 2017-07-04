@@ -95,4 +95,14 @@ class ViewRepository extends BaseRepository implements ViewRepositoryInterface
     {
         return $this->model->where('song_id', $songId)->first();
     }
+
+    public function resetWeekView()
+    {
+        return $this->model->select('view_count_week')->update(['view_count_week' => config('settings.zero')]);
+    }
+
+    public function resetMonthView()
+    {
+        return $this->model->select('view_count_week')->update(['view_count_week' => config('settings.zero'), 'view_count_month' => config('settings.zero')]);
+    }
 }

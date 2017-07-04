@@ -40,7 +40,7 @@
                                     '2' => config('settings.singer.duet'),
                                     '3' => config('settings.singer.group'),
                                     '4' => config('settings.singer.other'),
-                                    ), $singer['id'], [
+                                    ), $singer['role'], [
                                     'class' => 'form-control',
                                 ]) !!}
                             </div>

@@ -27,7 +27,7 @@ class SingerController extends Controller
      */
     public function index()
     {
-        $singers = $this->singerRepository->paginate(config('settings.singer_per_page'));
+        $singers = $this->singerRepository->getSinger()->paginate(config('settings.singer_per_page'));
 
         return view('admin.singer.index', compact('singers'));
     }

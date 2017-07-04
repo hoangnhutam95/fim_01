@@ -24,4 +24,8 @@ $(document).ready(function () {
         $(e.target).toggleClass('open').next('ul').slideToggle();
 
     });
+
+    $(".comfirm-reset").on("submit", function () {
+        return confirm("Do you want to resset view?");
+    });
 });

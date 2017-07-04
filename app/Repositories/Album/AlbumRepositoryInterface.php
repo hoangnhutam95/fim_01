@@ -28,4 +28,6 @@ interface AlbumRepositoryInterface
     public function setNotHotAlbum($id);
 
     public function setHotAlbum($id);
+
+    public function searchNotHotAlbum($keyword);
 }

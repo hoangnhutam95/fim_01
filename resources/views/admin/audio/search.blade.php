@@ -19,23 +19,27 @@
                 <div class="col-lg-10">
                     <h4><a href="" class="play-audio" id = {{ $audio->id }}>{{ $audio->name }}</a></h4>
                 </div>
-                <div class="col-lg-1">
-                    <a href="{{ action('Admin\AudioController@edit', $audio->id) }}" class="btn btn-block btn-primary btn-xs">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                </div>
-                <div class="col-lg-1">
+                <div class="pull-right">
                     {!! Form::open([
                         'action' => ['Admin\AudioController@destroy', $audio['id']],
                         'method' => 'delete',
-                        ])
-                    !!}
+                        'class' => 'fixform',
+                    ]) !!}
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [
                         'class' => 'btn btn-block btn-danger btn-xs delete-button',
                         'type' => 'submit',
-                        ])
-                    !!}
+                    ]) !!}
                     {{ Form::close() }}
+                </div>
+                <div class="pull-right">
+                    <a href="{{ action('Admin\AudioController@edit', $audio->id) }}" class="btn btn-block btn-primary btn-xs">
+                        <i class="glyphicon glyphicon-edit">{{ trans('song.edit') }}</i>
+                    </a>
+                </div>
+                <div class="pull-right">
+                    <a href="{{ action('Admin\AudioController@show', $audio->id) }}" class="btn btn-block btn-success btn-xs">
+                        <i class="glyphicon glyphicon-plus-sign">{{ trans('song.show') }}</i>
+                    </a>
                 </div>
                 <div class="row info-list">
                     <div class="col-lg-4">

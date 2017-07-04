@@ -40,6 +40,48 @@
     @endforeach
 @endif
 
+@if (isset($audiosOfTopic) && $audiosOfTopic->count())
+    <div class="col-sm-12">
+        <a href="{{ action('User\HomeController@showSongOfTopic', $audiosOfTopic[0]->category_id) }}">
+            <h3 class="page-header">{{ trans('home.audio2') }}<span class="text-success">{{ $audiosOfTopic[0]->category->name }}</span></h3>
+        </a>
+    </div>
+    @foreach ($audiosOfTopic as $audioOfTopic)
+    <div class="col-sm-3 list">
+        <a href="{{ action('User\MusicController@showAudio', $audioOfTopic['id']) }}" title="{{ $audioOfTopic->name }}">
+            <img src="{{ ($audioOfTopic->hasCoverAudio()) ? config('settings.audio_cover_path') . $audioOfTopic->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
+        </a>
+        <a href="{{ action('User\MusicController@showAudio', $audioOfTopic['id']) }}" class="" title="{{ $audioOfTopic->name }}">
+            <div class="music-name">{{ $audioOfTopic->name }}</div>
+        </a>
+        <a href="{{ $audioOfTopic->singer_id ? action('User\SingerController@show', $audioOfTopic->singer_id) : null }}" class="">
+            <div class="singer-name">{{ ($audioOfTopic->singer_id) ? $audioOfTopic->singer->name : config('settings.null') }}</div>
+        </a>
+    </div>
+    @endforeach
+@endif
+
+@if (isset($videosOfTopic) && $videosOfTopic->count())
+    <div class="col-sm-12">
+        <a href="{{ action('User\HomeController@showVideoOfTopic', $videosOfTopic[0]->category_id) }}">
+            <h3 class="page-header">{{ trans('home.video') }}<span class="text-success">{{ $videosOfTopic[0]->category->name }}</span></h3>
+        </a>
+    </div>
+    @foreach ($videosOfTopic as $videoOfTopic)
+    <div class="col-sm-3 list">
+        <a href="{{ action('User\MusicController@showVideo', $videoOfTopic['id']) }}" title="{{ $videoOfTopic->name }}">
+            <img src="{{ ($videoOfTopic->hasCoverVideo()) ? config('settings.video_cover_path') . $videoOfTopic->cover : config('settings.video_cover_path') . config('settings.cover_default') }}" class="img-responsive music-cover">
+        </a>
+        <a href="{{ action('User\MusicController@showVideo', $videoOfTopic['id']) }}" class="" title="{{ $videoOfTopic->name }}">
+            <div class="music-name">{{ $videoOfTopic->name }}</div>
+        </a>
+        <a href="{{ $videoOfTopic->singer_id ? action('User\SingerController@show', $videoOfTopic->singer_id) : null }}" class="">
+            <div class="singer-name">{{ ($videoOfTopic->singer_id) ? $videoOfTopic->singer->name : config('settings.null') }}</div>
+        </a>
+    </div>
+    @endforeach
+@endif
+
 @if (isset($albumOfTopics) && $albumOfTopics->count())
     <div class="col-sm-12">
         <a href="{{ action('User\HomeController@showAlbumOfTopic', $albumOfTopics[0]->category_id) }}">

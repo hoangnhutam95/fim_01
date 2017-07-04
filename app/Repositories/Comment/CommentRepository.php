@@ -36,4 +36,33 @@ class CommentRepository extends BaseRepository implements CommentRepositoryInter
     {
         return $this->model->find($input['id'])->update(['content' => $input['content']]);
     }
+
+    public function updateTargetComment($input)
+    {
+        $comment = $this->model
+            ->where('type', $input['type'])
+            ->where('target_id', $input['target_id'])
+            ->get();
+        if ($input['type'] == config('settings.comment.song')) {
+            return $this->songModel->find($input['target_id'])->update(['comment_number' => $comment->count()]);
+        }
+        if ($input['type'] == config('settings.comment.album')) {
+            return $this->albumModel->find($input['target_id'])->update(['comment_number' => $comment->count()]);
+        }
+
+        return false;
+    }
+
+    public function updateAfterDeleteComment($id)
+    {
+        $comment = $this->model->find($id);
+        if ($comment['type'] == config('settings.comment.song')) {
+            return $this->songModel->find($comment['target_id'])->update(['comment_number' => $comment->count()]);
+        }
+        if ($comment['type'] == config('settings.comment.album')) {
+            return $this->albumModel->find($comment['target_id'])->update(['comment_number' => $comment->count()]);
+        }
+
+        return false;
+    }
 }

@@ -27,7 +27,7 @@ class AlbumRepository extends BaseRepository implements AlbumRepositoryInterface
         $this->ratingModel = $rating;
         $this->albumDetailModel = $albumDetail;
         $this->songModel = $song;
-        $this->commentgModel = $comment;
+        $this->commentModel = $comment;
     }
 
     public function searchAlbum($keyword)

@@ -38,4 +38,7 @@ return [
     'image' => 'Image',
     'singer' => 'Singer',
     'type' => 'Type',
+    'reset-view' => 'Reset View',
+    'reset-fail' => 'Reset fail',
+    'reset-success' => 'Reset success',
 ];

@@ -8,6 +8,11 @@
         'cols' => '50',
         'rows' => '3',
     ]) !!}
+    {!! Form::button(trans('home.send'), [
+        'class' => 'btn btn-primary suggest-bnt',
+        'id' => 'post-comment-1',
+        'type' => 'submit',
+    ]) !!}
     {!! Form::close() !!}
 @else
     <div class="col-sm-12">
@@ -24,7 +29,7 @@
         <div class="comment-wrapper">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    {{ trans('home.comment') }}
+                    {{ trans('home.comment') }}({{ $comments->count() }})
                 </div>
                 <div class="panel-body" id="post-comment">
                     <ul class="media-list">

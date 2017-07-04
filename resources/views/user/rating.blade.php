@@ -24,9 +24,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showAudio', $topRateAudio['id']) }}" title="{{ $topRateAudio->name }}">
+                                <div><a href="{{ action('User\MusicController@showAudio', $topRateAudio['id']) }}" title="{{ $topRateAudio->name }}">
                                     <div class="rate-name">{{ $topRateAudio->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topRateAudio->singer_id ? action('User\SingerController@show', $topRateAudio->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topRateAudio->singer_id) ? $topRateAudio->singer->name : config('settings.null') }}</div>
@@ -54,9 +54,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showVideo', $topRateVideo['id']) }}" title="{{ $topRateVideo->name }}">
+                                <div><a href="{{ action('User\MusicController@showVideo', $topRateVideo['id']) }}" title="{{ $topRateVideo->name }}">
                                     <div class="rate-name">{{ $topRateVideo->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topRateVideo->singer_id ? action('User\SingerController@show', $topRateVideo->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topRateVideo->singer_id) ? $topRateVideo->singer->name : config('settings.null') }}</div>
@@ -126,9 +126,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showAudio', $topViewWeekAudio->song->id) }}" title="{{ $topViewWeekAudio->song->name }}">
+                                <div><a href="{{ action('User\MusicController@showAudio', $topViewWeekAudio->song->id) }}" title="{{ $topViewWeekAudio->song->name }}">
                                     <div class="rate-name">{{ $topViewWeekAudio->song->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topViewWeekAudio->song->singer_id ? action('User\SingerController@show', $topViewWeekAudio->song->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topViewWeekAudio->song->singer_id) ? $topViewWeekAudio->song->singer->name : config('settings.null') }}</div>
@@ -161,9 +161,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showAudio', $topViewMonthAudio->song->id) }}" title="{{ $topViewMonthAudio->song->name }}">
+                                <div><a href="{{ action('User\MusicController@showAudio', $topViewMonthAudio->song->id) }}" title="{{ $topViewMonthAudio->song->name }}">
                                     <div class="rate-name">{{ $topViewMonthAudio->song->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topViewMonthAudio->song->singer_id ? action('User\SingerController@show', $topViewMonthAudio->song->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topViewMonthAudio->song->singer_id) ? $topViewMonthAudio->song->singer->name : config('settings.null') }}</div>
@@ -196,9 +196,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showAudio', $topViewAllAudio->song->id) }}" title="{{ $topViewAllAudio->song->name }}">
+                                <div><a href="{{ action('User\MusicController@showAudio', $topViewAllAudio->song->id) }}" title="{{ $topViewAllAudio->song->name }}">
                                     <div class="rate-name">{{ $topViewAllAudio->song->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topViewAllAudio->song->singer_id ? action('User\SingerController@show', $topViewAllAudio->song->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topViewAllAudio->song->singer_id) ? $topViewAllAudio->song->singer->name : config('settings.null') }}</div>
@@ -238,9 +238,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showVideo', $topViewWeekVideo->song->id) }}" title="{{ $topViewWeekVideo->song->name }}">
+                                <div><a href="{{ action('User\MusicController@showVideo', $topViewWeekVideo->song->id) }}" title="{{ $topViewWeekVideo->song->name }}">
                                     <div class="rate-name">{{ $topViewWeekVideo->song->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topViewWeekVideo->song->singer_id ? action('User\SingerController@show', $topViewWeekVideo->song->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topViewWeekVideo->song->singer_id) ? $topViewWeekVideo->song->singer->name : config('settings.null') }}</div>
@@ -268,9 +268,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showVideo', $topViewMonthVideo->song->id) }}" title="{{ $topViewMonthVideo->song->name }}">
+                                <div><a href="{{ action('User\MusicController@showVideo', $topViewMonthVideo->song->id) }}" title="{{ $topViewMonthVideo->song->name }}">
                                     <div class="rate-name">{{ $topViewMonthVideo->song->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topViewMonthVideo->song->singer_id ? action('User\SingerController@show', $topViewMonthVideo->song->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topViewMonthVideo->song->singer_id) ? $topViewMonthVideo->song->singer->name : config('settings.null') }}</div>
@@ -298,9 +298,9 @@
                         <li class="list-group-item">
                             <div class="col-sm-1"><span>{{ $i }}</span></div>
                             <div class="col-sm-8">
-                                <span><a href="{{ action('User\MusicController@showVideo', $topViewAllVideo->song->id) }}" title="{{ $topViewAllVideo->song->name }}">
+                                <div><a href="{{ action('User\MusicController@showVideo', $topViewAllVideo->song->id) }}" title="{{ $topViewAllVideo->song->name }}">
                                     <div class="rate-name">{{ $topViewAllVideo->song->name }}</div>
-                                </a></span><br>
+                                </a></div>
                                 <span>
                                     <a href="{{ $topViewAllVideo->song->singer_id ? action('User\SingerController@show', $topViewAllVideo->song->singer_id) : null }}" class="text-muted">
                                         <div class="c-info">{{ ($topViewAllVideo->song->singer_id) ? $topViewAllVideo->song->singer->name : config('settings.null') }}</div>

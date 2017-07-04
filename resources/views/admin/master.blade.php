@@ -108,6 +108,11 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ action('Admin\ViewController@index') }}"><i class="fa fa-users fa-fw"></i>
+                                {{ trans('admin.reset-view') }}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

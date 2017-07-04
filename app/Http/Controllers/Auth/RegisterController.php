@@ -56,7 +56,7 @@ class RegisterController extends Controller
             $user = $this->userRepository->create($request->all());
             $this->guard()->login($user);
 
-            return redirect()->route('/')->with([
+            return redirect()->action('User\HomeController@index')->with([
                 'flash_level' => 'success',
                 'flash_message' => trans('auth.create-user-succses'),
             ]);

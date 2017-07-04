@@ -56,6 +56,14 @@ class MusicController extends Controller
                 ->getVideoOfSinger($audio->singer_id)
                 ->paginate(config('settings.list_per_page'));
         }
+        if ($audio->category_id) {
+            $audiosOfTopic =$this->songRepository
+            ->getAudioOfTopic($audio->category_id)
+            ->paginate(config('settings.list_per_page'));
+            $videosOfTopic =$this->songRepository
+            ->getVideoOfTopic($audio->category_id)
+            ->paginate(config('settings.list_per_page'));
+        }
         $rateType = config('settings.rate.song');
         $ratePoint = $this->rateRepository->getRatePointOfUser($id, $rateType);
         $commentType = config('settings.comment.song');
@@ -67,6 +75,8 @@ class MusicController extends Controller
             'currentLyric',
             'audiosOfSinger',
             'videosOfSinger',
+            'audiosOfTopic',
+            'videosOfTopic',
             'ratePoint',
             'comments',
             'view'
@@ -85,6 +95,14 @@ class MusicController extends Controller
                 ->getAudioOfSinger($video->singer_id)
                 ->paginate(config('settings.list_per_page'));
         }
+        if ($video->category_id) {
+            $audiosOfTopic =$this->songRepository
+            ->getAudioOfTopic($video->category_id)
+            ->paginate(config('settings.list_per_page'));
+            $videosOfTopic =$this->songRepository
+            ->getVideoOfTopic($video->category_id)
+            ->paginate(config('settings.list_per_page'));
+        }
         $rateType = config('settings.comment.song');
         $ratePoint = $this->rateRepository->getRatePointOfUser($id, $rateType);
         $commentType = config('settings.comment.song');
@@ -96,6 +114,8 @@ class MusicController extends Controller
             'currentLyric',
             'videosOfSinger',
             'videosOfSinger',
+            'audiosOfTopic',
+            'videosOfTopic',
             'ratePoint',
             'comments',
             'view'

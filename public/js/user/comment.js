@@ -14,6 +14,34 @@ $(document).ready(function () {
         $('.aria-edit-comment').focus().val(content);
     });
 
+    $(document).on('click', '#post-comment-1', function (e) {
+        e.preventDefault();
+        var route2 = $('.urlcomment').data('route');
+        var typeComment = $('.comment-type').data('type-comment');
+        var content = $('#comment1').val();
+        var targetId = $('#target_id').val();
+        var userId = $('#user_id').val();
+        $.ajax({
+            type: 'POST',
+            url: route2,
+            dataType: 'JSON',
+            data: {
+                'target_id': targetId,
+                'content' : content,
+                'user_id': userId,
+                'type' : typeComment,
+            },
+            success: function (result) {
+                if (result.success) {
+                    $('#comment1').val('');
+                    $('#post-comment').load(location.href + " #post-comment>*","");
+                } else {
+                    alert("Sorry. Comment fail");
+                }
+            }
+        });
+    });
+
     $(document).on('keydown', '#comment1', function (e) {
         if (e.keyCode == 13) {
             var route2 = $('.urlcomment').data('route');

@@ -36,13 +36,13 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         $this->categoryModel = $category;
         $this->singerModel = $singer;
         $this->ratingModel = $rating;
-        $this->commentgModel = $comment;
+        $this->commentModel = $comment;
         $this->viewModel = $view;
     }
 
     public function getListAudios()
     {
-        $data = $this->model->where('type', config('settings.audio'));
+        $data = $this->model->where('type', config('settings.audio'))->orderBy('name');
         if (!$data) {
             throw new Exception(trans('song.find_error'));
         }
@@ -52,7 +52,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
 
     public function getListVideos()
     {
-        $data = $this->model->where('type', config('settings.video'));
+        $data = $this->model->where('type', config('settings.video'))->orderBy('name');
         if (!$data) {
             throw new Exception(trans('song.find_error'));
         }
@@ -185,6 +185,10 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
                 ->where('type', config('settings.rate.song'))
                 ->where('target_id', $id)
                 ->delete();
+            $this->commentModel
+                ->where('type', config('settings.comment.song'))
+                ->where('target_id', $id)
+                ->delete();
             if ($data['cover'] != config('settings.cover_default')) {
                 file::delete(config('settings.video_cover_src') . $data['cover']);
             }
@@ -212,7 +216,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
             foreach ($singerIds as $singerId) {
                 $query->orWhere('singer_id', $singerId);
             }
-        });
+        })->orderBy('name');
 
         return $songs;
     }
@@ -274,8 +278,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         return $this->model
             ->where('type', config('settings.audio'))
             ->where('category_id', $categoryId)
-            ->orderBy('name')
-            ->paginate(config('settings.list_item'));
+            ->orderBy('name');
     }
 
     public function getVideoOfTopic($categoryId)
@@ -283,8 +286,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
         return $this->model
             ->where('type', config('settings.video'))
             ->where('category_id', $categoryId)
-            ->orderBy('name')
-            ->paginate(config('settings.list_item'));
+            ->orderBy('name');
     }
 
     public function searchAudioHome($keyword)
@@ -360,6 +362,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
             $query->select('id')
                 ->from('songs')
                 ->where('type', config('settings.audio'))
+                ->where('is_hot', config('settings.not_hot'))
                 ->where('name', 'like', "%$keyword%")
                 ->get();
         })->orderBy('view_count_week', 'desc');
@@ -371,6 +374,7 @@ class SongRepository extends BaseRepository implements SongRepositoryInterface
             $query->select('id')
                 ->from('songs')
                 ->where('type', config('settings.video'))
+                ->where('is_hot', config('settings.not_hot'))
                 ->where('name', 'like', "%$keyword%")
                 ->get();
         })->orderBy('view_count_week', 'desc');

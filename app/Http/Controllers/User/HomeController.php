@@ -45,14 +45,14 @@ class HomeController extends Controller
 
     public function showSongOfTopic($categoryId)
     {
-        $audios = $this->songRepository->getAudioOfTopic($categoryId);
+        $audios = $this->songRepository->getAudioOfTopic($categoryId)->paginate(config('settings.list_item'));;
 
         return view('user.category_detail.audio', compact('audios'));
     }
 
     public function showVideoOfTopic($categoryId)
     {
-        $videos = $this->songRepository->getVideoOfTopic($categoryId);
+        $videos = $this->songRepository->getVideoOfTopic($categoryId)->paginate(config('settings.list_item'));;
 
         return view('user.category_detail.video', compact('videos'));
     }

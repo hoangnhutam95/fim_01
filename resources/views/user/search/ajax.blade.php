@@ -26,4 +26,7 @@
         <li><a href="{{ action('User\SingerController@show', $searchSinger['id']) }}">{{ $searchSinger->name }}</a></li>
         @endforeach
     @endif
+    @if (!$searchAudios->count() && !$searchVideos->count() && !$searchAlbums->count() && !$searchSingers->count())
+        <h4>{{ trans('home.no_result') }}</h4>
+    @endif
 </ul>

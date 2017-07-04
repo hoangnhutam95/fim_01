@@ -18,4 +18,8 @@ interface ViewRepositoryInterface
     public function getTopViewMonthVideo();
 
     public function getViewOfSong($songId);
+
+    public function resetWeekView();
+
+    public function resetMonthView();
 }

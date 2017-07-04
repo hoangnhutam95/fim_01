@@ -30,7 +30,7 @@
                 @endif
                 @yield('content')
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 rating-style">
                 @include('user.rating')
             </div>
         </div>

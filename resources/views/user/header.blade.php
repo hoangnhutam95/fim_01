@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse nav-custom-2">
         <div class="container-fluid">
             <div class="navbar-header">
                 <div class="logo">
@@ -37,7 +37,12 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ HTML::image((auth::user()->hasAvatar()) ? config('settings.avatar') . auth::user()->avatar : config('settings.avatar') . config('settings.avatar_default'), trans('user.this-is-avatar'),
+                                [
+                                    'class' => 'img-avatar',
+                                ])
+                            }}
+                            <span class="user-name">{{ Auth::user()->name }}</span> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>

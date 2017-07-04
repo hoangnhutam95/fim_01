@@ -7,6 +7,7 @@ use App\Repositories\BaseRepository;
 use Exception;
 use File;
 use App\Helpers\SetFile;
+use DB;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -46,16 +47,29 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function delete($id)
     {
+        $user = $this->model->find($id);
         DB::beginTransaction();
         try {
+            if ($user['avatar'] != config('settings.avatar_default')) {
+                file::delete(config('settings.avatar_path') . $user['avatar']);
+            }
             $data = $this->model->destroy($id);
             if (!$data) {
                 throw new Exception(trans('user.delete_error'));
             }
             DB::commit();
+
+            return true;
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
+
+            return false;
         }
+    }
+
+    public function getUser()
+    {
+        return $this->model->orderBy('name');
     }
 }

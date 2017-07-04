@@ -46,6 +46,7 @@ class CommentController extends Controller
             $input = $request->only('user_id', 'target_id', 'content', 'type');
             try {
                 $comment = $this->commentRepository->create($input);
+                $target = $this->commentRepository->updateTargetComment($input);
                 $result = [
                     'success' => true,
                 ];
@@ -155,6 +156,7 @@ class CommentController extends Controller
             $input = $request->only('id');
             try {
                 $comment = $this->commentRepository->delete($input['id']);
+                $target = $this->commentRepository->updateAfterDeleteComment($input['id']);
                 $result = [
                     'success' => true,
                 ];

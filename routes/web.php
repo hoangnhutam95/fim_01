@@ -108,4 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::delete('hot/set-not-hot-album/{albumId}', 'Admin\HotController@setNotHotAlbum');
     Route::post('hot/set-hot-song/{songId}', 'Admin\HotController@setHot');
     Route::post('hot/set-hot-album/{albumId}', 'Admin\HotController@setHotAlbum');
+    Route::get('view', 'Admin\ViewController@index');
+    Route::post('view/reset-view-week', 'Admin\ViewController@resetWeekView');
+    Route::post('view/reset-view-month', 'Admin\ViewController@resetMonthView');
 });
