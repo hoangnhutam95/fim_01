@@ -67,6 +67,8 @@
                                     {{ trans('auth.forgot_password') }}
                                 </a>
                             </div>
+
+                        <a href="redirect/facebook">FB Login</a>
                         </div>
                     {{ Form::close() }}
                 </div>

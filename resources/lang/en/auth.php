@@ -34,5 +34,6 @@ return [
     'remember_me' => 'Remember me',
     'create-user-succses' => 'Register success',
     'create-user-fail' => 'Register fail',
+    'signup' => 'Sign up',
 
 ];

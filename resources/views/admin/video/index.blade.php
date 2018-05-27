@@ -22,6 +22,7 @@
             {{ Session::get('success') }}
         </div>
     @endif
+    @if ($videos[0])
     <div class="video-cover">
         <div class="admin-video-name">
             {{ trans('song.song') }}
@@ -32,6 +33,7 @@
         <source src="{{ config('settings.video_path') . $videos[0]->link }}" type="video/mp4">
         </video>
     </div>
+    @endif
     <div class="add-video">
         <a class="btn btn-primary pull-right" href="{{ action('Admin\VideoController@create') }}">
             <i class="fa fa-plus"></i> {{ trans('song.add-video') }}

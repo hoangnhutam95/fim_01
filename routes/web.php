@@ -16,6 +16,10 @@ Route::get('/welcome', function () {
 
 Route::resource('/', 'User\HomeController');
 
+Route::get('/redirect/{social}', 'SocialAuthController@redirect');
+
+Route::get('/callback/{social}', 'SocialAuthController@callback');
+
 Route::get('audio/{audioId}', 'User\MusicController@showAudio');
 
 Route::get('video/{videoId}', 'User\MusicController@showVideo');

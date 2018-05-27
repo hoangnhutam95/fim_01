@@ -45,7 +45,7 @@
         @if (isset($lyric->user_id))
             <div class="member-entry">
                 <a href="{{ action('Admin\UserController@show', $lyric->user_id) }}" class="member-img">
-                    {{ Html::image(($lyric->user->hasAvatar()) ? config('settings.avatar') . $lyric->user->avatar : config('settings.avatar') . config('settings.avatar_default'),
+                    {{ Html::image(($lyric->user->hasAvatar()) ? config('settings.avatar') . $lyric->user->avatar : $lyric->user->avatar,
                         trans('user.this-is-avatar'), [
                             'class' => 'img-rounded',
                     ]) }}

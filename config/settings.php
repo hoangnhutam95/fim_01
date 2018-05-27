@@ -5,7 +5,7 @@ return [
     'admin_category' => 10,
     'cover_category_src' => public_path() . '/uploads/cover/category_cover/',
     'avatar_path' => public_path() . '/uploads/avatar/',
-    'avatar_default' => 'default-avatar.png',
+    'avatar_default' => 'default-avatar.jpg',
     'source_music' => 'public/uploads/music',
     'source_audio' => 'public/uploads/audio',
     'user_per_page' => 5,

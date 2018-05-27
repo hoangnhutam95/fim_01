@@ -39,7 +39,7 @@
                         <div id='location-comment{{ $comment->id }}'>
                             <li class="media">
                                 <a href="#" class="pull-left">
-                                    {{ HTML::image(($comment->user->hasAvatar()) ? config('settings.avatar') . $comment->user->avatar : config('settings.avatar') . config('settings.avatar_default'),
+                                    {{ HTML::image(($comment->user->hasAvatar()) ? config('settings.avatar') . $comment->user->avatar : $comment->user->avatar,
                                         trans('user.this-is-avatar'),
                                         [
                                             'class' => 'img-circle',

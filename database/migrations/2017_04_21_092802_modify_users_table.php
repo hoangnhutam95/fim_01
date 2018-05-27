@@ -19,8 +19,7 @@ class ModifyUsersTable extends Migration
             $table->string('address')->nullable();
             $table->integer('role')->default('0');
             $table->boolean('status')->default('0');
-            $table->string('facebook_id')->nullable();
-            $table->string('google_id')->nullable();
+
         });
     }
 
@@ -37,8 +36,6 @@ class ModifyUsersTable extends Migration
             $table->dropColumn('address');
             $table->dropColumn('role');
             $table->dropColumn('status');
-            $table->dropColumn('facebook_id');
-            $table->dropColumn('google_id');
         });
     }
 }

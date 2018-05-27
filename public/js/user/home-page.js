@@ -18,4 +18,7 @@ $(document).ready(function () {
         $(this).parent().removeClass("open");
     });
 
+    if ($("span").hasClass("erra")) {
+        $("#login-modal").modal();
+    }
 });

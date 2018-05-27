@@ -8,7 +8,7 @@
 @section('content')
     <div class="member-entry info">
         <a href="" class="member-img">
-            {{ Html::image((Auth::user()->hasAvatar()) ? config('settings.avatar') . Auth::user()->avatar : config('settings.avatar') . config('settings.avatar_default'), trans('singer.this-is-avatar'), [
+            {{ Html::image((Auth::user()->hasAvatar()) ? config('settings.avatar') . Auth::user()->avatar : Auth::user()->avatar, trans('singer.this-is-avatar'), [
                     'class' => 'img-rounded',
             ]) }}
         </a>

@@ -22,6 +22,7 @@
             {{ Session::get('success') }}
         </div>
     @endif
+    @if ($audios[0])
     <div class="audio-cover" backgr={{ ($audios[0]->hasCoverAudio()) ? config('settings.audio_cover_path') . $audios[0]->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}>
         <div class="admin-audio-name">
             {{ trans('song.song') }}
@@ -32,6 +33,7 @@
             {{ trans('song.brower_not_support') }}
         </audio>
     </div>
+    @endif
     <div class="add-audio">
         <a class="btn btn-primary pull-right" href="{{ action('Admin\AudioController@create') }}">
             <i class="fa fa-plus"></i>{{ trans('song.add-audio') }}
