@@ -6,6 +6,8 @@ return [
     'cover_category_src' => public_path() . '/uploads/cover/category_cover/',
     'avatar_path' => public_path() . '/uploads/avatar/',
     'avatar_default' => 'default-avatar.jpg',
+    'mic_icon' => '/uploads/logo/mic-icon.png',
+    'mic_icon_on' => '/uploads/logo/mic-on.png',
     'source_music' => 'public/uploads/music',
     'source_audio' => 'public/uploads/audio',
     'user_per_page' => 5,

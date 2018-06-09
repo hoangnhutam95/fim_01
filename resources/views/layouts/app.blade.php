@@ -12,7 +12,8 @@
 
     <!-- Styles -->
     {!! Html::style('css/app.css') !!}
-
+    {!! Html::style('css/user/login.css') !!}
+    {!! Html::style('css/user/home-page.css') !!}
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -22,61 +23,19 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ trans('auth.imusic')}}
+        <nav class="navbar navbar-inverse nav-custom-2">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="logo">
+                    <a href="{{ action('User\HomeController@index') }}">
+                        {{ HTML::image(config('settings.logo')) }}
                     </a>
                 </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <!-- <li><a href="{{ route('login') }}">{{ trans('auth.login') }}</a></li> -->
-                            <li><a href="{{ route('register') }}">{{ trans('auth.register') }}</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ trans('auth.logout') }}
-                                        </a>
-
-                                        {{ Form::open([
-                                            'id' => 'logout-form',
-                                            'action' => 'Auth\LoginController@logout',
-                                            'method' => 'POST',
-                                            'style' => 'display:none',
-                                        ]) }}
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
             </div>
-        </nav>
-
+        </div>
+    </nav>
+    </br>
+    </br>
         @yield('content')
     </div>
 

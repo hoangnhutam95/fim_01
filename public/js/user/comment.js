@@ -9,7 +9,8 @@ $(document).ready(function () {
         e.preventDefault();
         var id = $(this).attr('id');
         var content = $('#content-comment' + id).text();
-        var html ="<li class='media'>" + "<textarea class='form-control aria-edit-comment' id=" + id + "></textarea>" + "</li>" ;
+        var html ="<li class='media'>" + "<textarea class='form-control aria-edit-comment' data-id=" + id + " id='textaria-edit" + id + "'></textarea>" + "</li>" +
+        "<button class='btn btn-primary submit-edit-comment' id='" + id + "'>Send" + "</button>";
         $('#edit-comment-aria').html(html);
         $('.aria-edit-comment').focus().val(content);
     });
@@ -73,7 +74,7 @@ $(document).ready(function () {
 
     $(document).on('keydown', '.aria-edit-comment', function (e) {
         if (e.keyCode == 13) {
-            var id = $(this).attr('id');
+            var id = $(this).data('id');
             var content = $(this).val();
             $.ajax({
                 type: 'POST',
@@ -94,6 +95,30 @@ $(document).ready(function () {
             });
         }
     });
+
+    $(document).on('click', '.submit-edit-comment', function (e) {
+        e.preventDefault();
+        var id = $(this).attr('id');
+        var content = $('#textaria-edit' + id).val();
+        $.ajax({
+            type: 'POST',
+            url: '/editComment',
+            dataType: 'JSON',
+            data: {
+                'id': id,
+                'content' : content,
+            },
+            success: function (result) {
+                if (result.success) {
+                    $('#post-comment').load(location.href + " #post-comment>*","");
+                    $('.aria-edit-comment').remove();
+                } else {
+                    alert("Sorry. Comment fail");
+                }
+            }
+        });
+    });
+
     $(document).on('click', '.delete-comment1', function (e) {
         e.preventDefault();
         var conf = confirm("Do you want to delete this comment?");

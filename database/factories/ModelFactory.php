@@ -18,7 +18,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'avatar' => $faker->imageUrl(100, 100),
         'address' => $faker->address,
         'role' => '0',
         'status' => '1',
@@ -68,7 +67,7 @@ $factory->define(App\Models\Lyric::class, function (Faker\Generator $faker) {
         'user_id' => $faker->randomElement($userIds ?: $userIds = App\Models\User::pluck('id')->toArray()),
         'song_id' => $faker->randomElement($songIds ?: $songIds = App\Models\Song::pluck('id')->toArray()),
         'content' => $faker->paragraph,
-        'status' => $faker->'0',
+        'status' => '0',
         'created_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
         'updated_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
     ];

@@ -12,9 +12,9 @@ return [
     'ranking' => 'Ranking',
     'copyright' => 'Copyright',
     'address' => 'Address',
-    'real-address' => '434 Tran Khat Tran',
+    'real-address' => 'Hanoi University of Science and Technology',
     'my-phone' => '(+84) 1686066325',
-    'my-email' => 'hoang.nhu.tam@framgia.com',
+    'my-email' => 'hoangnhutam95@gmail.com',
     'like-us' => 'Like us',
     'on-facebook' => 'On facebook',
     'phone' => 'Phone',
@@ -74,4 +74,5 @@ return [
     'top-view-month' => 'Top view month',
     'top-view-all' => 'Top view all',
     'view' => ' view',
+    'send' => "Send",
 ];

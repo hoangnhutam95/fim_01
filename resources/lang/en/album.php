@@ -34,4 +34,5 @@ return [
     'remove_song_fail' => 'Remove song fail',
     'remove_song_successfully' => 'Remove song successfully',
     'song-name' => 'Song name',
+    'no-result' => 'No result',
 ];
