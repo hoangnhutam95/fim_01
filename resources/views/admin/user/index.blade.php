@@ -38,8 +38,7 @@
                     </div>
                     <div class="col-lg-6">
                         <span>{{ trans('user.created-at') }}</span>
-                        <span class="text-primary">{{ $user->created_at->diffForHumans() }}</span>
-                    </div>
+                        <span class="text-primary">{{ ($user->created_at != null) ? $user->created_at->diffForHumans() : NULL }}</span>
                     <div class="col-lg-2">
                         <a href="{{ action('Admin\UserController@show', $user->id) }}" class="btn btn-block btn-primary btn-xs">
                             <i class="glyphicon glyphicon-plus-sign"></i>

@@ -42,7 +42,7 @@
     @endif
     @if (isset($albums) && $albums->count())
         <div class="col-sm-12">
-            <h3 class="page-header">{{ trans('home.album2') }}{{ ($albums->count()) ? $albums[0]->category->name : trans('home.has-not-music') }}</h3>
+            <h3 class="page-header">{{ trans('home.album2') }}{{ ($albums->count()) ? $albums[0]->name : trans('home.has-not-music') }}</h3>
         </div>
         @foreach ($albums as $album)
         <div class="col-sm-3 list">

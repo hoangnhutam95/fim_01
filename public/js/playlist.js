@@ -16,13 +16,12 @@ $(document).ready(function () {
     function nextSong(e)
     {
         e.preventDefault();
-        alert(ok);
         var song = document.getElementById('audio-view');
         var id1 = $('#current-audio').data('key');
         var songId = $('#audio-id' + id1).val();
         var timeSong = song.seekable.end(0);
         var timePlayed = song.played.end(0);
-        if ((timeSong - timePlayed) < 30) {
+        if ((timeSong - timePlayed) < (0.2 * timeSong)) {
             $.ajax({
                 dataType: "json",
                 url: "/view-count",

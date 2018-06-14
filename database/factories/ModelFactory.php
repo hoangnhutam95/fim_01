@@ -19,6 +19,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'address' => $faker->address,
+        'avatar' => config("settings.avatar_default"),
         'role' => '0',
         'status' => '1',
         'password' => $password ?: $password = bcrypt('secret'),

@@ -11,7 +11,6 @@
     {!! Html::style('bower_components/font-awesome/css/font-awesome.min.css') !!}
     {!! Html::style('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}
     {!! Html::style('bower_components/bootstrap-star-rating/css/star-rating.css')!!}
-    {!! Html::style('bower_components/bootstrap-star-rating/css/theme-krajee-fa.min.css')!!}
     {!! Html::style('css/user/home-page.css') !!}
     {!! Html::style('css/user/rate.css') !!}
     {!! Html::style('css/user/comment.css') !!}

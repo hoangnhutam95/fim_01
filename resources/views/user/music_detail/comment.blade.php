@@ -27,11 +27,11 @@
 <div class="row bootstrap snippets list-comment">
     <div class="col-md-12 col-md-offset-0 col-sm-12">
         <div class="comment-wrapper">
-            <div class="panel panel-info">
+            <div class="panel panel-info" id="post-comment">
                 <div class="panel-heading">
                     {{ trans('home.comment') }}({{ $comments->count() }})
                 </div>
-                <div class="panel-body" id="post-comment">
+                <div class="panel-body">
                     <ul class="media-list">
                     <div id = "edit-comment-aria"></div>
                     <div id = "comment2"></div>

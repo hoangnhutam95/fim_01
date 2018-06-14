@@ -18,6 +18,7 @@ class UserTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'role' => '1',
+            'avatar' => config("settings.avatar_avatar_default"),
             'password' => bcrypt('12345678'),
         ]);
     }
