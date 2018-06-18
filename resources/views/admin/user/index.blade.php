@@ -39,17 +39,20 @@
                     <div class="col-lg-6">
                         <span>{{ trans('user.created-at') }}</span>
                         <span class="text-primary">{{ ($user->created_at != null) ? $user->created_at->diffForHumans() : NULL }}</span>
+                    </div>
                     <div class="col-lg-2">
                         <a href="{{ action('Admin\UserController@show', $user->id) }}" class="btn btn-block btn-primary btn-xs">
                             <i class="glyphicon glyphicon-plus-sign"></i>
                             {{ trans('user.show-profile') }}
                         </a>
                     </div>
+                    @if ($user->role != 1)
                     <div class="col-lg-10"></div>
                     <div class="col-lg-2">
                         {!! Form::open([
                             'action' => ['Admin\UserController@destroy', $user['id']],
                             'method' => 'delete',
+                            'class' => 'fixform',
                             ])
                         !!}
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>' . trans('user.delete'), [
@@ -59,6 +62,7 @@
                         !!}
                         {{ Form::close() }}
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

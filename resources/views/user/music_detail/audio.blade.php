@@ -116,7 +116,11 @@
             </audio>
         </div>
     </div>
-
+    <div class="col-sm-12">
+        <a href="{{ config('settings.audio_path') . $audio->link }}" download>
+            <button class="btn btn-success btn-download">Download</button>
+        </a>
+    </div>
     @include('user.music_detail.lyric')
 
     @include('user.music_detail.suggest_music')

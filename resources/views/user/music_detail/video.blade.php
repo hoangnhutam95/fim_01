@@ -87,7 +87,11 @@
             </video>
         </div>
     </div>
-
+    <div class="col-sm-12">
+        <a href="{{ config('settings.video_path') . $video->link }}" download>
+            <button class="btn btn-success btn-download-video">Download</button>
+        </a>
+    </div>
     @include('user.music_detail.lyric')
 
     @include('user.music_detail.suggest_music')

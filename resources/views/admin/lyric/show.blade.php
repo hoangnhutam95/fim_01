@@ -24,7 +24,7 @@
         </div>
     @endif
     @if ($lyric->song->type == config('settings.audio'))
-        <div class="audio-cover" backgr={{ ($lyric->song->hasCoverAudio()) ? config('settings.audio_cover_path') . $lyric->song->cover : $lyric->song->cover }}>
+        <div class="audio-cover" backgr={{ ($lyric->song->hasCoverAudio()) ? config('settings.audio_cover_path') . $lyric->song->cover : config('settings.audio_cover_path') . config('settings.cover_default') }}>
             <div class="admin-audio-name">
                 {{ trans('song.song') }}
                 <span id="audio-name-color">{{ $lyric->song->name }}</span>
@@ -41,7 +41,7 @@
             <span id="video-name-color">{{ $lyric->song->name }}</span>
             <span> - {{ ($lyric->song->singer_id) ? $lyric->song->singer->name : config('settings.null') }}</span>
         </div>
-        <video poster="{{ ($lyric->song->hasCoverVideo()) ? config('settings.video_cover_path') . $lyric->song->cover : $lyric->song->cover }}" controls preload loop>
+        <video poster="{{ ($lyric->song->hasCoverVideo()) ? config('settings.video_cover_path') . $lyric->song->cover : config('settings.video_cover_path') . config('settings.video_default') }}" controls preload loop>
         <source src="{{ config('settings.video_path') . $lyric->song->link }}" type="video/mp4">
         </video>
     </div>

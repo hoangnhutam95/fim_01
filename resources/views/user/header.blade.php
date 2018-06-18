@@ -135,6 +135,10 @@
                 recognition.stop();
                 $(".mic-icon").attr("src", "{{ config('settings.mic_icon') }}");
             }
+            recognition.onend = function() {
+                recognition.stop();
+                $(".mic-icon").attr("src", "{{ config('settings.mic_icon') }}");
+            }
         }
     }
 </script>

@@ -1,5 +1,6 @@
 <div class="lyric">
     <div class="name-lyric">{{ trans('home.lyric') }}</div>
+    <div>{{ ($currentLyric) ? trans('lyric.user-suggest-lyric').':' : ''}} {{ ($currentLyric) ? $currentLyric->user->name : ''}}</div>
     <div class="more">{{ ($currentLyric) ? $currentLyric->content : config('settings.null') }}</div>
     @if (auth::check())
         {!! Form::button(trans('home.suggest-lyric'), [

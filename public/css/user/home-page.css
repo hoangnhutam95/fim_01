@@ -1,5 +1,32 @@
+@media (max-width: 767px) {
+  .form-main-search {
+    max-width: 100%;
+  }
+  .form-control {
+    display: inline !important;
+  }
+  footer {
+    display: none;
+  }
+}
+
 body {
     background-color: #fff;
+}
+
+.btn-download {
+    margin: 11px;
+    margin-left: 35px;
+}
+
+.btn-download-video {
+    margin: 0px;
+    margin-left: 35px;
+}
+
+.dropdown-menu {
+    left: 36px;
+    width: 75%;
 }
 
 .mic-icon {
@@ -45,6 +72,9 @@ footer {
     color: white;
     padding: 15px;
     margin-bottom: 0;
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 .logo img {

@@ -25,13 +25,13 @@ class ViewController extends Controller
         if (!$view) {
             return redirect()->action('Admin\ViewController@index')->with([
                 'flash_level' => 'warning',
-                'flash_message' => trans('admin.add-category-fail'),
+                'flash_message' => trans('admin.reset-fail'),
             ]);
         }
 
         return redirect()->action('Admin\ViewController@index')->with([
             'flash_level' => 'success',
-            'flash_message' => trans('admin.add-category-success'),
+            'flash_message' => trans('admin.reset_reset-success'),
         ]);
     }
 
